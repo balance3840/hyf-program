@@ -4,7 +4,7 @@
 
 The current **Advanced JavaScript (Frontend) – Week 4** is titled **“Classes & Advanced Promises”** and teaches class fundamentals (constructor/instances/methods/`this`, optionally `extends`). The assignment for the week is a **screenshot generator app** that combines two APIs (RapidAPI + CrudCrud), but it does not naturally require classes, inheritance, or class-related patterns.
 
-This proposal suggests updating Week 4 to include a **close-to-real-life** class example, so trainees can see *why* classes exist beyond “Person/User” style examples.
+This proposal suggests updating Week 4 to include a **close-to-real-life** class example, so trainees can see _why_ classes exist beyond “Person/User” style examples.
 
 ## Goals
 
@@ -48,7 +48,7 @@ This can also neatly “close” the async chapter while introducing classes.
 
 ## Option A — Web Components (Custom Elements)
 
-### Summary
+### Web Components — Summary
 
 Introduce classes via **Web Components**: `class MyElement extends HTMLElement { ... }`, registered with `customElements.define`.
 
@@ -58,20 +58,20 @@ The scope stays intentionally small:
 - one async method for loading data (e.g. `load()`)
 - minimal lifecycle: `connectedCallback()`
 
-### Why this fits Week 4
+### Web Components — Why this fits Week 4
 
 - **Real-life class usage**: many modern codebases build component-like abstractions; Web Components are the platform-native version.
 - **Connects to next module**: the “component” mental model shows up immediately in React week 1; moving some of that concept earlier can reduce cognitive load later.
 - Integrates async naturally: components often fetch data on mount/init.
 
-### Risks / concerns (and mitigations)
+### Web Components — Risks / concerns (and mitigations)
 
 - **Can get complicated fast** (attributes, observedAttributes, Shadow DOM, styling, slots).
   - Mitigation: explicitly **avoid** Shadow DOM and observedAttributes; focus on “class extends HTMLElement + render + event listeners + async load”.
 - **Frontend-specific**: not a great reusable example for backend track.
   - Mitigation: keep Week 4 “core classes” examples shared, but only the “real-life example” changes per track (frontend uses Web Components; backend uses Errors, or a small service/client class).
 
-### How to tweak the current Week 4 assignment (screenshot generator)
+### Web Components — How to tweak the current Week 4 assignment (screenshot generator)
 
 Keep the product idea and APIs, but restructure the solution around small custom elements:
 
@@ -98,7 +98,7 @@ Optional: add a small `ScreenshotService` class (not extending anything) to sepa
 
 ## Option B — Errors (Custom Error Classes)
 
-### Summary
+### Errors — Summary
 
 Introduce classes via **custom error types**:
 
@@ -108,13 +108,13 @@ Introduce classes via **custom error types**:
 
 This is a highly reusable topic across frontend and backend, and it helps trainees write clearer, more debuggable code.
 
-### Why this fits Week 4
+### Errors — Why this fits Week 4
 
 - **Real-life class usage**: many codebases define domain errors and handle them centrally.
 - Works in both environments: browser and Node.
 - Naturally introduces inheritance without needing new platform APIs.
 
-### Risks / concerns (and mitigations)
+### Errors — Risks / concerns (and mitigations)
 
 - **Default examples can feel “too small”** (just add fields).
   - Mitigation: design the exercise to include at least one method and one static factory:
@@ -123,7 +123,7 @@ This is a highly reusable topic across frontend and backend, and it helps traine
 - Danger of becoming too theoretical.
   - Mitigation: tie directly to the assignment’s real failure modes (invalid URL, network error, 4xx/5xx from APIs, missing API key, CrudCrud not found, etc.).
 
-### How to tweak the current Week 4 assignment (screenshot generator)
+### Errors — How to tweak the current Week 4 assignment (screenshot generator)
 
 Keep the same assignment concept, but add explicit “error architecture” requirements:
 
