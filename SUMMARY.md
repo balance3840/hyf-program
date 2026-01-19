@@ -162,7 +162,7 @@
       - [Session Plan](shared-modules/collaboration-via-github/week1/session-plan.md)
       - [Assignment](shared-modules/collaboration-via-github/week1/assignment.md)
   - [Agile Teamwork](shared-modules/agile-teamwork/README.md)
-    - [Week 1](shared-modules/agile-teamwork/week1)
+    - [Week 1](shared-modules/agile-teamwork/week1/README.md)
       - [Preparation](shared-modules/agile-teamwork/week1/preparation.md)
       - [Session Plan](shared-modules/agile-teamwork/week1/session-plan.md)
       - [Assignment](shared-modules/agile-teamwork/week1/assignment.md)
