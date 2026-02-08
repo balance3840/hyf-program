@@ -2,6 +2,6 @@
 
 ![Card Front](./card-picture.jpg)
 
-----
+---
 
 ![Card Back](./card-backside.jpg)
