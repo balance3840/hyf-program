@@ -1,4 +1,4 @@
-### Example images for your first card implementation
+# Example images for your first card implementation
 
 ![Card Front](./card-picture.jpg)
 
