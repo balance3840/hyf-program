@@ -107,8 +107,8 @@ At the third session you'll be sharing a presentation. Read the [Session Plan](.
 
 Make sure you have all of the final details of your project working, as well as tidying up your deliverables such as your Trello board ready to present.
 
-#### Deploy your app! (Optional)
+#### Deploy your app!
 
-Part of the reward of building a web app is putting it live on the web! You're strongly encouraged to try this step, so you can experience the joy of showcasing your app on a public URL.
+Part of the reward of building a web app is putting it live on the web! By completing this step you can experience the joy of showcasing your app on a public URL.
 
-Follow the guide at [Deployment Quick Start](https://program.hackyourfuture.dk/trainee/technical-guides/deployment-quick-start) and give it a go!
+Follow the guide at [Deployment Quick Start](https://program.hackyourfuture.dk/trainee/technical-guides/deployment-quick-start) and give it a go.
