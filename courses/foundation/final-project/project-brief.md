@@ -100,7 +100,6 @@ Some ideas for inspiration:
 - [ ] Implement a leaderboard for the top 10 scores
 - [ ] ... and many more!
 
-
 ### Week 3 Milestone
 
 At the third session you'll be sharing a presentation. Read the [Session Plan](./session-plan.md) for more info.
