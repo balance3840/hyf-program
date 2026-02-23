@@ -16,7 +16,7 @@ Note: Trainees will work in pairs to compelete the project. These pairs will hav
 - Actively work your way around the pairs, making sure everyone is making progress as they should.
 - If multiple people are facing similar challenges, take the opportunity to "pause" the session and walk through something together out loud (e.g. creating a new github repo).
 
-### The following sessions
+### The second session
 
 - Progress update: Check in on what people have completed since last week, what they found hard, questions to answer, and encourage some people to demo their progress in front of the team.
 - Teaching moment: If there were any significant issues or confusions that came up, spend some time diving into them in detail.

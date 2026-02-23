@@ -57,8 +57,6 @@ Tips:
 
 1. Revealing a card is not the same as a click! Your counter should incrememt with reveals.
 
-### Week 2 Milestone
-
 #### Storing and Retrieving Your Cards
 
 Up until now, your cards have been hardcoded in your app code. Instead, these should be stored in a database and fetched via an API which the frontend can use to retrieve and display them.
@@ -73,6 +71,8 @@ Tips:
 1. After these changes, your game should appear to the player to function just as it did before.
 2. Refer to your exercises from previous modules if you need a reminder on creating databases and APIs.
 
+### Week 2 Milestone
+
 #### The Game Logic
 
 The final step is to add the game logic, so it becomes a playable game!
@@ -82,7 +82,7 @@ The final step is to add the game logic, so it becomes a playable game!
 - [ ] Once all cards have disappeared, the player wins and the game is over
 - [ ] After winning, the player should be able to restart the game and play again
 
-### Week 3 Milestone - Your own ideas!
+#### Your Own Ideas!
 
 Now your game is working, it's time to introduce your own features! Think of some improvements or changes to the game and implement it.
 
@@ -99,3 +99,16 @@ Some ideas for inspiration:
 - [ ] Let the player choose a name, and save their score in the database
 - [ ] Implement a leaderboard for the top 10 scores
 - [ ] ... and many more!
+
+
+### Week 3 Milestone
+
+At the third session you'll be sharing a presentation. Read the [Session Plan](./session-plan.md) for more info.
+
+Make sure you have all of the final details of your project working, as well as tidying up your deliverables such as your Trello board ready to present.
+
+#### Deploy your app! (Optional)
+
+Part of the reward of building a web app is putting it live on the web! You're strongly encouraged to try this step, so you can experience the joy of showcasing your app on a public URL.
+
+Follow the guide at [Deployment Quick Start](https://program.hackyourfuture.dk/trainee/technical-guides/deployment-quick-start) and give it a go!
