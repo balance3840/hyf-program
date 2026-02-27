@@ -55,7 +55,7 @@ The requirements in the [PRD](../product-requirements-document.md) and this plan
 - [ ] **Auth form UIs:** Build the UI for login, register, and sign out. Use the provided auth API/tool to wire submit actions. Add clear error/success feedback.
 - [ ] **Form validation:** Do validation at least on the auth forms (login, register). Show clear messages for invalid input before submit.
 
-**Outcome:** Event list adn detail loaded via fetch instead of mock data; searchable, paginated list; loading and error states on all fetches; form validation at least on auth forms; login, register, and sign-out flows implemented in the UI and wired to the provided auth API/tool.
+**Outcome:** Event list and detail loaded via fetch instead of mock data; searchable, paginated list; loading and error states on all fetches; form validation at least on auth forms; login, register, and sign-out flows implemented in the UI and wired to the provided auth API/tool.
 
 ---
 
