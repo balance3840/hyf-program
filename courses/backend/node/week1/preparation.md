@@ -11,3 +11,4 @@ For more research, you can explore the following resources:
 - [Express Crash Course](https://www.youtube.com/watch?v=CnH3kAXSrmU)
 - [Going out to eat and understanding the basics of Express.js](https://medium.freecodecamp.org/going-out-to-eat-and-understanding-the-basics-of-express-js-f034a029fb66)
 - [Express documentation](https://expressjs.com/en/5x/api.html)
+- [HTTP Status cheatsheet](https://devhints.io/http-status)

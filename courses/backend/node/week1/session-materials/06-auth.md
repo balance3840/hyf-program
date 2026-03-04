@@ -1,5 +1,7 @@
 # API
 
+> Note for mentors: this authentication exercise is now part of **Week 3 – API Security & Authentication**. It is no longer covered in the Week 1 Express session. When planning your class, pair this file with the Week 3 auth materials in `courses/backend/node/week3/`.
+
 Now we can move onto adding authentication for the API. You will have to modify the routes you already created in `api/snippets.js`.
 
 ## Authentication

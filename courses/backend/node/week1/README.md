@@ -1,6 +1,6 @@
 # Express (Week 1)
 
-In this session we will focus on Express.js, which is an application framework for building webservers in an easy manner. Although we could write everything from scratch in Node, we don’t want to. In many situations a webserver is generic enough for us and we gain a lot by using something that just works and makes our lives as developers easier – as long as what we are trying to do is within the scope of Express.
+In this session we will focus on Express.js as a framework for building HTTP APIs. Instead of writing everything from scratch in Node, we will use Express to structure routes, plug in middleware, and handle requests and responses in a predictable way – including using clear status codes and basic error handling.
 
 ## Contents
 
@@ -15,5 +15,6 @@ By the end of this session, you will be able to:
 - [ ] Explain what Express is and describe why it is used for building backend applications.
 - [ ] Implement routing in Express to handle `GET` HTTP requests, endpoints and parameters.
 - [ ] Use logging and debugging tools to monitor and troubleshoot Node.js applications.
-- [ ] Apply middleware functions in Express to process requests and responses.
-- [ ] Understand the importance of Authentication and various methods for implementing it.
+- [ ] Apply middleware functions in Express to process and transform requests and responses.
+- [ ] Design and implement basic error handling for HTTP APIs using appropriate status codes.
+- [ ] Use Postman to send requests to your Express API and inspect responses.

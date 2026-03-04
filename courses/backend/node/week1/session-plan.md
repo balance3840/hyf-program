@@ -22,9 +22,13 @@
   - Modifying `request` and `response`
   - <https://fullstackopen.com/en/part3/node_js_and_express#express>
   - [Live coding: basic middleware example](#middleware)
-- Authentication (30 mins)
-  - [Authentication explanation](#authentication-explanation)
-  - [Excercise: implement authentication](./session-materials/06-auth.md)
+- Error handling in HTTP & Express (30–35 mins)
+  - Short recap of HTTP status codes and common groups (2xx/3xx/4xx/5xx).
+  - Discuss client vs server errors and what information belongs in logs vs in responses.
+  - Show how to end a request correctly in Express using `res.status(...).json(...)` or `res.send(...)`.
+  - Demonstrate how to propagate errors with `next(err)` and handle them in a shared error-handling middleware.
+  - [Live coding: error handling in Express](#error-handling-in-express)
+  - Excercise: refactor a naive route to use centralised error handling and logging.
 
 ## Exercises
 
@@ -33,7 +37,7 @@
 3. [API](./session-materials/03-routing.md): Snippets API exercises
    - [POST endpoint](./session-materials/03-routing.md)
    - [GET endpoints](./session-materials/05-get-endpoints.md)
-   - [Authentication](./session-materials/06-auth.md)
+   - Error handling and logging for the routes you create (choose appropriate status codes and response bodies).
 
 ## Live coding
 
@@ -91,106 +95,63 @@ Code example of a sample middleware can be found in the [middleware file](../mod
 node --watch examples/middleware.js
 ```
 
-### Authentication explanation
+### Error handling in Express
 
-Think of authentication like different ways to prove who you are when visiting a building. You need to show ID, but how you do it matters for security and convenience.
+Error handling is how we make failures predictable and understandable for both users and developers.
 
-#### Database-Stored Tokens (What We're Using)
+At a high level:
 
-Server issues a unique token on login and stores it in the database to validate against on each request.
+- Use HTTP status codes to communicate **what** happened (success, client error, server error).
+- Use logs to capture **why** something went wrong (stack traces, query details, internal IDs).
+- Keep responses to clients simple and safe, without leaking internal implementation details.
 
-**Metaphor:** Like a membership card the building keeps a copy of in their files.
+In Express, a typical pattern looks like this:
 
-**Pros:**
+- Validate incoming data at the start of a route. If it is invalid, respond with a `4xx` status code and a short JSON error message.
+- Wrap asynchronous logic so that thrown errors or rejected promises are passed to `next(err)`.
+- Use a **custom error-handling middleware** with the signature `(err, req, res, next)` at the bottom of your middleware stack:
+  - Log `err` (and any useful context like `req.method`, `req.path`).
+  - Respond once with a generic `500` error body like `{ "error": "Internal server error" }`, or a more specific code if you know the problem.
 
-- Simple to implement and understand
-- Easy to revoke access by deleting the token from database
-- Full control over token lifecycle
+You can find a small example of this pattern in the [middleware file](../module-materials/examples/middleware.js). Use this as a reference when running the error-handling live coding and exercise.
 
-**Cons:**
+#### HTTP Status Codes Refresher
 
-- Requires database lookup on every authenticated request (slower)
-- Database becomes a bottleneck at scale
-- If database is slow or down, authentication fails
+Here are some of the most commonly used:
 
-**Security:** 🟡🟡🟡⚪⚪ (3/5) - Secure, but tokens must be properly generated and stored safely.
+##### 2XX - Success
 
-#### JWT (JSON Web Tokens)
+`200 OK` - The request succeeded, e.g. a webpage or API response loads as it should.  
+`201 Created` - A new resource was made, e.g. a new snippet or tag.
 
-A self-contained token with user info encoded inside, signed by the server and verifiable without database lookups.
+##### 3XX - Redirection
 
-**Metaphor:** Like a driver's license that the DMV signs with a special stamp - you can't fake it because only they have the stamp.
+`301 Moved Permanently` - The URL has changed, e.g. redirect from oldsite.com to newsite.com.  
+`302 Found` - A temporary redirect, e.g. redirecting Spanish visitors to the Spanish version of the website.
 
-**Pros:**
+##### 4XX - Client Errors
 
-- No database lookups needed (much faster)
-- Works across multiple servers in distributed systems
-- Contains user information directly in the token
+`400 Bad Request` - The request was invalid, e.g. form data missing or incorrect.  
+`401 Unauthorized` - You need to log in e.g. trying to access user features when logged out.  
+`404 Not Found` - Nothing at that URL e.g. a missing page or resource.
 
-**Cons:**
+##### 5XX - Server Errors
 
-- Cannot easily revoke tokens until they expire
-- If secret key is stolen, attackers can create fake tokens
-- Tokens cannot be modified once issued
+`500 Internal Server Error` - Generic server issue, e.g. something goes wrong in the backend.  
+`503 Service Unavailable` - Server is down or busy e.g. backend API is not running.
 
-**Security:** 🟢🟢🟢🟢⚪ (4/5) - Very secure when implemented correctly with proper secret key management.
+You can read more at the [HTTP Status cheatsheet](https://devhints.io/http-status).
 
-#### Session-Based Authentication
+#### Client vs Server
 
-Server creates a session ID on login and stores session data in server memory or cache, sending only the ID to the client.
+Server-side errors should be designed for developers. Detailed errors help debugging and ultimately fixing issues easier.  
+For example: if a database table is missing, record the missing table name and stack trace in your logs.
 
-**Metaphor:** Like getting a visitor badge when you arrive that you wear the entire visit, while the building keeps track of all active badges in a secure room.
+Client-side errors should be designed for users, including the correct HTTP status code.  
+For example: in the missing database table case, simply return a `500 Internal Server Error` and a useful message to the client to explain how to continue, without exposing internal details.
 
-**Pros:**
+It's important to hide specific error details from the user for multiple reasons:
 
-- Can instantly revoke access by deleting session
-- Server maintains full control over authentication state
-- Simple logout process
-
-**Cons:**
-
-- Requires server to store session data (memory/cache)
-- Does not work well with multiple servers without shared storage
-- Session storage must scale with user load
-
-**Security:** 🟢🟢🟢🟢⚪ (4/5) - Secure for traditional web applications with proper session management.
-
-#### API Keys
-
-A single permanent credential issued once and used for all requests, typically for machine-to-machine communication.
-
-**Metaphor:** Like having a permanent membership card that never expires.
-
-**Pros:**
-
-- Extremely simple to implement
-- Easy for developers to use in their code
-- No complex authentication flow needed
-
-**Cons:**
-
-- If stolen, access continues until key is regenerated
-- No built-in expiration
-- Lacks granular permission controls
-
-**Security:** 🟡🟡⚪⚪⚪ (2/5) - Moderately secure for machine-to-machine communication, weak for user authentication.
-
-#### Basic Authentication (Username/Password)
-
-Client sends username and password directly in the request headers with every API call.
-
-**Metaphor:** Like showing your ID card at the entrance every single time you visit - literally showing your credentials each visit.
-
-**Pros:**
-
-- Simplest to implement
-- Works everywhere, universal standard
-- Easy to understand
-
-**Cons:**
-
-- Credentials sent with every request (security risk)
-- Cannot revoke access without changing password
-- Highly insecure over unencrypted connections
-
-**Security:** 🔴⚪⚪⚪⚪ (1/5) - Very insecure, only acceptable over HTTPS and for internal tooling.
+1. **Security** – Revealing database names and other internal details can give attackers too many clues about your system which can make your app more vulnerable to exploitation.
+2. **Privacy** – Many internal errors can include sensitive data (e.g. user IDs, personal information) that shouldn't be exposed.
+3. **User Experience** – Some technical errors would confuse most users, so stick with simple, friendly messages that can help the user continue.
