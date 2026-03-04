@@ -1,273 +1,251 @@
-# **Session Plan: API Security & Authentication in Node.js**
+# Session plan
 
-**Duration**: 3.5 hours
-**Format**: Lecture + Live Coding + Exercises
+## Session outline
 
----
+- Secure passwords & basic login using the Snippets API (≈40 min)
+- Stateless auth with JWT on the Snippets API (≈40 min)
+- Session-based auth on the Snippets API (≈40 min)
+- Comparison of auth methods, brief look at DB tokens & API keys, and wrap-up (≈30–35 min)
 
-## **1. Database-Stored Credentials (30 min)**
+## Secure passwords & basic login (Snippets API) (≈40 min)
 
-**Goal**: Understand basic auth flow, identify security flaws.
+**Goal**: Implement secure password storage and a basic login flow for the Snippets API using bcrypt.
 
-### **Lecture (10 min)**
+### Lecture & live coding (≈10 min)
 
-- **Concept**: Store username/password in DB, check on login.
-- **Security Issues**: Plaintext passwords, no token management.
+- Concept: why plaintext passwords are insecure.
+- Introduce hashing and salting with bcrypt.
+- Show how a minimal `users` table for the Snippets DB might look.
+- Walk through the happy path for `/login`:
+  - Look up user by username/email.
+  - Compare plaintext password with stored hash using bcrypt.
 
-### **Implementation (15 min)**
+### Implementation (live coding)
 
-**Code Snippet**:
+- Sketch the table and login route, for example:
 
 ```js
 // routes/auth.js
 const express = require("express");
+const bcrypt = require("bcrypt");
 const router = express.Router();
-const db = require("../db");
+const db = require("../db"); // same Knex/db layer used by the Snippets API
 
-// Login endpoint
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
+
   const user = await db.getUserByUsername(username);
-  if (!user || user.password !== password) {
-    return res.status(401).send("Invalid credentials");
+  if (!user) {
+    return res.status(401).json({ error: "Invalid credentials" });
   }
-  res.send("Login successful");
+
+  const isMatch = await bcrypt.compare(password, user.password_hash);
+  if (!isMatch) {
+    return res.status(401).json({ error: "Invalid credentials" });
+  }
+
+  res.json({ message: "Login successful" });
 });
 
 module.exports = router;
 ```
 
-**Middleware**:
+_See `./session-materials/10-auth-db-credentials.md` for a more detailed walkthrough._
 
-```js
-// middleware/auth.js
-function isAuthenticated(req, res, next) {
-  if (req.session.user) return next();
-  res.status(401).send("Unauthorized");
-}
-```
+### Exercise (15–20 min)
 
-### **Exercise (5 min)**
+- Add a `users` table to the Snippets DB and seed at least one user with a hashed password.
+- Implement `/login` using bcrypt in your own copy of the Snippets API.
+- Use Postman to test successful and failing login attempts.
 
-- Add a protected route `/profile` using `isAuthenticated`.
-- Test with Postman: send username/password in body.
+### Do it together (5–10 min)
 
-**Discussion**:
-
-- Why is this insecure?
-- What if the DB is compromised?
+- Show one working solution.
+- Discuss common mistakes (e.g. sending too much error detail, forgetting to hash passwords).
 
 ---
 
-## **2. Database-Stored Tokens (45 min)**
+## Stateless auth with JWT (≈40 min)
 
-**Goal**: Improve security with tokens, understand token lifecycle.
+**Goal**: Learn stateless auth with JWT on top of the secure login flow, and protect key Snippets API endpoints.
 
-### **Lecture (10 min)**
+### Lecture & live coding (≈10 min)
 
-- **Concept**: Issue a random token on login, store in DB, validate on each request.
-- **Pros/Cons**: Revocable, but DB lookup on every request.
+- Concept: self-contained tokens with claims; no DB lookup needed per request.
+- Trade-offs: fast and scalable, but harder to revoke.
+- Show the high-level flow:
+  - After successful bcrypt-based login, issue a JWT.
+  - Client includes the token in the `Authorization` header.
+  - Middleware verifies the token and attaches user info to `req.user`.
 
-### **Implementation (20 min)**
-
-**Code Snippet**:
-
-```js
-// routes/auth.js
-const crypto = require("crypto");
-
-router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await db.getUserByUsername(username);
-  if (!user || user.password !== password) {
-    return res.status(401).send("Invalid credentials");
-  }
-  const token = crypto.randomBytes(32).toString("hex");
-  await db.storeToken(token, user.id);
-  res.json({ token });
-});
-
-// middleware/auth.js
-async function isAuthenticated(req, res, next) {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) return res.status(401).send("No token");
-  const userId = await db.getUserIdByToken(token);
-  if (!userId) return res.status(401).send("Invalid token");
-  req.userId = userId;
-  next();
-}
-```
-
-### **Exercise (10 min)**
-
-- Implement `/logout` endpoint: delete token from DB.
-- Test with Postman: login, access `/profile`, logout, try again.
-
-**Discussion**:
-
-- How does this compare to the previous method?
-- What if the DB is slow?
-
----
-
-## **3. JWT (JSON Web Tokens) (45 min)**
-
-**Goal**: Learn stateless auth, understand JWT structure and risks.
-
-### **Lecture (10 min)**
-
-- **Concept**: Self-contained tokens, no DB lookup.
-- **Pros/Cons**: Fast, but hard to revoke.
-
-### **Implementation (20 min)**
-
-**Code Snippet**:
+### Implementation (live coding)
 
 ```js
 // routes/auth.js
 const jwt = require("jsonwebtoken");
-const SECRET = "your-secret-key";
+const SECRET = process.env.JWT_SECRET || "development-secret";
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await db.getUserByUsername(username);
-  if (!user || user.password !== password) {
-    return res.status(401).send("Invalid credentials");
+  if (!user) {
+    return res.status(401).json({ error: "Invalid credentials" });
   }
+
+  const isMatch = await bcrypt.compare(password, user.password_hash);
+  if (!isMatch) {
+    return res.status(401).json({ error: "Invalid credentials" });
+  }
+
   const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: "1h" });
   res.json({ token });
 });
 
-// middleware/auth.js
-function isAuthenticated(req, res, next) {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) return res.status(401).send("No token");
+// middleware/auth-jwt.js
+function requireJwtAuth(req, res, next) {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.split(" ")[1];
+  if (!token) {
+    return res.status(401).json({ error: "No token provided" });
+  }
+
   try {
     const decoded = jwt.verify(token, SECRET);
-    req.userId = decoded.userId;
+    req.user = { id: decoded.userId };
     next();
   } catch (err) {
-    res.status(401).send("Invalid token");
+    return res.status(401).json({ error: "Invalid or expired token" });
   }
 }
+
+module.exports = { requireJwtAuth };
 ```
 
-### **Exercise (10 min)**
+_See `./session-materials/12-auth-jwt.md` for detailed steps and examples._
 
-- Add token expiration, test with Postman.
-- Try to tamper with the token: what happens?
+### Exercise (15–20 min)
 
-**Discussion**:
+- Protect at least two Snippets API endpoints (e.g. `POST /api/snippets`, `DELETE /api/snippets/:id`) using JWT middleware.
+- Add token expiration and handle expired tokens gracefully in responses.
+- Try to tamper with the token payload and see what happens.
 
-- When to use JWT vs. database tokens?
-- How to handle token revocation?
+### Do it together (5–10 min)
+
+- Run through a full Postman flow together.
+- Discuss where to store JWTs on the client (headers vs cookies) in different types of apps.
 
 ---
 
-## **4. Session-Based Authentication (30 min)**
+## Session-based authentication (≈40 min)
 
-**Goal**: Learn server-side sessions, compare with JWT.
+**Goal**: Implement session-based authentication using cookies and compare it to JWT for the Snippets API.
 
-### **Lecture (5 min)**
+### Lecture & live coding (≈10 min)
 
-- **Concept**: Server stores session data, sends only ID to client.
+- Concept: server-side sessions, session IDs in cookies, and typical use cases.
+- Contrast with JWT: stateful vs stateless, revocation, and infrastructure needs.
 
-### **Implementation (15 min)**
-
-**Code Snippet**:
+### Implementation (live coding)
 
 ```js
 // app.js
 const session = require("express-session");
+
 app.use(
   session({
-    secret: "your-secret",
+    secret: process.env.SESSION_SECRET || "development-session-secret",
     resave: false,
     saveUninitialized: false,
   }),
 );
 
-// routes/auth.js
-router.post("/login", async (req, res) => {
+// routes/auth-session.js
+router.post("/login-session", async (req, res) => {
   const { username, password } = req.body;
   const user = await db.getUserByUsername(username);
-  if (!user || user.password !== password) {
-    return res.status(401).send("Invalid credentials");
+  if (!user) {
+    return res.status(401).json({ error: "Invalid credentials" });
   }
+
+  const isMatch = await bcrypt.compare(password, user.password_hash);
+  if (!isMatch) {
+    return res.status(401).json({ error: "Invalid credentials" });
+  }
+
   req.session.userId = user.id;
-  res.send("Login successful");
+  res.json({ message: "Logged in with session" });
 });
 
-// middleware/auth.js
-function isAuthenticated(req, res, next) {
-  if (req.session.userId) return next();
-  res.status(401).send("Unauthorized");
-}
-```
-
-### **Exercise (10 min)**
-
-- Implement logout: destroy session.
-- Compare with JWT: when would you use each?
-
-**Discussion**:
-
-- How does this scale?
-- What about distributed systems?
-
----
-
-## **5. API Keys (15 min, if time)**
-
-**Goal**: Understand machine-to-machine auth.
-
-### **Lecture (5 min)**
-
-- **Concept**: Simple, permanent keys for scripts/services.
-
-### **Implementation (5 min)**
-
-**Code Snippet**:
-
-```js
-// middleware/auth.js
-function isAuthenticated(req, res, next) {
-  const apiKey = req.headers["x-api-key"];
-  if (!apiKey || apiKey !== process.env.API_KEY) {
-    return res.status(401).send("Invalid API key");
+function requireSessionAuth(req, res, next) {
+  if (req.session.userId) {
+    return next();
   }
-  next();
+  res.status(401).json({ error: "Not authenticated" });
 }
+
+router.post("/logout-session", (req, res) => {
+  req.session.destroy(() => {
+    res.json({ message: "Logged out" });
+  });
+});
 ```
 
-### **Exercise (5 min)**
+_See `./session-materials/13-auth-sessions.md` for detailed guidance._
 
-- Add rate limiting for API keys.
-- Discuss: Why not use API keys for user auth?
+### Exercise (15–20 min)
+
+- Protect at least one Snippets API route using session-based middleware.
+- Implement logout and verify that access is denied after logging out.
+
+### Do it together (5–10 min)
+
+- Compare the experience of working with sessions vs JWT.
+- Discuss scaling concerns (sticky sessions, shared stores) at a high level.
 
 ---
 
-## **6. Wrap-up & Best Practices (15 min)**
+## Comparison, DB tokens & API keys overview, and wrap-up (≈30–35 min)
 
-- **Recap Table**:
+**Goal**: Compare the different auth approaches, introduce DB-stored tokens and API keys conceptually, and connect to the assignment.
 
-Authentication Methods Comparison
+### Short lecture & discussion (10–15 min)
 
-| Method               | DB Lookup | Revocable | Scalable | Use Case             |
-| -------------------- | --------- | --------- | -------- | -------------------- |
-| Database Credentials | Yes       | No        | No       | Legacy systems       |
-| Database Tokens      | Yes       | Yes       | No       | Small apps           |
-| JWT                  | No        | No\*      | Yes      | SPAs, mobile apps    |
-| Sessions             | Yes       | Yes       | No\*\*   | Traditional web apps |
-| API Keys             | No        | No        | Yes      | Machine-to-machine   |
+- Revisit the methods you have seen:
+  - Secure passwords (with bcrypt) and basic login.
+  - JWT-based stateless auth.
+  - Session-based auth.
+- Introduce **database-stored tokens**:
+  - Tokens stored in a `tokens` table, lookup on each request.
+  - Easier revocation, but requires a DB call every time.
+- Introduce **API keys**:
+  - Simple secret keys for machine-to-machine communication.
+  - Not ideal as the only method for user authentication.
+- Show a comparison table summarising trade-offs:
 
-\*Unless using a blocklist
-\*\*Unless using shared storage
+| Method             | DB Lookup | Revocable | Scalable | Typical use case        |
+| ------------------ | --------- | --------- | -------- | ----------------------- |
+| Secure credentials | Yes       | No        | No       | Legacy / simple systems |
+| Database tokens    | Yes       | Yes       | No       | Small apps              |
+| JWT                | No        | Not easy  | Yes      | SPAs, mobile apps       |
+| Sessions           | Yes       | Yes       | Depends  | Traditional web apps    |
+| API keys           | No        | Not easy  | Yes      | Machine-to-machine      |
 
-- **Best Practices**:
+_See `./session-materials/11-auth-db-tokens.md` and `./session-materials/14-auth-api-keys-and-wrapup.md` for additional details and examples._
+
+### Optional mini-exercise (10–15 min, time permitting)
+
+- In pairs or small groups, sketch (or start implementing) either:
+  - A DB-token-based login flow, or
+  - An API-key-protected “machine” endpoint in the Snippets API.
+- Make it clear that the full implementation can be completed as part of the assignment.
+
+### Final wrap-up (5–10 min)
+
+- Reiterate best practices:
   - Always use HTTPS.
-  - Hash passwords (bcrypt).
-  - Store tokens securely (HttpOnly cookies for web).
-  - Use short-lived tokens, refresh tokens if needed.
-
-- **Q&A**: What would you use for a mobile app? A microservice? A legacy system?
+  - Always hash passwords (bcrypt or similar).
+  - Store tokens securely (e.g. HttpOnly cookies for web clients).
+  - Prefer short-lived tokens and consider refresh tokens where appropriate.
+- Connect clearly to the assignment:
+  - Trainees will extend the snippets backend with DB tokens and/or API-key-protected endpoints.
+  - They will choose and justify which methods they would use in different scenarios.
