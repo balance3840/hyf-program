@@ -7,7 +7,7 @@
 - Session-based auth on the Snippets API (≈40 min)
 - Comparison of auth methods, brief look at DB tokens & API keys, and wrap-up (≈30–35 min)
 
-## Secure passwords & basic login (Snippets API) (≈40 min)
+## Secure passwords & basic login (Snippets API)
 
 **Goal**: Implement secure password storage and a basic login flow for the Snippets API using bcrypt.
 
@@ -22,35 +22,10 @@
 
 ### Implementation (live coding)
 
-- Sketch the table and login route, for example:
+- Sketch the table and login route, using the example in  
+  [module-materials/examples/auth-login-bcrypt.js](../../module-materials/examples/auth-login-bcrypt.js).
 
-```js
-// routes/auth.js
-const express = require("express");
-const bcrypt = require("bcrypt");
-const router = express.Router();
-const db = require("../db"); // same Knex/db layer used by the Snippets API
-
-router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-
-  const user = await db.getUserByUsername(username);
-  if (!user) {
-    return res.status(401).json({ error: "Invalid credentials" });
-  }
-
-  const isMatch = await bcrypt.compare(password, user.password_hash);
-  if (!isMatch) {
-    return res.status(401).json({ error: "Invalid credentials" });
-  }
-
-  res.json({ message: "Login successful" });
-});
-
-module.exports = router;
-```
-
-_See `./session-materials/10-auth-db-credentials.md` for a more detailed walkthrough._
+_See [Secure passwords and basic login](./session-materials/10-auth-db-credentials.md) for a more detailed walkthrough._
 
 ### Exercise (15–20 min)
 
@@ -65,7 +40,7 @@ _See `./session-materials/10-auth-db-credentials.md` for a more detailed walkthr
 
 ---
 
-## Stateless auth with JWT (≈40 min)
+## Stateless auth with JWT
 
 **Goal**: Learn stateless auth with JWT on top of the secure login flow, and protect key Snippets API endpoints.
 
@@ -80,48 +55,10 @@ _See `./session-materials/10-auth-db-credentials.md` for a more detailed walkthr
 
 ### Implementation (live coding)
 
-```js
-// routes/auth.js
-const jwt = require("jsonwebtoken");
-const SECRET = process.env.JWT_SECRET || "development-secret";
+- Use the JWT login and middleware flow from  
+  [module-materials/examples/auth-jwt.js](../../module-materials/examples/auth-jwt.js) as a reference while coding in the Snippets API.
 
-router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await db.getUserByUsername(username);
-  if (!user) {
-    return res.status(401).json({ error: "Invalid credentials" });
-  }
-
-  const isMatch = await bcrypt.compare(password, user.password_hash);
-  if (!isMatch) {
-    return res.status(401).json({ error: "Invalid credentials" });
-  }
-
-  const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: "1h" });
-  res.json({ token });
-});
-
-// middleware/auth-jwt.js
-function requireJwtAuth(req, res, next) {
-  const authHeader = req.headers.authorization;
-  const token = authHeader?.split(" ")[1];
-  if (!token) {
-    return res.status(401).json({ error: "No token provided" });
-  }
-
-  try {
-    const decoded = jwt.verify(token, SECRET);
-    req.user = { id: decoded.userId };
-    next();
-  } catch (err) {
-    return res.status(401).json({ error: "Invalid or expired token" });
-  }
-}
-
-module.exports = { requireJwtAuth };
-```
-
-_See `./session-materials/12-auth-jwt.md` for detailed steps and examples._
+_See [Stateless authentication with JWT](./session-materials/12-auth-jwt.md) for detailed steps and examples._
 
 ### Exercise (15–20 min)
 
@@ -136,7 +73,7 @@ _See `./session-materials/12-auth-jwt.md` for detailed steps and examples._
 
 ---
 
-## Session-based authentication (≈40 min)
+## Session-based authentication
 
 **Goal**: Implement session-based authentication using cookies and compare it to JWT for the Snippets API.
 
@@ -147,50 +84,10 @@ _See `./session-materials/12-auth-jwt.md` for detailed steps and examples._
 
 ### Implementation (live coding)
 
-```js
-// app.js
-const session = require("express-session");
+- Use the session-based login and middleware flow from  
+  [module-materials/examples/auth-sessions.js](../../module-materials/examples/auth-sessions.js) as a reference while integrating sessions into the Snippets API.
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "development-session-secret",
-    resave: false,
-    saveUninitialized: false,
-  }),
-);
-
-// routes/auth-session.js
-router.post("/login-session", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await db.getUserByUsername(username);
-  if (!user) {
-    return res.status(401).json({ error: "Invalid credentials" });
-  }
-
-  const isMatch = await bcrypt.compare(password, user.password_hash);
-  if (!isMatch) {
-    return res.status(401).json({ error: "Invalid credentials" });
-  }
-
-  req.session.userId = user.id;
-  res.json({ message: "Logged in with session" });
-});
-
-function requireSessionAuth(req, res, next) {
-  if (req.session.userId) {
-    return next();
-  }
-  res.status(401).json({ error: "Not authenticated" });
-}
-
-router.post("/logout-session", (req, res) => {
-  req.session.destroy(() => {
-    res.json({ message: "Logged out" });
-  });
-});
-```
-
-_See `./session-materials/13-auth-sessions.md` for detailed guidance._
+_See [Session-based authentication](./session-materials/13-auth-sessions.md) for detailed guidance._
 
 ### Exercise (15–20 min)
 
@@ -204,7 +101,7 @@ _See `./session-materials/13-auth-sessions.md` for detailed guidance._
 
 ---
 
-## Comparison, DB tokens & API keys overview, and wrap-up (≈30–35 min)
+## Comparison, DB tokens & API keys overview, and wrap-up
 
 **Goal**: Compare the different auth approaches, introduce DB-stored tokens and API keys conceptually, and connect to the assignment.
 
@@ -230,22 +127,29 @@ _See `./session-materials/13-auth-sessions.md` for detailed guidance._
 | Sessions           | Yes       | Yes       | Depends  | Traditional web apps    |
 | API keys           | No        | Not easy  | Yes      | Machine-to-machine      |
 
-_See `./session-materials/11-auth-db-tokens.md` and `./session-materials/14-auth-api-keys-and-wrapup.md` for additional details and examples._
+_See [Database-stored tokens](./session-materials/11-auth-db-tokens.md) and [API keys](./session-materials/14-auth-api-keys.md) for additional details and examples._
 
-### Optional mini-exercise (10–15 min, time permitting)
+## Comparing auth methods
 
-- In pairs or small groups, sketch (or start implementing) either:
-  - A DB-token-based login flow, or
-  - An API-key-protected “machine” endpoint in the Snippets API.
-- Make it clear that the full implementation can be completed as part of the assignment.
+Review the methods from this week:
 
-### Final wrap-up (5–10 min)
+- Secure credentials (hashed passwords + login).
+- Database-stored tokens.
+- JWT.
+- Sessions.
+- API keys.
+
+Discuss trade-offs in terms of:
+
+- Performance (DB lookups vs stateless verification).
+- Revocation.
+- Complexity on the client and server.
+- Fit for different scenarios (SPAs, mobile apps, internal tools, service-to-service communication).
+
+### Final wrap-up
 
 - Reiterate best practices:
-  - Always use HTTPS.
+  - Always use HTTPS. //TODO: WHY and how it's connected
   - Always hash passwords (bcrypt or similar).
   - Store tokens securely (e.g. HttpOnly cookies for web clients).
   - Prefer short-lived tokens and consider refresh tokens where appropriate.
-- Connect clearly to the assignment:
-  - Trainees will extend the snippets backend with DB tokens and/or API-key-protected endpoints.
-  - They will choose and justify which methods they would use in different scenarios.
