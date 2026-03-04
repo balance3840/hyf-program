@@ -2,36 +2,26 @@
 
 ## Session outline
 
-- [Database interaction with Knex](#database-interaction-with-knex)
-- [Snippets API continued](#snippets-api-continued)
-- [Advanced Postman use cases](#advanced-postman)
+- [REST principles & resource design with Snippets](#rest-principles--resource-design-with-snippets) (20–25 mins)
+- [Designing the Snippets REST structure](#designing-the-snippets-rest-structure) (30–35 mins)
+- [Documenting APIs with OpenAPI/Swagger](#documenting-apis-with-openapiswagger) (35–40 mins)
+- [Error model & validation design](#error-model--validation-design) (30–35 mins)
+- [Knex security and SQL injection prevention](#knex-security-and-sql-injection-prevention) (20–25 mins)
+- [Advanced Postman use cases](#advanced-postman) (30–35 mins)
 
 ## Database interaction with Knex
 
 Trainees have used Knex before. In foundation, they used it with the `.raw()` command to execute SQL easily. And they also used it last week when learning about Express.
 
-This part of the module should explain Knex in a lot more technical detail. The following implementation is how we expect to see trainees using database interaction from this point forward.
+In this week, we assume basic familiarity with Knex from the preparation materials and assignments. The live session should:
 
-1. What is Knex, and why we need it
-   - Knex is SQL query builder for Node, which helps us write databases queries more cleanly, without raw SQL.
-   - It supports multiple databases (e.g. SQLite, Postgres) with the same API.
-   - It helps avoid security issues like SQL injection by handling things safely for us.
-   - It provides advanced features such as migrations.
+- Briefly recap what Knex is and why we use it as a query builder.
+- Emphasise that we prefer Query Builder methods over `.raw()` for safety and portability.
+- Point ahead to the [Knex security and SQL injection prevention](#knex-security-and-sql-injection-prevention) section, where we will look at a concrete security issue.
 
-2. Comparison: `.raw()` method vs. the Query Builder methods
-   - `.raw()`, which you've been using so far, lets you run plain SQL
-   - However, you lose the "single API" benefit of using Knex
-   - You also lose the safety of Knex's security precautions regarding SQL injetion
-   - Using the Query Builder methods like `.select()` help us write safer, more readable DB queries that work even if we change our database type.
+If you want a deeper live walkthrough of Knex, you can optionally reuse the [phonebook example](./session-materials/phonebook/) as legacy reference material, but the main focus of this session is REST design and documentation on top of the Snippets API.
 
-### Live coding - Database interaction
-
-Run through the [phonebook example](./session-materials/phonebook/). The functions are already written, but feel free to clear them and write them together in the session.
-
-1. Set up [`database.js`](./session-materials/phonebook/database.js)
-2. Walk through [`phonebook.js`](./session-materials/phonebook/phonebook.js)
-
-## Implementing REST with Express
+## REST principles & resource design with Snippets
 
 ### REST refresher
 
@@ -51,62 +41,92 @@ For further reading, check the following resources:
 - [What is REST: a simple explanation for beginners](https://medium.com/extend/what-is-rest-a-simple-explanation-for-beginners-part-1-introduction-b4a072f8740f)
 - [@NoerGitKat (lots of web app clones/examples to learn from)](https://github.com/NoerGitKat)
 
+### Designing the Snippets REST structure
+
+Now we can pick up where we left the exercises last week and use the Snippets domain as a concrete REST example.
+
+- Start from the existing endpoints the trainees already built (`/api/snippets`, `/api/snippets/:id`, and the Week 1 assignment routes).
+- Discuss how these endpoints map to REST resources (`snippets`, `tags`, `users`) and which URLs and methods make the API predictable.
+- Talk through design questions such as:
+  - How to model relationships (e.g. tags on snippets).
+  - When to introduce nested routes vs query parameters.
+  - How to handle pagination and filtering in a RESTful way.
+
+Exercise (10–15 mins): in small groups or individually, ask trainees to design REST endpoints for an additional feature (for example, “favourite snippets” or “public feed”). Have them write down:
+
+- The resource name(s).
+- The routes and HTTP methods they would expose.
+- A short description of what each route returns.
+
+Review designs together and connect them back to REST principles.
+
 ### Snippets API continued
 
-Now we can pick up where we left the exercises last week. Help the trainees complete the remaining endpoints:
+Once the design is clear, help the trainees complete or extend the existing endpoints:
 
 1. [POST endpoint exercise](./session-materials/07-post-endpoint.md)
 2. [PUT endpoint exercise](./session-materials/08-put-endpoint.md)
 3. [DELETE endpoint exercise](./session-materials/09-delete-endpoint.md)
 
-## Error handling
+Emphasise that for each endpoint they should:
+
+- Choose appropriate status codes for success and error cases.
+- Return consistent JSON shapes for both data and errors.
+
+## Documenting APIs with OpenAPI/Swagger
+
+Introduce OpenAPI/Swagger as a way to formally describe the Snippets API:
+
+- Explain the basic building blocks: paths, operations, parameters, request bodies, responses, and schemas.
+- Show how a small YAML or JSON file can describe an existing route, for example `GET /api/snippets`.
+- Highlight how good documentation helps both API consumers and future maintainers.
+
+Live coding (10–15 mins):
+
+- Create a minimal `openapi.yml` (or JSON) that documents at least one existing Snippets endpoint.
+- Include:
+  - Path and method.
+  - Path/query parameters.
+  - Response status codes.
+  - A simple response schema (e.g. a snippet object).
+
+Exercise (15–20 mins):
+
+- Ask trainees to extend the spec to cover one or two more endpoints they designed in the REST structure exercise.
+- Encourage them to document both success and error responses (including the error JSON structure agreed on in Week 1).
+
+## Error model & validation design
 
 Error handling is important so we have visibility of issues that occur in applications, and gain some understanding of what is going wrong.
 
-### HTTP Status Codes Refresher
+In Week 1, mentors walked through HTTP status codes, client vs server errors, and how to hide implementation details from users. Reuse that material from the Week 1 “Error handling in Express” section, and focus this segment on **design decisions**:
 
-Here are some of the most commonly used:
+- Decide on a consistent JSON error shape (for example `{ "error": "message" }` or `{ "error": { "code": "...", "message": "..." } }`).
+- Agree when to return `400`, `404`, `409`, or `500` for common scenarios in the Snippets API.
+- Discuss which validations should happen in shared middleware (e.g. JSON parsing, common headers) vs per endpoint (e.g. snippet title length).
 
-#### 2XX - Success
+Exercise (15–20 mins):
 
-`200 OK` - The request succeeded, e.g. a webpage loads as it should.
-`201 Created` - A new resource was made, e.g. a new user account.
+- Give trainees a small subset of endpoints (for example, `GET /api/snippets`, `POST /api/snippets`, `GET /api/snippets/:id`).
+- Ask them to list:
+  - The main validation rules for each endpoint.
+  - The possible error cases and which status codes should be returned.
+  - The exact JSON error body for each case.
+- Then, have them update their OpenAPI spec from the previous exercise to include these error responses.
 
-#### 3XX - Redirection
+## Knex security and SQL injection prevention
 
-`301 Moved Permanently` - The URL has changed, e.g. redirect from oldsite.com to newsite.com.
-`302 Found` - A temporary redirect, e.g. redirecting Spanish visitors to the Spanish version of the website.
+Knex helps us write safer queries, but it is still possible to introduce SQL injection vulnerabilities if we are careless with user input.
 
-#### 4XX - Client Errors
+In this segment:
 
-`400 Bad Request` - The request was invalid, e.g. form data missing or incorrect.
-`401 Unauthorized` - You need to log in e.g. trying to access user features when logged out.
-`404 Not Found` - Nothing at that URL e.g. a missing page or resource.
+- Show how interpolating raw user input into SQL (for example, using `.raw()` or `orderByRaw(req.query.sort)`) can open up injection vulnerabilities.
+- Use a Snippets-style example, such as an endpoint that sorts results based on a `sort` query parameter, to demonstrate how a malicious value could modify the query.
+- Contrast this with safe usage of the Knex Query Builder and parameter binding.
 
-#### 5XX - Client Errors
+If you want a concrete code walkthrough, you can adapt the existing `api/contacts.js` example from the phonebook materials as an optional reference, but update the discussion to focus on Snippets-style queries and safe patterns.
 
-`500 Internal Server Error` - Generic server issue, e.g. something goes wrong in the backend.
-`503 Service Unavailable` - Server is down or busy e.g. backend API is not running.
-
-Read more at [HTTP Status cheatsheet](https://devhints.io/http-status).
-
-### Client vs Server
-
-Server-side errors should be designed for developers. Detailed errors help debugging and ultimately fixing issues easier.
-e.g. If a database table is missing, record the missing table name in your logs.
-
-Client-side errors should be designed for users, including the correct HTTP status code.
-e.g. In the missing database table case, simply return a `500 Internal Server Error` and a useful page to the user to explain how to continue.
-
-It's important to hide specific error details from the user for multiple reasons:
-
-1. Security - Revealing database names and other internal details can give attackers too many clues about your system which can make your app more vulnerable to exploitation.
-2. Privacy - Many internal errors can include sensitive data (e.g. user IDs, personal information) that shouldn't be exposed.
-3. User Experience - Some technical errors would confuse most users, so stick with simple, friendly messages that can help the user continue.
-
-### Live coding - Error handling
-
-Walk through [`api/contacts.js`](./session-materials/phonebook/api/contacts.js) to explain the try/catch pattern, appropriate server and client side error handling, correct usage of HTTP codes and why the knex code is insecure.
+Connect this segment directly to the Week 2 assignment task where trainees must both demonstrate and fix an injection vulnerability.
 
 ## Advanced Postman
 

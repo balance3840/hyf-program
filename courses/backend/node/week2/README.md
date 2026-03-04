@@ -1,6 +1,6 @@
 # Node (Week 2)
 
-In this session we will focus on connecting to a database, building an API, and using Postman to test our API endpoints. We will also cover how to structure our code for better maintainability and scalability.
+In this session we will focus on designing and documenting a REST API on top of the existing Snippets backend. We will refine the resource structure, design consistent error handling and validation rules, describe the API using OpenAPI/Swagger, and use Knex safely with attention to SQL injection. We will also level up Postman usage with collections, environments, secrets, and tests for your endpoints.
 
 ## Contents
 
@@ -12,15 +12,12 @@ In this session we will focus on connecting to a database, building an API, and 
 
 By the end of this session, you will be able to:
 
-- [ ] Manage advanced database interactions in your service
-  - [ ] Understand what Knex is and why to use it
-  - [ ] Set up connections to your database using Knex
-  - [ ] Execute `select`, `create`, `delete` and `update` queries using Knex Query Builder
-- [ ] Implement all REST endpoints using Express
-  - [ ] `POST`, `DELETE`, `PUT`
-  - [ ] Use appropriate error handling to understand and debug issues
-- [ ] Configure Postman for advanced backend development
-  - [ ] Creating collections and saving requests
-  - [ ] Set up multiple environments
-  - [ ] Managing secrets
-  - [ ] Create basic test suites
+- [ ] Design RESTful endpoints for the Snippets domain using clear resources, routes, and HTTP methods.
+- [ ] Describe your API using an OpenAPI/Swagger specification, including parameters, request bodies, responses, and error cases.
+- [ ] Decide on consistent error models and validation rules for your API and apply them across endpoints.
+- [ ] Recognise and fix SQL injection issues when working with Knex, using query builder methods safely.
+- [ ] Configure Postman for advanced backend development:
+  - [ ] Create and organise collections for your Snippets API.
+  - [ ] Set up environments and variables for different backends.
+  - [ ] Manage secrets using the Postman Vault or sensitive variables.
+  - [ ] Create basic test suites to automatically validate key responses.

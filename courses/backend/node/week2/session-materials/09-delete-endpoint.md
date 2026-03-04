@@ -32,3 +32,16 @@ DELETE /api/snippets/1
 ```
 
 you should delete the row from the `snippets` table where the snippet ID matches the `:id` parameter in the URL.
+
+### Status codes and documentation
+
+When you implement this endpoint:
+
+- Choose appropriate status codes:
+  - Respond with `204 No Content` or `200 OK` when the snippet is successfully deleted.
+  - Respond with `404 Not Found` when there is no snippet with the given `id`.
+  - Respond with `500 Internal Server Error` for unexpected failures.
+- Return a clear JSON confirmation when you send a body (for example `{ "message": "Deleted snippet" }`).
+- Update your OpenAPI/Swagger spec to describe:
+  - The path parameter `id`.
+  - The `200`/`204`, `404`, and `500` responses.

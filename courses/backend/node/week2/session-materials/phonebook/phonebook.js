@@ -1,6 +1,10 @@
+// NOTE: This phonebook example is legacy/extra reference material.
+// Week 2 now focuses on the Snippets API; you can still use this file
+// to practise Knex patterns if you like.
+
 import knex from "./database.js";
 
-// Show https://devhints.io/knex for a useful cheatsheet of knex comamands
+// Show https://devhints.io/knex for a useful cheatsheet of knex commands
 
 // Create
 const createContact = async (name, phonenumber) => {
@@ -23,7 +27,6 @@ const updateContact = async (id, updates) => {
   await knex("contacts").where({ id }).update(updates);
   return await getContactById(id); // return updated record
 };
-b;
 
 // Delete
 const deleteUser = async (id) => {
