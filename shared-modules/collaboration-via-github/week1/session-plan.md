@@ -16,7 +16,7 @@ If you're looking for more inspiration for content to teach, check out the [revi
 
 ### Part 1 — Theory
 
-Walk through the slides together with the class. The slides cover the following topics:
+Walk through the slides together with the trainees. The slides cover the following topics:
 
 1. **Branches review and types of branches**
    - Why we use branches (features, bugs, experiments, etc.)
