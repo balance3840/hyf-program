@@ -4,6 +4,8 @@
 
 The warmup exercises will be a bit abstract. But the in the **hyfBay exercise** the task will be a lot closer to a **real world task**.
 
+**Frontend requirement:** For each task, implement a frontend (HTML + CSS + JavaScript) that shows your solution in the browser. Display the results in the page. You may use one HTML page per exercise or organize multiple sections on a single page—as long as the user can see the output of each task in the UI.
+
 ## 1. Doubling of number
 
 Say you would like to write a program that **doubles the odd numbers** in an array and **throws away the even number**.
@@ -19,11 +21,10 @@ for (let i = 0; i < numbers.length; i++) {
     newNumbers[i] = numbers[i] * 2;
   }
 }
-
-console.log("The doubled numbers are", newNumbers); // [2, 6]
+// expected result: [2, 6]
 ```
 
-Rewrite the above program using `map` and `filter` don't forget to use arrow functions.
+Rewrite the above program using `map` and `filter`; don't forget to use arrow functions. Show the result in your page.
 
 ## 2. Codewars!
 
@@ -36,7 +37,7 @@ Complete these Katas:
 
 ![cinema](https://media.giphy.com/media/l6mBchxYZc7Sw/giphy.gif)
 
-Copy the movies array in the [movies](./session-materials/movies.js) file. Use this array to do the following tasks:
+Copy the movies array in the [movies](./session-materials/movies.js) file. Use this array to do the following tasks. **Implement a frontend** so each task’s result is visible in the browser (e.g. sections or cards for each sub-task, with the computed data rendered in the page).
 
 1. Create an array of movies containing the **movies with a short title** (you define what short means)
 2. Create an array of movie titles with **long movie titles**

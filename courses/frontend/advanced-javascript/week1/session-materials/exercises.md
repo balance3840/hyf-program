@@ -1,22 +1,22 @@
 # Exercises
 
-Use [generateListings()](./code-inspiration.md#generatelistings) to generate random listings
+Work in the [Listings demo](./listings-demo/) in session materials. Open `index.js` and implement the tasks there. Use the **Generate listings (37)** button to get data.
 
 ## `forEach`
 
-- Create 37 listings and log out every listing's size
+**Task 1** in the demo: implement `generateAndRenderListings` (assign `generateListings(37)` to `currentListings`, then call `renderListings(currentListings)`), and implement `renderListings`: use `prepareListingsView(listings)`, then **`listings.forEach(...)`** to add one card per listing with `renderListingCard(listing)`. Click **Generate listings (37)** to see your result.
 
 ## `map`
 
-- Create an array that contains all the 37 listing prices.
+**Task 2** in the demo: implement `showPrices`: use **`map`** to create an array of prices from `currentListings`, then display it in the `#prices` element. Click Generate first, then **Show prices**.
 
 ## `filter`
 
-Using the 37 listings from the previous tasks,
+**Task 3** in the demo (Filters block – three buttons):
 
-- Create an array of cheap listings. You define what "cheap" means. Each item in this array should be of type `object`
-- Create an array of expensive listings' prices. Each item in this array should be of type `number`
-- Create an array of listings that have parking. Each item in this array should be of type `object`
+- **3a. Cheap listings:** implement `showCheapListings`: use **`filter`** to get listings that are "cheap" (you define the condition, e.g. price below a number). Result: array of **objects**. Call `renderListings` with that array.
+- **3b. Expensive prices:** implement `showExpensivePrices`: use **`filter`** to get expensive listings, then **`map`** to get an array of their prices. Result: array of **numbers**. Display it in `#expensive-prices`.
+- **3c. With parking:** implement `showListingsWithParking`: use **`filter`** to get listings that have "Parkering" in `facilities`. Result: array of **objects**. Call `renderListings` with that array.
 
 ## Arrow functions
 
@@ -24,35 +24,18 @@ Rewrite the code above (`forEach`, `map` and `filter`) to arrow functions.
 
 ## Listing project
 
-Imagine we have a website like [Danske Bank](https://danskebank.dk/bolig/sogning/liste?sorter=hoejt-forbrug) where a user can search for different parameters. For example: what type the listing should be, the price, size, location etc etc.
+**Task 4** in the demo (Advanced filters block): implement **filterListings(listings, filter)** only. Reading the form and building the filter object is already done for you.
 
-### Filter the listings
+**Filter object format** (the second argument you receive): an object with only the fields the user set. Possible properties:
 
-Image that a user clicks on a button indicating that they only want listings that are of the type "farm". Let's try and imagine how we would use a function to create this functionality:
+| Property        | Type      | Meaning |
+|----------------|-----------|---------|
+| `filter.type`  | string    | Listing type must equal this (e.g. `"Farm"`, `"House"`). |
+| `filter.minPrice` | number | Listing price must be ≥ this. |
+| `filter.minSize`  | number | Listing size (m²) must be ≥ this. |
+| `filter.hasGarden` | boolean | If `true`, listing must have a garden. |
+| `filter.facilities` | string[] | Listing must have **every** facility in this array (e.g. `["Parkering", "Have"]`). |
 
-```js
-const listings = generateListings(20);
+If a property is missing from `filter`, do not filter by it. Return only listings that match **every** present property.
 
-const filter = {
-  type: "farm",
-};
-
-const farmListings = filterListings(listings, filter);
-```
-
-Okay, so the `filterListings` function takes a filter which is an `object`. Say the user wants "farm" listings that cost more than 1.5 million.
-
-```js
-const filter2 = {
-  type: "farm",
-  minPrice: 1500000,
-};
-
-const expensiveFarmListings = filterListings(listings, filter2);
-```
-
-Your job is to create the `filterListings` function. The function should support these filters: type, facilities, minPrice, hasGarden and size. Use arrow functions!
-
-### Render the listings
-
-Now create a function called `renderListings`. It should have one parameter: `listings`. When called, the function should render the listings in an html list. How it should be rendered is up to you, but you could take inspiration from [Danske Bank](https://danskebank.dk/bolig/sogning?sorter=hoejt-forbrug)
+Click Generate, set the Advanced filters, then **Apply filters**. You can use arrow functions.
