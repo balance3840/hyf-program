@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,10 +10,16 @@
     <h1>Listings demo – Generate and render</h1>
 
     <div class="toolbar">
-      <button class="btn-generate" type="button" onclick="generateAndRenderListings();">
+      <button
+        class="btn-generate"
+        type="button"
+        onclick="generateAndRenderListings();"
+      >
         Generate listings (37)
       </button>
-      <button class="btn-prices" type="button" onclick="showPrices();">Show prices</button>
+      <button class="btn-prices" type="button" onclick="showPrices();">
+        Show prices
+      </button>
       <span class="count" id="count">No listings yet. Click Generate.</span>
     </div>
 
@@ -25,13 +31,23 @@
       <button class="btn-filter" type="button" onclick="showExpensivePrices();">
         Expensive prices
       </button>
-      <button class="btn-filter" type="button" onclick="showListingsWithParking();">
+      <button
+        class="btn-filter"
+        type="button"
+        onclick="showListingsWithParking();"
+      >
         With parking
       </button>
     </div>
 
-    <form class="advanced-filters" id="advancedFiltersForm" onsubmit="applyAdvancedFilters(); return false;">
-      <span class="filters-label">Advanced filters (Task 4 – Listing project):</span>
+    <form
+      class="advanced-filters"
+      id="advancedFiltersForm"
+      onsubmit="applyAdvancedFilters(); return false;"
+    >
+      <span class="filters-label"
+        >Advanced filters (Task 4 – Listing project):</span
+      >
       <div class="field">
         <label for="advType">Type</label>
         <select id="advType" name="type">
@@ -45,28 +61,58 @@
       </div>
       <div class="field">
         <label for="advMinPrice">Min price</label>
-        <input type="number" id="advMinPrice" name="minPrice" min="0" placeholder="e.g. 1000" />
+        <input
+          type="number"
+          id="advMinPrice"
+          name="minPrice"
+          min="0"
+          placeholder="e.g. 1000"
+        />
       </div>
       <div class="field">
         <label for="advMinSize">Min size (m²)</label>
-        <input type="number" id="advMinSize" name="minSize" min="0" placeholder="e.g. 100" />
+        <input
+          type="number"
+          id="advMinSize"
+          name="minSize"
+          min="0"
+          placeholder="e.g. 100"
+        />
       </div>
       <div class="field facilities">
         <label>Facilities</label>
-        <label><input type="checkbox" name="advFacility" value="Parkering" /> Parkering</label>
-        <label><input type="checkbox" name="advFacility" value="Elevator" /> Elevator</label>
-        <label><input type="checkbox" name="advFacility" value="Altan" /> Altan</label>
-        <label><input type="checkbox" name="advFacility" value="Have" /> Have</label>
-        <label><input type="checkbox" name="advFacility" value="Husdyr" /> Husdyr</label>
+        <label
+          ><input type="checkbox" name="advFacility" value="Parkering" />
+          Parkering</label
+        >
+        <label
+          ><input type="checkbox" name="advFacility" value="Elevator" />
+          Elevator</label
+        >
+        <label
+          ><input type="checkbox" name="advFacility" value="Altan" />
+          Altan</label
+        >
+        <label
+          ><input type="checkbox" name="advFacility" value="Have" /> Have</label
+        >
+        <label
+          ><input type="checkbox" name="advFacility" value="Husdyr" />
+          Husdyr</label
+        >
       </div>
       <div class="field">
-        <label><input type="checkbox" id="advHasGarden" name="hasGarden" /> Has garden</label>
+        <label
+          ><input type="checkbox" id="advHasGarden" name="hasGarden" /> Has
+          garden</label
+        >
       </div>
       <button class="btn-apply" type="submit">Apply filters</button>
     </form>
 
     <div class="empty" id="empty">
-      Click “Generate listings” to create 37 random listings and render them as cards.
+      Click “Generate listings” to create 37 random listings and render them as
+      cards.
     </div>
     <div class="prices" id="prices"></div>
     <div class="prices" id="expensive-prices"></div>

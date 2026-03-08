@@ -9,15 +9,27 @@ function randomIntFromInterval(min, max) {
 function generateListings(numberOfListings) {
   const listings = [];
   const listingType = ["House", "Apartment", "Shed", "Dorm", "Farm"];
-  const listingFacilities = ["Parkering", "Elevator", "Altan", "Have", "Husdyr"];
+  const listingFacilities = [
+    "Parkering",
+    "Elevator",
+    "Altan",
+    "Have",
+    "Husdyr",
+  ];
 
   for (let i = 0; i < numberOfListings; i++) {
     const listing = {};
     const randomTypeIndex = randomIntFromInterval(0, listingType.length - 1);
-    const numberOfFacilities = randomIntFromInterval(1, listingFacilities.length - 1);
+    const numberOfFacilities = randomIntFromInterval(
+      1,
+      listingFacilities.length - 1,
+    );
     const facilities = [];
     for (let j = 0; j < numberOfFacilities; j++) {
-      const randomIndexFacilities = randomIntFromInterval(0, listingFacilities.length - 1);
+      const randomIndexFacilities = randomIntFromInterval(
+        0,
+        listingFacilities.length - 1,
+      );
       const randomFacility = listingFacilities[randomIndexFacilities];
       if (!facilities.includes(randomFacility)) {
         facilities.push(randomFacility);
@@ -56,13 +68,25 @@ function renderListingCard(listing) {
     .join("");
   card.innerHTML =
     '<div class="card-image">' +
-    (listing.img ? '<img src="' + listing.img + '" alt="" loading="lazy">' : listing.type) +
+    (listing.img
+      ? '<img src="' + listing.img + '" alt="" loading="lazy">'
+      : listing.type) +
     "</div>" +
     '<div class="card-body">' +
-    '<div class="card-type">' + listing.type + "</div>" +
-    '<div class="card-price">' + listing.price.toLocaleString() + " kr</div>" +
-    '<div class="card-meta">' + listing.size + " m²" + (listing.hasGarden ? " · Garden" : "") + "</div>" +
-    '<div class="card-facilities">' + badgesHtml + "</div>" +
+    '<div class="card-type">' +
+    listing.type +
+    "</div>" +
+    '<div class="card-price">' +
+    listing.price.toLocaleString() +
+    " kr</div>" +
+    '<div class="card-meta">' +
+    listing.size +
+    " m²" +
+    (listing.hasGarden ? " · Garden" : "") +
+    "</div>" +
+    '<div class="card-facilities">' +
+    badgesHtml +
+    "</div>" +
     "</div>";
   return card;
 }
@@ -79,7 +103,8 @@ function prepareListingsView(listings) {
   const countEl = document.getElementById("count");
   const emptyEl = document.getElementById("empty");
 
-  countEl.textContent = listings.length + " listing" + (listings.length !== 1 ? "s" : "");
+  countEl.textContent =
+    listings.length + " listing" + (listings.length !== 1 ? "s" : "");
 
   if (listings.length === 0) {
     container.innerHTML = "";
@@ -134,7 +159,8 @@ function showPrices() {
     return listing.price;
   });
   const pricesEl = document.getElementById("prices");
-  pricesEl.textContent = prices.length > 0 ? prices.join(", ") + " kr" : "Generate listings first.";
+  pricesEl.textContent =
+    prices.length > 0 ? prices.join(", ") + " kr" : "Generate listings first.";
 }
 
 /**
@@ -158,7 +184,8 @@ function showExpensivePrices() {
     return listing.price;
   });
   const el = document.getElementById("expensive-prices");
-  el.textContent = prices.length > 0 ? prices.join(", ") + " kr" : "Generate listings first.";
+  el.textContent =
+    prices.length > 0 ? prices.join(", ") + " kr" : "Generate listings first.";
 }
 
 /**
@@ -185,8 +212,11 @@ function getFilterFromForm() {
   const minPrice = minPriceRaw === "" ? undefined : parseInt(minPriceRaw, 10);
   const minSizeRaw = document.getElementById("advMinSize").value;
   const minSize = minSizeRaw === "" ? undefined : parseInt(minSizeRaw, 10);
-  const hasGarden = document.getElementById("advHasGarden").checked || undefined;
-  const facilityCheckboxes = document.querySelectorAll('input[name="advFacility"]:checked');
+  const hasGarden =
+    document.getElementById("advHasGarden").checked || undefined;
+  const facilityCheckboxes = document.querySelectorAll(
+    'input[name="advFacility"]:checked',
+  );
   const facilities = Array.from(facilityCheckboxes).map(function (cb) {
     return cb.value;
   });

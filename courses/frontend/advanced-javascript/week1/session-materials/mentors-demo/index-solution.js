@@ -3,12 +3,36 @@
 // =============================================================================
 
 const mentors = [
-  { name: "Abed Sujan", subjects: ["JS", "HTML", "CSS", "NODEJS"], yearOfExperience: 4 },
-  { name: "Ahmed Magdy", subjects: ["JS", "Database", "CSS"], yearOfExperience: 1 },
-  { name: "Alicia Gonzales", subjects: ["DB", "HTML", "NODEJS"], yearOfExperience: 8 },
-  { name: "allan Thraen", subjects: ["REACT", "HTML", "CSS"], yearOfExperience: 3 },
-  { name: "Anders Ravn", subjects: ["JS", "HTML", "NODEJS"], yearOfExperience: 2 },
-  { name: "Daniel Fernandes", subjects: ["Database", "HTML", "CSS"], yearOfExperience: 9 },
+  {
+    name: "Abed Sujan",
+    subjects: ["JS", "HTML", "CSS", "NODEJS"],
+    yearOfExperience: 4,
+  },
+  {
+    name: "Ahmed Magdy",
+    subjects: ["JS", "Database", "CSS"],
+    yearOfExperience: 1,
+  },
+  {
+    name: "Alicia Gonzales",
+    subjects: ["DB", "HTML", "NODEJS"],
+    yearOfExperience: 8,
+  },
+  {
+    name: "allan Thraen",
+    subjects: ["REACT", "HTML", "CSS"],
+    yearOfExperience: 3,
+  },
+  {
+    name: "Anders Ravn",
+    subjects: ["JS", "HTML", "NODEJS"],
+    yearOfExperience: 2,
+  },
+  {
+    name: "Daniel Fernandes",
+    subjects: ["Database", "HTML", "CSS"],
+    yearOfExperience: 9,
+  },
 ];
 
 // =============================================================================
@@ -102,13 +126,15 @@ function renderNamesList(names) {
 // =============================================================================
 
 function showAllMentors() {
-  document.getElementById("resultLabel").textContent = "Result: forEach – all mentors";
+  document.getElementById("resultLabel").textContent =
+    "Result: forEach – all mentors";
 
   renderCards(mentors);
 }
 
 function showNamesOnly() {
-  document.getElementById("resultLabel").textContent = "Result: map – mentor names (array of strings)";
+  document.getElementById("resultLabel").textContent =
+    "Result: map – mentor names (array of strings)";
 
   const mentorNames = mapHomemade(mentors, function (mentor) {
     return mentor.name;
@@ -118,7 +144,8 @@ function showNamesOnly() {
 }
 
 function showExperienced() {
-  document.getElementById("resultLabel").textContent = "Result: filter – yearOfExperience > 7";
+  document.getElementById("resultLabel").textContent =
+    "Result: filter – yearOfExperience > 7";
 
   const experiencedMentors = filterHomemade(mentors, function (mentor) {
     return mentor.yearOfExperience > 7;
@@ -128,7 +155,8 @@ function showExperienced() {
 }
 
 function showNamesStartingWithA() {
-  document.getElementById("resultLabel").textContent = 'Result: filter – name[0] === "A" (note: "allan" is lowercase)';
+  document.getElementById("resultLabel").textContent =
+    'Result: filter – name[0] === "A" (note: "allan" is lowercase)';
 
   const mentorsThatStartWithA = filterHomemade(mentors, function (mentor) {
     return mentor.name[0] === "A";

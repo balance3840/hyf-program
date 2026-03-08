@@ -28,12 +28,12 @@ Rewrite the code above (`forEach`, `map` and `filter`) to arrow functions.
 
 **Filter object format** (the second argument you receive): an object with only the fields the user set. Possible properties:
 
-| Property        | Type      | Meaning |
-|----------------|-----------|---------|
-| `filter.type`  | string    | Listing type must equal this (e.g. `"Farm"`, `"House"`). |
-| `filter.minPrice` | number | Listing price must be ≥ this. |
-| `filter.minSize`  | number | Listing size (m²) must be ≥ this. |
-| `filter.hasGarden` | boolean | If `true`, listing must have a garden. |
+| Property            | Type     | Meaning                                                                            |
+| ------------------- | -------- | ---------------------------------------------------------------------------------- |
+| `filter.type`       | string   | Listing type must equal this (e.g. `"Farm"`, `"House"`).                           |
+| `filter.minPrice`   | number   | Listing price must be ≥ this.                                                      |
+| `filter.minSize`    | number   | Listing size (m²) must be ≥ this.                                                  |
+| `filter.hasGarden`  | boolean  | If `true`, listing must have a garden.                                             |
 | `filter.facilities` | string[] | Listing must have **every** facility in this array (e.g. `["Parkering", "Have"]`). |
 
 If a property is missing from `filter`, do not filter by it. Return only listings that match **every** present property.
