@@ -5,6 +5,7 @@
 - Secure passwords & basic login using the Snippets API (≈40 min)
 - Stateless auth with JWT on the Snippets API (≈40 min)
 - Session-based auth on the Snippets API (≈40 min)
+- Third-party auth explained (5 mins)
 - Comparison of auth methods, brief look at DB tokens & API keys, and wrap-up (≈30–35 min)
 
 ## Secure passwords & basic login (Snippets API)
@@ -101,11 +102,37 @@ _See [Session-based authentication](./session-materials/13-auth-sessions.md) for
 
 ---
 
+## Third-party authentication (Firebase, Supabase, Auth0, etc.)
+
+**Goal**: Understand what managed authentication providers are, what problems they solve, and how they relate to the methods used in this session.
+
+### Lecture (concept only, no exercise)
+
+- Explain what third-party auth providers are:
+  - Hosted “auth as a service” platforms such as Firebase Auth, Supabase Auth, Auth0, or AWS Cognito.
+  - They manage user accounts, password reset, social logins, multi-factor auth, and often sessions/tokens for you.
+- Discuss **benefits**:
+  - Offload security-sensitive behaviour (password storage, brute-force protection, MFA) to specialists.
+  - Faster development: SDKs, UI widgets, and ready-made flows.
+  - Built-in support for social/enterprise logins that would be complex to implement yourself.
+- Discuss **trade-offs**:
+  - Vendor lock-in and data model coupling.
+  - Less flexibility for unusual requirements.
+  - Cost and dependency on an external service for uptime and SLAs.
+- Connect to what trainees have built:
+  - Under the hood, these providers typically use the same concepts:
+    - Secure password hashing.
+    - JWTs or opaque tokens.
+    - Sessions/cookies and refresh tokens.
+  - In a Node backend, you usually **verify** a token issued by the provider in middleware and then treat the request as authenticated if verification succeeds.
+
+---
+
 ## Comparison, DB tokens & API keys overview, and wrap-up
 
 **Goal**: Compare the different auth approaches, introduce DB-stored tokens and API keys conceptually, and connect to the assignment.
 
-### Short lecture & discussion (10–15 min)
+### Comparing auth methods (10–15 min)
 
 - Revisit the methods you have seen:
   - Secure passwords (with bcrypt) and basic login.
@@ -119,37 +146,21 @@ _See [Session-based authentication](./session-materials/13-auth-sessions.md) for
   - Not ideal as the only method for user authentication.
 - Show a comparison table summarising trade-offs:
 
-| Method             | DB Lookup | Revocable | Scalable | Typical use case        |
-| ------------------ | --------- | --------- | -------- | ----------------------- |
-| Secure credentials | Yes       | No        | No       | Legacy / simple systems |
-| Database tokens    | Yes       | Yes       | No       | Small apps              |
-| JWT                | No        | Not easy  | Yes      | SPAs, mobile apps       |
-| Sessions           | Yes       | Yes       | Depends  | Traditional web apps    |
-| API keys           | No        | Not easy  | Yes      | Machine-to-machine      |
+| Method                 | DB Lookup | Revocable | Scalable | Typical use case                                  |
+| ---------------------- | --------- | --------- | -------- | ------------------------------------------------- |
+| Secure credentials     | Yes       | No        | No       | Legacy / simple systems                           |
+| Database tokens        | Yes       | Yes       | No       | Small apps                                        |
+| JWT                    | No        | Not easy  | Yes      | SPAs, mobile apps                                 |
+| Sessions               | Yes       | Yes       | Depends  | Traditional web apps                              |
+| API keys               | No        | Not easy  | Yes      | Machine-to-machine                                |
+| Third-party auth (IdP) | Depends   | Yes       | Yes      | SaaS, bigger products, "don't have time for this" |
 
 _See [Database-stored tokens](./session-materials/11-auth-db-tokens.md) and [API keys](./session-materials/14-auth-api-keys.md) for additional details and examples._
-
-## Comparing auth methods
-
-Review the methods from this week:
-
-- Secure credentials (hashed passwords + login).
-- Database-stored tokens.
-- JWT.
-- Sessions.
-- API keys.
-
-Discuss trade-offs in terms of:
-
-- Performance (DB lookups vs stateless verification).
-- Revocation.
-- Complexity on the client and server.
-- Fit for different scenarios (SPAs, mobile apps, internal tools, service-to-service communication).
 
 ### Final wrap-up
 
 - Reiterate best practices:
-  - Always use HTTPS. //TODO: WHY and how it's connected
+  - [Always use HTTPS](https://www.freecodecamp.org/news/http-and-everything-you-need-to-know-about-it).
   - Always hash passwords (bcrypt or similar).
   - Store tokens securely (e.g. HttpOnly cookies for web clients).
   - Prefer short-lived tokens and consider refresh tokens where appropriate.
