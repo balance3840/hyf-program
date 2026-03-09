@@ -35,7 +35,7 @@ _See [Secure passwords and basic login](./session-materials/10-auth-db-credentia
 
 ### Do it together (5–10 min)
 
-- Show one working solution.
+- TODO: show how to break this
 - Discuss common mistakes (e.g. sending too much error detail, forgetting to hash passwords).
 
 ---

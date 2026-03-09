@@ -7,7 +7,8 @@ const users = [
     id: 1,
     username: "alice",
     // bcrypt.hashSync("password123", 10)
-    password_hash: "$2b$10$exampleexampleexampleexampleexampleexa",
+    password_hash:
+      "$2b$10$uXQ26BC378vlfQz80XTlKecUnhlcWFzZdoygngzx5CQhPkZJRZDtO",
   },
 ];
 
@@ -23,7 +24,7 @@ app.post("/login", async (req, res) => {
 
   const user = getUserByUsername(username);
   if (!user) {
-    return res.status(401).json({ error: "Invalid credentials" });
+    return res.status(404).json({ error: "User not found" });
   }
 
   const isMatch = await bcrypt.compare(password, user.password_hash);
@@ -37,4 +38,3 @@ app.post("/login", async (req, res) => {
 app.listen(3000, () => {
   console.log("> Ready on http://localhost:3000 (bcrypt login example)");
 });
-

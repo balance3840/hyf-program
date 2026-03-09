@@ -20,7 +20,7 @@ Seed at least one user with a hashed password (for example using a script or a s
 
 ## 2. Install bcrypt
 
-Install `bcrypt` (or `bcryptjs`) in the Snippets API project and import it in your auth route module.
+Install `bcrypt` in the Snippets API project and import it in your auth route module.
 
 ## 3. Implement /login
 
@@ -40,7 +40,3 @@ You do **not** need to generate tokens here yet – this is just about secure cr
 - Add at least one extra user to the database and test logging in as both.
 - Think about:
   - What error messages you send back (security vs usability).
-  - Whether you log failed login attempts (but avoid logging raw passwords).
-
-In the next parts, you’ll build **JWT** and **session-based** authentication on top of this secure login.
-
