@@ -24,8 +24,7 @@ Examples for the code snippets [present in the module materials examples](../mod
 
 ### Implementation of encrypted password login
 
-- Sketch the table and login route, using the example in  
-  [module-materials/examples/auth-login-bcrypt.js](../module-materials/examples/auth-login-bcrypt.js).
+- Sketch the table and login route, using the example in [module-materials/examples/auth-login-bcrypt.js](../module-materials/examples/auth-login-bcrypt.js).
 
 _See [Secure passwords and basic login](./session-materials/10-auth-db-credentials.md) for a more detailed walkthrough._
 
@@ -55,8 +54,7 @@ _See [Secure passwords and basic login](./session-materials/10-auth-db-credentia
 
 ### Implementation of JWT token in middleware
 
-- Use the JWT login and middleware flow from  
-  [module-materials/examples/auth-jwt.js](../module-materials/examples/auth-jwt.js) as a reference while coding in the Snippets API.
+- Use the JWT login and middleware flow from [module-materials/examples/auth-jwt.js](../module-materials/examples/auth-jwt.js) as a reference while coding in the Snippets API.
 
 _See [Stateless authentication with JWT](./session-materials/12-auth-jwt.md) for detailed steps and examples._
 
@@ -82,8 +80,7 @@ _See [Stateless authentication with JWT](./session-materials/12-auth-jwt.md) for
 
 ### Implementation of session based auth
 
-- Use the session-based login and middleware flow from  
-  [module-materials/examples/auth-sessions.js](../module-materials/examples/auth-sessions.js) as a reference while integrating sessions into the Snippets API.
+- Use the session-based login and middleware flow from [module-materials/examples/auth-sessions.js](../module-materials/examples/auth-sessions.js) as a reference while integrating sessions into the Snippets API.
 
 _See [Session-based authentication](./session-materials/13-auth-sessions.md) for detailed guidance._
 
