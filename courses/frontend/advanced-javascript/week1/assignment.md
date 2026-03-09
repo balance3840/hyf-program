@@ -6,7 +6,6 @@ Tasks 1 and 2 are short warmups; task 3 is a larger, real-world-style task where
 - **Task 2 (Codewars):** Complete the Katas on Codewars. No frontend or repo submission needed.
 - **Task 3 (Working with movies):** Frontend required. Build an HTML page with CSS and JavaScript that runs in the browser and shows the result of each movie sub-task in the page (e.g. sections or cards with the computed data).
 
-
 ## 1. Doubling of number
 
 Say you would like to write a program that **doubles the odd numbers** in an array and **throws away the even number**.
