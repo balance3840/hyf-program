@@ -47,4 +47,3 @@ Create middleware (e.g. `requireTokenAuth`) that:
   - How you might clean up old or expired tokens.
 
 You will build on this concept further in the assignment.
-

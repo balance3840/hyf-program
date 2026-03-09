@@ -1,4 +1,3 @@
-
 # Node (Week 3) – API Security & Authentication
 
 In this session we will focus on securing our existing Snippets API. We will explore different ways of authenticating users and protecting API endpoints, and compare their trade-offs so you can choose the right approach for different scenarios.

@@ -1,162 +1,142 @@
 {
-	"info": {
-		"_postman_id": "689497c5-04e2-4c87-8883-2a3d7bc4b1c9",
-		"name": "node",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "48182721",
-		"_collection_link": "https://magdazelena-ea3683e1-7432080.postman.co/workspace/Magdalena-Odrow%C4%85%C5%BC-%C5%BBelezik's-Wor~d3429c08-9437-4576-84c6-94f688cd37c5/collection/48182721-689497c5-04e2-4c87-8883-2a3d7bc4b1c9?action=share&source=collection_link&creator=48182721"
-	},
-	"item": [
-		{
-			"name": "login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"alice\",\r\n    \"password\": \"password123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/login",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "protected-jwt",
-			"request": {
-				"auth": {
-					"type": "jwt",
-					"jwt": [
-						{
-							"key": "secret",
-							"value": "development-secret",
-							"type": "string"
-						},
-						{
-							"key": "isSecretBase64Encoded",
-							"value": false,
-							"type": "boolean"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
-						},
-						{
-							"key": "algorithm",
-							"value": "HS256",
-							"type": "string"
-						},
-						{
-							"key": "payload",
-							"value": "{}",
-							"type": "string"
-						},
-						{
-							"key": "headerPrefix",
-							"value": "Bearer",
-							"type": "string"
-						},
-						{
-							"key": "queryParamKey",
-							"value": "token",
-							"type": "string"
-						},
-						{
-							"key": "header",
-							"value": "{}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/protected",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"protected"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "protected-session",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/protected",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"protected"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "logout",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/logout",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"logout"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseURL",
-			"value": "",
-			"type": "default"
-		}
-	]
+  "info": {
+    "_postman_id": "689497c5-04e2-4c87-8883-2a3d7bc4b1c9",
+    "name": "node",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48182721",
+    "_collection_link": "https://magdazelena-ea3683e1-7432080.postman.co/workspace/Magdalena-Odrow%C4%85%C5%BC-%C5%BBelezik's-Wor~d3429c08-9437-4576-84c6-94f688cd37c5/collection/48182721-689497c5-04e2-4c87-8883-2a3d7bc4b1c9?action=share&source=collection_link&creator=48182721"
+  },
+  "item": [
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"alice\",\r\n    \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/login",
+          "host": ["{{baseURL}}"],
+          "path": ["login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "protected-jwt",
+      "request": {
+        "auth": {
+          "type": "jwt",
+          "jwt": [
+            {
+              "key": "secret",
+              "value": "development-secret",
+              "type": "string"
+            },
+            {
+              "key": "isSecretBase64Encoded",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            },
+            {
+              "key": "algorithm",
+              "value": "HS256",
+              "type": "string"
+            },
+            {
+              "key": "payload",
+              "value": "{}",
+              "type": "string"
+            },
+            {
+              "key": "headerPrefix",
+              "value": "Bearer",
+              "type": "string"
+            },
+            {
+              "key": "queryParamKey",
+              "value": "token",
+              "type": "string"
+            },
+            {
+              "key": "header",
+              "value": "{}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/protected",
+          "host": ["{{baseURL}}"],
+          "path": ["protected"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "protected-session",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/protected",
+          "host": ["{{baseURL}}"],
+          "path": ["protected"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "logout",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/logout",
+          "host": ["{{baseURL}}"],
+          "path": ["logout"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": "",
+      "type": "default"
+    }
+  ]
 }

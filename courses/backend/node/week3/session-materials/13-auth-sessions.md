@@ -47,4 +47,3 @@ Add a `/logout-session` route that:
   - What changes in the client’s behaviour?
   - How does each solution handle revocation?
   - What would you need to consider when scaling beyond a single server instance?
-

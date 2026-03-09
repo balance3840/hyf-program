@@ -8,7 +8,7 @@ We will:
 - Validate the JWT on protected routes.
 - Use it to guard important Snippets API endpoints.
 
-> **Conceptual note:** a JWT is just a signed JSON object. It usually contains a user identifier (for example `userId`), but it does not *have* to be tied to a user – it’s up to you what claims you put inside. The server uses a shared secret (`JWT_SECRET`) to sign and later verify that the token is genuine and has not expired.
+> **Conceptual note:** a JWT is just a signed JSON object. It usually contains a user identifier (for example `userId`), but it does not _have_ to be tied to a user – it’s up to you what claims you put inside. The server uses a shared secret (`JWT_SECRET`) to sign and later verify that the token is genuine and has not expired.
 
 ## 1. Install and configure jsonwebtoken
 
