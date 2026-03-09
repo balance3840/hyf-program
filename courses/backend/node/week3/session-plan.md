@@ -16,28 +16,26 @@ Examples for the code snippets [present in the module materials examples](../mod
 
 **Goal**: Implement secure password storage and a basic login flow for the Snippets API using bcrypt.
 
-### Lecture & live coding (≈10 min)
-
 - Concept: why plaintext passwords are insecure.
 - Introduce hashing and salting with bcrypt.
 - Walk through the happy path for `/login`:
   - Look up user by username/email.
   - Compare plaintext password with stored hash using bcrypt.
 
-### Implementation (live coding)
+### Implementation of encrypted password login
 
 - Sketch the table and login route, using the example in  
-  [module-materials/examples/auth-login-bcrypt.js](../../module-materials/examples/auth-login-bcrypt.js).
+  [module-materials/examples/auth-login-bcrypt.js](../module-materials/examples/auth-login-bcrypt.js).
 
 _See [Secure passwords and basic login](./session-materials/10-auth-db-credentials.md) for a more detailed walkthrough._
 
-### Exercise (15–20 min)
+### Exercise 1 (15–20 min)
 
 - Add at least one user to the `users` table with a hashed password. You can use `token` column.
 - Implement `/login` using bcrypt in your own copy of the Snippets API.
 - Use Postman to test successful and failing login attempts.
 
-### Do it together (5–10 min)
+### Why is this approach insecure (5–10 min)
 
 - TODO: show how to break this
 - Discuss common mistakes (e.g. sending too much error detail, forgetting to hash passwords).
@@ -48,8 +46,6 @@ _See [Secure passwords and basic login](./session-materials/10-auth-db-credentia
 
 **Goal**: Learn stateless auth with JWT on top of the secure login flow, and protect key Snippets API endpoints.
 
-### Lecture & live coding (≈10 min)
-
 - Concept: self-contained tokens with claims; no DB lookup needed per request.
 - Trade-offs: fast and scalable, but harder to revoke.
 - Show the high-level flow:
@@ -57,20 +53,20 @@ _See [Secure passwords and basic login](./session-materials/10-auth-db-credentia
   - Client includes the token in the `Authorization` header.
   - Middleware verifies the token and attaches user info to `req.user`.
 
-### Implementation (live coding)
+### Implementation of JWT token in middleware
 
 - Use the JWT login and middleware flow from  
-  [module-materials/examples/auth-jwt.js](../../module-materials/examples/auth-jwt.js) as a reference while coding in the Snippets API.
+  [module-materials/examples/auth-jwt.js](../module-materials/examples/auth-jwt.js) as a reference while coding in the Snippets API.
 
 _See [Stateless authentication with JWT](./session-materials/12-auth-jwt.md) for detailed steps and examples._
 
-### Exercise (15–20 min)
+### Exercise 2 (15–20 min)
 
 - Protect at least two Snippets API endpoints (e.g. `POST /api/snippets`, `DELETE /api/snippets/:id`) using JWT middleware.
 - Add token expiration and handle expired tokens gracefully in responses.
 - Try to tamper with the token payload and see what happens.
 
-### Do it together (5–10 min)
+### Using JWT in Postman
 
 - Run through a full Postman flow together.
 - In Postman, add JWT as Bearer Token (unique token after login) or just JWT auth based on secret. Show the difference between authorised & authenticated reponse.
@@ -81,24 +77,22 @@ _See [Stateless authentication with JWT](./session-materials/12-auth-jwt.md) for
 
 **Goal**: Implement session-based authentication using cookies and compare it to JWT for the Snippets API.
 
-### Lecture & live coding (≈10 min)
-
 - Concept: server-side sessions, session IDs in cookies, and typical use cases.
 - Contrast with JWT: stateful vs stateless, revocation, and infrastructure needs.
 
-### Implementation (live coding)
+### Implementation of session based auth
 
 - Use the session-based login and middleware flow from  
-  [module-materials/examples/auth-sessions.js](../../module-materials/examples/auth-sessions.js) as a reference while integrating sessions into the Snippets API.
+  [module-materials/examples/auth-sessions.js](../module-materials/examples/auth-sessions.js) as a reference while integrating sessions into the Snippets API.
 
 _See [Session-based authentication](./session-materials/13-auth-sessions.md) for detailed guidance._
 
-### Exercise (15–20 min)
+### Exercise 3 (15–20 min)
 
 - Protect at least one Snippets API route using session-based middleware.
 - Implement logout and verify that access is denied after logging out.
 
-### Do it together (5–10 min)
+### How are sessions different than JWT (5–10 min)
 
 - Compare the experience of working with sessions vs JWT.
 - Discuss scaling concerns (sticky sessions, shared stores) at a high level.
@@ -108,8 +102,6 @@ _See [Session-based authentication](./session-materials/13-auth-sessions.md) for
 ## Third-party authentication (Firebase, Supabase, Auth0, etc.)
 
 **Goal**: Understand what managed authentication providers are, what problems they solve, and how they relate to the methods used in this session.
-
-### Lecture (concept only, no exercise)
 
 - Explain what third-party auth providers are:
   - Hosted “auth as a service” platforms such as Firebase Auth, Supabase Auth, Auth0, or AWS Cognito.

@@ -61,7 +61,7 @@ Document briefly (e.g. in comments or a short `AUTH_NOTES.md`) which auth mechan
 
 Next, add **database-stored tokens** to your Snippets API, in addition to your existing mechanism.
 
-### Requirements
+### Requirements for database stored tokens excercise
 
 1. Create a `tokens` table with at least:
    - `id` (primary key)
@@ -99,7 +99,7 @@ Extend your implementation by:
   - all logged in users can post snippets
   - **some** logged in users can delete snippets
 
-### Requirements
+### Requirements for JWT authorisation excercise
 
 - Clearly document (in code comments or `AUTH_NOTES.md`) how to:
   - Obtain credentials and log in.
@@ -112,7 +112,7 @@ Extend your implementation by:
 
 Finally, add a simple **API-key-protected endpoint** intended for machine-to-machine use.
 
-### Requirements
+### Requirements for API-key excercise
 
 1. Choose or create a route that makes sense for a machine client, for example:
    - `GET /api/metrics`
