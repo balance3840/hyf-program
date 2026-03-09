@@ -4,7 +4,8 @@
 
 These are some examples of previously created materials by mentors that you can use yourself, or for inspiration.
 
-- [Git Advanced Slides](./session-materials/Git_advanced.pdf) (slides used to teach previously)
+- [Git Advanced Slides](./session-materials/Git_advanced.pdf) (slides used during the theory part of the session)
+- [Git Workshop Challenges](./session-materials/git-workshop-challenges.zip) (zip containing a git repo with 6 hands-on challenges — must stay zipped because it includes a `.git` folder)
 - [Git Commands Cheat Sheet](./session-materials/cheatsheet.md) (lists lots of git commands used in the session)
 - [Additional exercises](./session-materials/additional_exercises.md) (extra exercises that could be used)
 - [Resources](./session-materials/resources.md) (additional links and resources for content inspiration and additional learning for trainees)
@@ -13,52 +14,62 @@ These are some examples of previously created materials by mentors that you can 
 
 If you're looking for more inspiration for content to teach, check out the [review](./session-materials/review.md) which covers the session outline in more detail.
 
-1. Why branches?
+### Part 1 — Theory
 
-2. The 3 types of branches:
-   - the local non-tracking branches
-   - the local tracking branches
-   - the remote tracking branches
+Walk through the slides together with the trainees. The slides cover the following topics:
 
-3. Push/Pull branches to github
+1. **Branches review and types of branches**
+   - Why we use branches (features, bugs, experiments, etc.)
+   - The 3 types of branches: local non-tracking, local tracking, remote-tracking
+   - How to create, list and switch between branches
 
-4. Create a merge conflict and show how to solve it (use vscode to select which changes to keep).
+2. **Push and pull**
+   - Pushing local changes to GitHub
+   - Pulling remote changes to your local machine
+   - Fetch vs. pull, and keeping branches in sync
 
-5. Do an exercise (to basically repeat what was shown before with the slides and all):
-   1. create repo `session_example`, both locally and on github
-   2. in main, create file `fruits.txt`, add the names of 3 fruits, one per line, Commit your changes.
-   3. push `main` to github
-   4. from `main`, create branch `feature/fruits`, modify the name of the second fruit and add two new fruits at the end of the file (one per line)
-   5. on github, on branch `main`, change the name of the second fruit in the file `fruits.txt`
-   6. update your local branch `feature/fruits` with the contents of `main`
-   7. push `feature/fruits` to github
-   8. create pull request to merge `feature/fruits` into `main`
+3. **Merge conflicts**
+   - What causes a merge conflict
+   - How to identify and resolve them (use VSCode to select which changes to keep)
 
-6. Git diff and git stash:
-   1. show the git diff when we make changes in current feature
-   2. explain git stash
-   3. show git diff (when there are no differences)
-   4. explain git stash list and then git stash apply
-   5. explain difference between git stash apply and git stash pop
-   6. show some more options like git diff --stat
+4. **Git workflows**
+   - Feature-branch workflow
+   - Gitflow workflow
+   - Trunk based workflow
+   - When to use which, and how they relate to the final project
 
-7. How to "remove" commits
-   - git reset soft vs. hard
-   - git revert
-   - git cherry-pick
-   - git rebase -i HEAD~N
+5. **Rollback strategies**
+   - `git reset` — soft vs hard
+   - `git revert` — undoing a specific commit safely
+   - `git cherry-pick` — copying a commit from another branch
 
-8. Exercise to create commit use reset soft, and then create another commit use reset hard.
+6. **Git tags and versioning**
+   - What tags are and why we use them
+   - Lightweight vs. annotated tags
+   - Semantic versioning (major.minor.patch)
 
-9. Show git checkout to a specific commit.
+7. **Git bisect and stash**
+   - `git bisect` — binary search through commits to find a bug
+   - `git stash` — saving temporary changes without committing
 
-10. Random things that should be mentioned throughout the session:
-    - `git checkout -- <file>` / `git restore <file>` (only works in git 2.23+)
-    - `git reset HEAD <file>` / `git restore --staged <file>` (only works in git 2.23+)
-    - `git rm --cached`
-    - `git commit --amend`
-    - show how to check that local branch is up to date with origin (with git log)
+8. **Best practices**
+   - How to write a good commit message
+   - How to create a good, easy to understand PR
+   - Keeping commits small and focused
 
-11. How to write a good commit message.
+### Part 2 — Scenario challenges (~45min)
 
-12. How to create a good, easy to understand PR.
+Present 4 real-world scenarios to the class. For each scenario:
+
+1. Read the scenario out loud
+2. Give the trainees a few minutes to discuss with their neighbor — what commands would you use?
+3. Reveal and walk through the solution together
+
+### Part 3 — Git Workshop Challenges (~1h30min)
+
+Hand out (or have trainees unzip) the [git-workshop-challenges.zip](./session-materials/git-workshop-challenges.zip). This zip contains a git repository with 6 hands-on challenges that the trainees work through at their own pace.
+
+> [!TIP]
+> The zip must stay zipped in this repo because it contains a specific `.git` folder that is part of the challenges. Trainees should unzip it locally to work with it.
+
+The zip includes a README with all the instructions for each challenge, as well as solutions. Let the trainees work through the challenges individually or in pairs, and be available to help when they get stuck.

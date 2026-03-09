@@ -32,6 +32,8 @@ Total: 18 weeks
 - [ ] How to save temporary changes without committing them (ie. git stash)
 - [ ] How to "remove" commits using reset (soft vs hard), revert, cherry-pick and rebase
 - [ ] Be prepared to collaborate successfully using GitHub on your final project
+- [ ] How to use git tags and semantic versioning
+- [ ] Know the main git workflows (feature-branch, gitflow, forking) and when to use each
 
 ### [Using AI in Development](/shared-modules/using-ai-in-development)
 
@@ -45,8 +47,17 @@ Total: 18 weeks
 
 ### [Advanced JavaScript](/courses/backend/advanced-javascript)
 
-> ⚠️ "Learning goals" section is empty in `courses/backend/advanced-javascript`
-
+- [ ] Use array methods (`forEach`, `map`, `filter`, `reduce`) to transform, query, and aggregate data
+- [ ] Chain array methods into data transformation pipelines
+- [ ] Write concise arrow functions with implicit and explicit returns
+- [ ] Pass functions as arguments and return functions from functions (higher-order functions)
+- [ ] Use callbacks for synchronous and asynchronous operations, including error-first callbacks
+- [ ] Explain the difference between synchronous and asynchronous code execution in JavaScript
+- [ ] Consume and create Promises using `.then()`, `.catch()`, and `new Promise()`
+- [ ] Use `async`/`await` with `try`/`catch` for clean asynchronous code
+- [ ] Fetch data from APIs and run parallel requests with `Promise.all()`
+- [ ] Declare classes with constructors, methods, and static methods
+- [ ] Use inheritance with `extends` and `super()`
 
 ### [Databases](/courses/backend/databases)
 
