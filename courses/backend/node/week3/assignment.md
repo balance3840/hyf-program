@@ -12,15 +12,11 @@ You will:
 ## Setup
 
 1. Go to/create a `node/week3` directory in your `hyf-assignment` repo.
-2. Copy or link your existing Snippets API code from week 2 (or the provided starter), so that you have:
+2. Copy or link your existing Snippets API code from week 2, so that you have:
    - A working database connection and Knex setup.
    - Existing snippets-related endpoints under `/api/snippets`.
 3. Make sure your database contains the required tables for the Snippets API and that you can run it locally without errors.
-4. Add (or confirm) a `users` table to your database with at least:
-   - `id`
-   - `username` (unique)
-   - `password_hash`
-5. Ensure you have environment variables (or config values) for:
+4. Ensure you have environment variables (or config values) for:
    - `JWT_SECRET`
    - `SESSION_SECRET`
    - `API_KEY` (for the machine-style endpoint).
@@ -43,7 +39,7 @@ Your goals:
 - Verify that:
   - `users` table exists and contains at least one user with a hashed password.
   - `/login`:
-    - Looks up the user by username (or email).
+    - Looks up the user by email.
     - Uses `bcrypt.compare` to check the password.
     - Returns appropriate HTTP status codes on success (`200`) and failure (`401`).
   - If using **JWT**:
@@ -91,26 +87,17 @@ Next, add **database-stored tokens** to your Snippets API, in addition to your e
 
 ---
 
-## Part 3 – Deepen JWT or sessions (or both)
+## Part 3 – Authorisation using JWT
 
-Choose **at least one** mechanism to deepen: **JWT** or **sessions**.
+Read thoroughly the following article on [implementing authorisation using JWT and Express](https://dev.to/cerbos/authentication-and-authorization-in-nodejs-applications-12fk) or find other resources online.
 
-### Option A – Deepen JWT
-
-If you choose JWT, extend your implementation by:
+Extend your implementation by:
 
 - Improving error handling (e.g. distinguish between missing, invalid, and expired tokens in a safe way).
-- Adding at least one of:
-  - Short-lived access tokens plus a simple refresh token flow.
-  - Role-based checks in middleware (e.g. only certain users can delete snippets).
-
-### Option B – Deepen sessions
-
-If you choose sessions, extend your implementation by:
-
-- Improving session configuration (cookie options, lifetime, etc.).
-- Ensuring proper session destruction on logout.
-- Considering what would be needed to run the app on multiple servers (e.g. shared session storage) and documenting your thoughts.
+- Adding role-based checks in middleware:
+  - all users can see snippets
+  - all logged in users can post snippets
+  - **some** logged in users can delete snippets
 
 ### Requirements
 
@@ -119,11 +106,9 @@ If you choose sessions, extend your implementation by:
   - Use the improved mechanism (which headers/cookies are expected).
   - Log out or otherwise invalidate access.
 
-You may work on both JWT and sessions if you have time, but it is acceptable to focus deeply on one.
-
 ---
 
-## Part 4 – API-key-protected machine endpoint
+## Part 4 – Optional: API-key-protected machine endpoint
 
 Finally, add a simple **API-key-protected endpoint** intended for machine-to-machine use.
 
@@ -148,7 +133,7 @@ If you have time, add a very simple in-memory rate-limiting mechanism (for examp
 
 ## Reflection
 
-Add a short reflection section to your repository (for example in `AUTH_NOTES.md` or at the bottom of this file) where you answer the following questions in a few sentences or bullet points each:
+Add a short reflection section to your repository (for example in `AUTH_NOTES.md`) where you answer the following questions in a few sentences or bullet points each:
 
 1. Which auth mechanism would you choose for:
    - A SPA web app with many users?
@@ -156,4 +141,3 @@ Add a short reflection section to your repository (for example in `AUTH_NOTES.md
    - An internal admin tool used by a small team?
 2. Why would you **not** use the other mechanisms in those scenarios?
 3. What is one security improvement you would like to make next if you had more time?
-

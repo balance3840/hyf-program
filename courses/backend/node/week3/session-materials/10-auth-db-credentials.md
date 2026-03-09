@@ -4,19 +4,14 @@ In this part of the session, you will add **secure password storage** and a **ba
 
 We will:
 
-- Create a `users` table in the database.
 - Hash passwords using `bcrypt`.
 - Implement a `/login` endpoint that validates a user’s credentials.
 
 ## 1. Database: users table
 
-Add a `users` table to the same database that the Snippets API uses. A minimal schema could look like:
+We can use already existing `users` table. Username can be user `email`, while password hash can be stored in the `token` column.
 
-- `id` (primary key)
-- `username` (unique)
-- `password_hash` (string, to store the hashed password)
-
-Seed at least one user with a hashed password (for example using a script or a small Node program that calls `bcrypt.hash` and inserts the row).
+Update at least one user with a hashed password (for example a small Node program that calls `bcrypt.hash` and update the row).
 
 ## 2. Install bcrypt
 

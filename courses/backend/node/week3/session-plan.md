@@ -8,6 +8,10 @@
 - Third-party auth explained (5 mins)
 - Comparison of auth methods, brief look at DB tokens & API keys, and wrap-up (≈30–35 min)
 
+## Session materials
+
+Examples for the code snippets [present in the module materials examples](../module-materials/examples) can be run with [this Postman collection](../module-materials/node.postman_collection.json). Make sure to have it downloaded an up and running.
+
 ## Secure passwords & basic login (Snippets API)
 
 **Goal**: Implement secure password storage and a basic login flow for the Snippets API using bcrypt.
@@ -16,7 +20,6 @@
 
 - Concept: why plaintext passwords are insecure.
 - Introduce hashing and salting with bcrypt.
-- Show how a minimal `users` table for the Snippets DB might look.
 - Walk through the happy path for `/login`:
   - Look up user by username/email.
   - Compare plaintext password with stored hash using bcrypt.
@@ -30,7 +33,7 @@ _See [Secure passwords and basic login](./session-materials/10-auth-db-credentia
 
 ### Exercise (15–20 min)
 
-- Add a `users` table to the Snippets DB and seed at least one user with a hashed password.
+- Add at least one user to the `users` table with a hashed password. You can use `token` column.
 - Implement `/login` using bcrypt in your own copy of the Snippets API.
 - Use Postman to test successful and failing login attempts.
 
