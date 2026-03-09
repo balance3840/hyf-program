@@ -25,7 +25,7 @@ app.use(
   }),
 );
 
-app.post("/login-session", (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   const user = getUserByUsername(username);
@@ -44,11 +44,11 @@ function requireSessionAuth(req, res, next) {
   res.status(401).json({ error: "Not authenticated" });
 }
 
-app.get("/protected-session", requireSessionAuth, (req, res) => {
+app.get("/protected", requireSessionAuth, (req, res) => {
   res.json({ data: "Session-protected snippets", userId: req.session.userId });
 });
 
-app.post("/logout-session", (req, res) => {
+app.post("/logout", (req, res) => {
   req.session.destroy(() => {
     res.json({ message: "Logged out" });
   });
