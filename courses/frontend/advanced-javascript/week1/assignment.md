@@ -1,8 +1,11 @@
 # Assignment
 
-Only **task 3** (movies) requires a frontend: HTML + CSS + JavaScript that runs in the browser, with the result visible in the page. **Tasks 1 and 2** do not: for task 1 submit the JavaScript (map/filter) solution (an HTML page is optional though); for task 2 just complete the Katas.
+Tasks 1 and 2 are short warmups; task 3 is a larger, real-world-style task where everything is visible in one page or app.
 
-The first task is a short warmup. The second is practice on Codewars. The third (movies) is a larger, real-world-style task: one page or app that shows all the movie results in the UI.
+- **Task 1 (Doubling of number):** JavaScript only. Submit your solution using `map` and `filter` (and arrow functions).
+- **Task 2 (Codewars):** Complete the Katas on Codewars. No frontend or repo submission needed.
+- **Task 3 (Working with movies):** Frontend required. Build an HTML page with CSS and JavaScript that runs in the browser and shows the result of each movie sub-task in the page (e.g. sections or cards with the computed data).
+
 
 ## 1. Doubling of number
 
@@ -22,7 +25,7 @@ for (let i = 0; i < numbers.length; i++) {
 // expected result: [2, 6]
 ```
 
-Rewrite the above program using `map` and `filter`; don't forget to use arrow functions. Showing the result in a page is optional for this task (but nice if you do).
+Rewrite the above program using `map` and `filter`; don't forget to use arrow functions.
 
 ## 2. Codewars!
 
