@@ -27,24 +27,24 @@ Write this code with traditional `function`s, no arrow functions yet!
   - [Mentors demo](./session-materials/mentors-demo/) – do **FOREACH TODO**
   - [Code inspiration](./session-materials/code-inspiration.md#foreach)
   - [forEach homemade](./session-materials/code-inspiration.md#foreach-homemade)
-  - [Exercises](./session-materials/exercises.md#foreach)
+  - [Exercises](./session-materials/exercises.md#task-1-generate-and-show-listings-foreach)
 - `map` - Changes/transforms the items in the array
   - [Mentors demo](./session-materials/mentors-demo/) – do **MAP TODO**
   - [Code inspiration](./session-materials/code-inspiration.md#map)
   - [map homemade](./session-materials/code-inspiration.md#map-homemade)
-  - [Exercises](./session-materials/exercises.md#map)
+  - [Exercises](./session-materials/exercises.md#task-2-show-prices-map)
 - `filter` - Changes the number of items in the array. Let the trainees investigate `filter`
   - [Mentors demo](./session-materials/mentors-demo/) – do **FILTER TODO**
   - [Code inspiration](./session-materials/code-inspiration.md#filter)
   - [filter homemade](./session-materials/code-inspiration.md#filter-homemade) - Get help from trainees to write this
-  - [Exercises](./session-materials/exercises.md#filter)
+  - [Exercises](./session-materials/exercises.md#task-3-filter-buttons-filter)
 - [Mentors demo](./session-materials/mentors-demo/) – do **CHAINING TODO** (multiple filter conditions)
 - [Other example](./session-materials/code-inspiration.md#other-example)
 
 ### Arrow Functions
 
 - [Code inspiration](./session-materials/code-inspiration.md#arrow-function)
-- [Exercises](./session-materials/exercises.md#arrow-functions)
+- [Exercises](./session-materials/exercises.md#task-arrow-functions)
 
 ## Exercises
 

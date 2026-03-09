@@ -4,11 +4,11 @@ Exercise for **trainees** (Week 1). Generate random listings, render them as car
 
 ## Files
 
-| File | Purpose |
-|------|--------|
-| **index.js** | Main file. Implement the task functions (search for `Task`). |
+| File           | Purpose                                                                                                                                           |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **index.js**   | Main file. Implement the task functions (search for `Task`).                                                                                      |
 | **index.html** | Page with Generate button, Show prices, filters, advanced filters form, and result areas. Buttons pass `currentListings` into the task functions. |
-| **style.css** | Styles for cards and layout. |
+| **style.css**  | Styles for cards and layout.                                                                                                                      |
 
 ## Where to find tasks
 
@@ -20,14 +20,14 @@ Search for **`Task`** (e.g. Task 1.1, Task 2) in `index.js`. Each task has a com
 
 Each button is labeled with its task number in the UI.
 
-| Element | Task | Action | Output |
-|--------|------|--------|--------|
-| **Generate listings (37) — Task 1** | 1 | `generateAndRenderListings()` | **#cards** |
-| **Show prices — Task 2** | 2 | `showPrices(currentListings)` | **#prices** |
-| **Cheap listings — Task 3a** | 3a | `showCheapListings(currentListings)` | **#cards** |
-| **Expensive prices — Task 3b** | 3b | `showExpensivePrices(currentListings)` | **#expensive-prices** |
-| **With parking — Task 3c** | 3c | `showListingsWithParking(currentListings)` | **#cards** |
-| **Apply filters — Task 4** | 4 | `applyAdvancedFilters()` (form: type, min price, min size, facilities, garden) | **#cards** |
+| Element                             | Task | Action                                                                         | Output                |
+| ----------------------------------- | ---- | ------------------------------------------------------------------------------ | --------------------- |
+| **Generate listings (37) — Task 1** | 1    | `generateAndRenderListings()`                                                  | **#cards**            |
+| **Show prices — Task 2**            | 2    | `showPrices(currentListings)`                                                  | **#prices**           |
+| **Cheap listings — Task 3a**        | 3a   | `showCheapListings(currentListings)`                                           | **#cards**            |
+| **Expensive prices — Task 3b**      | 3b   | `showExpensivePrices(currentListings)`                                         | **#expensive-prices** |
+| **With parking — Task 3c**          | 3c   | `showListingsWithParking(currentListings)`                                     | **#cards**            |
+| **Apply filters — Task 4**          | 4    | `applyAdvancedFilters()` (form: type, min price, min size, facilities, garden) | **#cards**            |
 
 Other elements: **#count** (listing count), **#empty** (empty state message).
 
@@ -44,23 +44,23 @@ Other elements: **#count** (listing count), **#empty** (empty state message).
 
 **Listing** (each object in the generated array):
 
-| Property     | Type      | Description |
-|-------------|-----------|-------------|
-| `type`      | string    | e.g. `"House"`, `"Apartment"`, `"Shed"`, `"Dorm"`, `"Farm"` |
-| `facilities`| string[]  | e.g. `["Parkering", "Have"]` |
-| `price`     | number    | 1–10000 |
-| `hasGarden` | boolean   | |
-| `size`      | number    | m², 12–1000 |
-| `img`       | string    | image URL |
+| Property     | Type     | Description                                                 |
+| ------------ | -------- | ----------------------------------------------------------- |
+| `type`       | string   | e.g. `"House"`, `"Apartment"`, `"Shed"`, `"Dorm"`, `"Farm"` |
+| `facilities` | string[] | e.g. `["Parkering", "Have"]`                                |
+| `price`      | number   | 1–10000                                                     |
+| `hasGarden`  | boolean  |                                                             |
+| `size`       | number   | m², 12–1000                                                 |
+| `img`        | string   | image URL                                                   |
 
 **Filter** (object passed to `filterListings`; built from the Advanced filters form; only set fields are present):
 
-| Property     | Type     | Meaning |
-|-------------|----------|---------|
-| `type`      | string   | `listing.type` must equal this. |
-| `minPrice`  | number   | `listing.price` must be ≥ this. |
-| `minSize`   | number   | `listing.size` must be ≥ this (m²). |
-| `hasGarden` | boolean  | If `true`, `listing.hasGarden` must be `true`. |
-| `facilities`| string[] | `listing.facilities` must include every string in this array. |
+| Property     | Type     | Meaning                                                       |
+| ------------ | -------- | ------------------------------------------------------------- |
+| `type`       | string   | `listing.type` must equal this.                               |
+| `minPrice`   | number   | `listing.price` must be ≥ this.                               |
+| `minSize`    | number   | `listing.size` must be ≥ this (m²).                           |
+| `hasGarden`  | boolean  | If `true`, `listing.hasGarden` must be `true`.                |
+| `facilities` | string[] | `listing.facilities` must include every string in this array. |
 
 If a filter property is missing, do not filter by it. Return listings that match every present property.

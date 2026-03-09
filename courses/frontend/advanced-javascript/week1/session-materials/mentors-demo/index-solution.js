@@ -201,7 +201,7 @@ function showNamesStartingWithA() {
   // CHAINING TODO: implement – filter to name starts with "A", then filter to yearOfExperience > 2
   const mentorsThatStartWithA = mentors
     .filter(function (mentor) {
-      return mentor.name[0] === "A"
+      return mentor.name[0] === "A";
     })
     .filter(function (mentor) {
       return mentor.yearOfExperience > 2;

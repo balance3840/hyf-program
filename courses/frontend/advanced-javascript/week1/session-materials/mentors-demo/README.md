@@ -6,12 +6,12 @@ In-session demo for **Week 1** (Advanced JavaScript). A fixed list of mentors is
 
 ## Files in this folder
 
-| File | Purpose |
-|------|--------|
-| **index.js** | Worksheet for **implementing in class**. Contains data, render helpers, and stubs. Missing logic is marked with `// {TOPIC} TODO:` comments. Use this file when leading the session. |
-| **index-solution.js** | Final implementation. |
-| **index.html** | Page layout: four action buttons and a result area. Load this in a browser to run the demo. No edits needed. |
-| **style.css** | Styles for cards, buttons, and layout. No edits needed. |
+| File                  | Purpose                                                                                                                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **index.js**          | Worksheet for **implementing in class**. Contains data, render helpers, and stubs. Missing logic is marked with `// {TOPIC} TODO:` comments. Use this file when leading the session. |
+| **index-solution.js** | Final implementation.                                                                                                                                                                |
+| **index.html**        | Page layout: four action buttons and a result area. Load this in a browser to run the demo. No edits needed.                                                                         |
+| **style.css**         | Styles for cards, buttons, and layout. No edits needed.                                                                                                                              |
 
 ---
 
