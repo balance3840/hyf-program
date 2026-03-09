@@ -121,33 +121,33 @@ Here are some of the most commonly used:
 
 ##### 2XX - Success
 
-`200 OK` - The request succeeded, e.g. a webpage or API response loads as it should.  
+`200 OK` - The request succeeded, e.g. a webpage or API response loads as it should.
 `201 Created` - A new resource was made, e.g. a new snippet or tag.
 
 ##### 3XX - Redirection
 
-`301 Moved Permanently` - The URL has changed, e.g. redirect from oldsite.com to newsite.com.  
+`301 Moved Permanently` - The URL has changed, e.g. redirect from oldsite.com to newsite.com.
 `302 Found` - A temporary redirect, e.g. redirecting Spanish visitors to the Spanish version of the website.
 
 ##### 4XX - Client Errors
 
-`400 Bad Request` - The request was invalid, e.g. form data missing or incorrect.  
-`401 Unauthorized` - You need to log in e.g. trying to access user features when logged out.  
+`400 Bad Request` - The request was invalid, e.g. form data missing or incorrect.
+`401 Unauthorized` - You need to log in e.g. trying to access user features when logged out.
 `404 Not Found` - Nothing at that URL e.g. a missing page or resource.
 
 ##### 5XX - Server Errors
 
-`500 Internal Server Error` - Generic server issue, e.g. something goes wrong in the backend.  
+`500 Internal Server Error` - Generic server issue, e.g. something goes wrong in the backend.
 `503 Service Unavailable` - Server is down or busy e.g. backend API is not running.
 
 You can read more at the [HTTP Status cheatsheet](https://devhints.io/http-status).
 
 #### Client vs Server
 
-Server-side errors should be designed for developers. Detailed errors help debugging and ultimately fixing issues easier.  
+Server-side errors should be designed for developers. Detailed errors help debugging and ultimately fixing issues easier.
 For example: if a database table is missing, record the missing table name and stack trace in your logs.
 
-Client-side errors should be designed for users, including the correct HTTP status code.  
+Client-side errors should be designed for users, including the correct HTTP status code.
 For example: in the missing database table case, simply return a `500 Internal Server Error` and a useful message to the client to explain how to continue, without exposing internal details.
 
 It's important to hide specific error details from the user for multiple reasons:

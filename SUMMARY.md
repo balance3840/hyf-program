@@ -162,7 +162,6 @@
         - [3. Routing](courses/backend/node/week1/session-materials/03-routing.md)
         - [4. Database connection](courses/backend/node/week1/session-materials/04-database-connection.md)
         - [5. GET endpoints](courses/backend/node/week1/session-materials/05-get-endpoints.md)
-        - [6. Auth](courses/backend/node/week1/session-materials/06-auth.md)
       - [Preparation](courses/backend/node/week1/preparation.md)
       - [Session Plan](courses/backend/node/week1/session-plan.md)
       - [Assignment](courses/backend/node/week1/assignment.md)
