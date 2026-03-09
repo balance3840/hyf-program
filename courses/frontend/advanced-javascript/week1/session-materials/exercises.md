@@ -1,6 +1,6 @@
 # Exercises
 
-Work in the [Listings demo](./listings-demo/). Open **index.html** in your browser to run the demo, and open **index.js** in your IDE to implement the tasks. In `index.js`, search for **`Task`** (e.g. Task 1.1, Task 2)—each task has a comment with explicit instructions about what code to write. This document describes the **end-result** you’re aiming for and how the exercise is set up. The generation of random listings and the render helpers (cards, price list) are already implemented; you only need to call them and add the logic that uses `.forEach()`, `.map()`, and `.filter()`.
+Work in the [Listings demo](https://github.com/HackYourFuture-CPH/hyf-assignment-template/blob/main/courses/frontend/advanced-javascript/week1/listings-demo). Open **index.html** in your browser to run the demo, and open **index.js** in your IDE to implement the tasks. In `index.js`, search for **`Task`** (e.g. Task 1.1, Task 2)—each task has a comment with explicit instructions about what code to write. This document describes the **end-result** you’re aiming for and how the exercise is set up. The generation of random listings and the render helpers (cards, price list) are already implemented; you only need to call them and add the logic that uses `.forEach()`, `.map()`, and `.filter()`.
 
 ## Task 1: Generate and show listings (`forEach`)
 
