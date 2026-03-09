@@ -10,7 +10,8 @@ const users = [
     id: 1,
     username: "alice",
     // bcrypt.hashSync("password123", 10)
-    password_hash: "$2b$10$exampleexampleexampleexampleexampleexa",
+    password_hash:
+      "$2b$10$uXQ26BC378vlfQz80XTlKecUnhlcWFzZdoygngzx5CQhPkZJRZDtO",
   },
 ];
 
@@ -26,7 +27,7 @@ app.post("/login", async (req, res) => {
 
   const user = getUserByUsername(username);
   if (!user) {
-    return res.status(401).json({ error: "Invalid credentials" });
+    return res.status(404).json({ error: "User not found" });
   }
 
   const isMatch = await bcrypt.compare(password, user.password_hash);
@@ -58,7 +59,6 @@ app.get("/protected", requireJwtAuth, (req, res) => {
   res.json({ data: "Top secret snippets", userId: req.user.id });
 });
 
-app.listen(3001, () => {
-  console.log("> Ready on http://localhost:3001 (JWT auth example)");
+app.listen(3000, () => {
+  console.log("> Ready on http://localhost:3000 (JWT auth example)");
 });
-

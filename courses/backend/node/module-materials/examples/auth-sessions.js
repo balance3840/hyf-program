@@ -54,7 +54,6 @@ app.post("/logout-session", (req, res) => {
   });
 });
 
-app.listen(3002, () => {
-  console.log("> Ready on http://localhost:3002 (session auth example)");
+app.listen(3000, () => {
+  console.log("> Ready on http://localhost:3000 (session auth example)");
 });
-

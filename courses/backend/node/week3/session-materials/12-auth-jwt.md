@@ -41,10 +41,3 @@ Wrap these handlers with your JWT auth middleware so that:
 
 - Requests without a valid token are rejected with `401` and a suitable JSON error.
 - Requests with a valid token are allowed to proceed.
-
-## 5. Suggested exercises
-
-- Experiment with different expiration times and observe what happens when a token expires.
-- Try to tamper with the token (e.g. change the payload in Postman) and see how your middleware responds.
-- Add some basic logging around authentication failures (but make sure not to log secrets or full tokens).
-

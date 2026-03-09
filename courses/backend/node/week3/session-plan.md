@@ -69,7 +69,7 @@ _See [Stateless authentication with JWT](./session-materials/12-auth-jwt.md) for
 ### Do it together (5–10 min)
 
 - Run through a full Postman flow together.
-- Discuss where to store JWTs on the client (headers vs cookies) in different types of apps.
+- In Postman, add JWT as Bearer Token (unique token after login) or just JWT auth based on secret. Show the difference between authorised & authenticated reponse.
 
 ---
 
