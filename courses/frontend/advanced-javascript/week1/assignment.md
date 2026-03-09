@@ -1,10 +1,8 @@
 # Assignment
 
-<!-- The type of assignment you write will vary a lot depending on the module. But either way, all of the set up, instructions and tips should be captured in here. -->
+Only **task 3** (movies) requires a frontend: HTML + CSS + JavaScript that runs in the browser, with the result visible in the page. **Tasks 1 and 2** do not: for task 1 submit the JavaScript (map/filter) solution (an HTML page is optional though); for task 2 just complete the Katas.
 
-The warmup exercises will be a bit abstract. But the in the **hyfBay exercise** the task will be a lot closer to a **real world task**.
-
-**Frontend requirement:** For each task, implement a frontend (HTML + CSS + JavaScript) that shows your solution in the browser. Display the results in the page. You may use one HTML page per exercise or organize multiple sections on a single page—as long as the user can see the output of each task in the UI.
+The first task is a short warmup. The second is practice on Codewars. The third (movies) is a larger, real-world-style task: one page or app that shows all the movie results in the UI.
 
 ## 1. Doubling of number
 
@@ -24,7 +22,7 @@ for (let i = 0; i < numbers.length; i++) {
 // expected result: [2, 6]
 ```
 
-Rewrite the above program using `map` and `filter`; don't forget to use arrow functions. Show the result in your page.
+Rewrite the above program using `map` and `filter`; don't forget to use arrow functions. Showing the result in a page is optional for this task (but nice if you do).
 
 ## 2. Codewars!
 
@@ -37,7 +35,9 @@ Complete these Katas:
 
 ![cinema](https://media.giphy.com/media/l6mBchxYZc7Sw/giphy.gif)
 
-Copy the movies array in the [movies](./session-materials/movies.js) file. Use this array to do the following tasks. **Implement a frontend** so each task’s result is visible in the browser (e.g. sections or cards for each sub-task, with the computed data rendered in the page).
+**What the user sees:** One page (e.g. sections or cards) where every sub-task’s result is visible in the browser: short titles, long titles, 1980s count, tagged movies, ratings over 6, keyword count, duplicated-word titles, and optionally average rating and Good/Average/Bad counts.
+
+Copy the movies array from [movies](./session-materials/movies.js) and use it for the tasks below.
 
 1. Create an array of movies containing the **movies with a short title** (you define what short means)
 2. Create an array of movie titles with **long movie titles**

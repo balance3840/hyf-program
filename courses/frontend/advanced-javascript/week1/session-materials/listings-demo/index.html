@@ -15,28 +15,28 @@
         type="button"
         onclick="generateAndRenderListings();"
       >
-        Generate listings (37)
+        Generate listings (37) — Task 1
       </button>
-      <button class="btn-prices" type="button" onclick="showPrices();">
-        Show prices
+      <button class="btn-prices" type="button" onclick="showPrices(currentListings);">
+        Show prices — Task 2
       </button>
       <span class="count" id="count">No listings yet. Click Generate.</span>
     </div>
 
     <div class="filters">
       <span class="filters-label">Filters (Task 3):</span>
-      <button class="btn-filter" type="button" onclick="showCheapListings();">
-        Cheap listings
+      <button class="btn-filter" type="button" onclick="showCheapListings(currentListings);">
+        Cheap listings — Task 3a
       </button>
-      <button class="btn-filter" type="button" onclick="showExpensivePrices();">
-        Expensive prices
+      <button class="btn-filter" type="button" onclick="showExpensivePrices(currentListings);">
+        Expensive prices — Task 3b
       </button>
       <button
         class="btn-filter"
         type="button"
-        onclick="showListingsWithParking();"
+        onclick="showListingsWithParking(currentListings);"
       >
-        With parking
+        With parking — Task 3c
       </button>
     </div>
 
@@ -107,7 +107,7 @@
           garden</label
         >
       </div>
-      <button class="btn-apply" type="submit">Apply filters</button>
+      <button class="btn-apply" type="submit">Apply filters — Task 4</button>
     </form>
 
     <div class="empty" id="empty">

@@ -2,10 +2,24 @@
 // DATA & HELPERS
 // =============================================================================
 
+let currentListings = [];
+
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+/*
+ * Listing structure (each object in the listings array):
+ *   type       {string}   – e.g. "House", "Apartment", "Shed", "Dorm", "Farm"
+ *   facilities {string[]} – e.g. ["Parkering", "Have"]
+ *   price      {number}   – 1–10000
+ *   hasGarden  {boolean}
+ *   size       {number}   – m², 12–1000
+ *   img        {string}   – image URL
+ *
+ * Creates an array of random listing objects and assigns it to currentListings (global).
+ * Returns the same array.
+ */
 function generateListings(numberOfListings) {
   const listings = [];
   const listingType = ["House", "Apartment", "Shed", "Dorm", "Farm"];
@@ -43,17 +57,18 @@ function generateListings(numberOfListings) {
     listing.img = `https://loremflickr.com/200/200/${listing.type}`;
     listings.push(listing);
   }
+
+  currentListings = listings;
+
   return listings;
 }
 
 // =============================================================================
-// RENDER
+// RENDER HELPERS (already implemented)
 // =============================================================================
 
 /**
- * Build one card element for a single listing. Helper – already implemented.
- * @param {Object} listing - One listing object (type, price, size, hasGarden, facilities, img)
- * @returns {HTMLElement} A div.card element
+ * Build one card element for a single listing.
  */
 function renderListingCard(listing) {
   const card = document.createElement("div");
@@ -92,11 +107,7 @@ function renderListingCard(listing) {
 }
 
 /**
- * Update count and empty state, clear the cards container. Returns the #cards container if there
- * are listings to render, or null if not (so you can return early).
- * Use this at the start of renderListings.
- * @param {Array} listings
- * @returns {HTMLElement|null} The #cards container, or null when listings.length === 0
+ * Update count and empty state, clear #cards. Returns the container or null if no listings.
  */
 function prepareListingsView(listings) {
   const container = document.getElementById("cards");
@@ -126,88 +137,23 @@ function prepareListingsView(listings) {
   return container;
 }
 
-/*
- * Task 1. Implement two things:
- *
- * 1. generateAndRenderListings: assign generateListings(37) to currentListings (below), then
- *    call renderListings(currentListings). (currentListings is used later by Task 2.)
- *
- * 2. renderListings: use prepareListingsView(listings) first; if it returns null, return.
- *    Otherwise use the returned container: call listings.forEach(function (listing) { ... })
- *    and append renderListingCard(listing) to the container.
+/**
+ * Display an array of numbers in a given element (e.g. #prices or #expensive-prices).
+ * Clears the element and shows the numbers as comma-separated text.
  */
-function renderListings(listings) {
-  const container = prepareListingsView(listings);
+function renderNumbersInElement(numbers, elementId) {
+  const el = document.getElementById(elementId);
 
-  if (!container) {
-    return;
-  }
-
-  /*
-   * Task 1.2: add listings.forEach(...) here and append renderListingCard(listing) to container
-   */
+  el.innerHTML = "";
+  el.textContent = numbers.length === 0 ? "" : numbers.join(", ");
 }
 
 // =============================================================================
-// STATE
-// =============================================================================
-
-/** Last generated listings; used by Show prices (Task 2) and filter (Task 3). */
-let currentListings = [];
-
-function generateAndRenderListings() {
-  /*
-   * Task 1.1: assign generateListings(37) to currentListings, then call renderListings(currentListings)
-   */
-}
-
-/*
- * Task 2. Implement showPrices using map: create an array of prices from currentListings
- * (one price per listing), then display that array in the #prices element (e.g. as text or a list).
- */
-function showPrices() {
-  /*
-   * Task 2: use map to get an array of prices from currentListings, then display it in #prices
-   */
-}
-
-/*
- * Task 3. Implement three filter functions:
- *
- * 3a. showCheapListings: use filter to get listings that are "cheap" (you define the condition, e.g. price below a number).
- *     Result: array of objects. Call renderListings with that array.
- *
- * 3b. showExpensivePrices: use filter to get expensive listings, then use map to get an array of their prices (numbers).
- *     Result: array of numbers. Display it in the #expensive-prices element.
- *
- * 3c. showListingsWithParking: use filter to get listings that have "Parkering" in facilities.
- *     Result: array of objects. Call renderListings with that array.
- */
-function showCheapListings() {
-  /*
-   * Task 3a: use filter for cheap listings (e.g. by price), then renderListings(...)
-   */
-}
-
-function showExpensivePrices() {
-  /*
-   * Task 3b: use filter for expensive listings, then map to prices (numbers), display in #expensive-prices
-   */
-}
-
-function showListingsWithParking() {
-  /*
-   * Task 3c: use filter for listings with parking, then renderListings(...)
-   */
-}
-
-// =============================================================================
-// ADVANCED FILTERS (Task 4 – Listing project)
+// ADVANCED FILTERS HELPERS
 // =============================================================================
 
 /**
  * Read Advanced filters form and return a filter object. Only includes set values.
- * (Already implemented – you only implement filterListings below.)
  */
 function getFilterFromForm() {
   const type = document.getElementById("advType").value || undefined;
@@ -225,23 +171,107 @@ function getFilterFromForm() {
   });
 
   const filter = {};
+
   if (type) {
     filter.type = type;
   }
+
   if (minPrice != null && !isNaN(minPrice)) {
     filter.minPrice = minPrice;
   }
+
   if (minSize != null && !isNaN(minSize)) {
     filter.minSize = minSize;
   }
+
   if (hasGarden) {
     filter.hasGarden = true;
   }
+
   if (facilities.length > 0) {
     filter.facilities = facilities;
   }
 
   return filter;
+}
+
+function applyAdvancedFilters() {
+  const filter = getFilterFromForm();
+  const filtered = filterListings(currentListings, filter);
+
+  renderListings(filtered);
+}
+
+// =============================================================================
+// TASKS (implement the functions below – search for Task N)
+// =============================================================================
+
+/*
+ * Task 1. Implement two things:
+ *
+ * 1. generateAndRenderListings: call generateListings(37) (it generates listings for further use), then
+ *    call renderListings(currentListings).
+ *
+ * 2. renderListings: use prepareListingsView(listings) first; if it returns null, return.
+ *    Otherwise use the returned container: call listings.forEach(function (listing) { ... })
+ *    and append renderListingCard(listing) to the container.
+ */
+function generateAndRenderListings() {
+  /*
+   * Task 1.1: call generateListings(37) to generate the data, then call renderListings(currentListings) to render it
+   */
+}
+
+function renderListings(listings) {
+  const container = prepareListingsView(listings);
+
+  if (!container) {
+    return;
+  }
+
+  /*
+   * Task 1.2: add listings.forEach(...) here and append renderListingCard(listing) to container
+   */
+}
+
+/*
+ * Task 2. Implement showPrices using map: create an array of prices from listings
+ * (one price per listing), then call renderNumbersInElement(prices, "prices").
+ */
+function showPrices(listings) {
+  /*
+   * Task 2: use map to get an array of prices from listings, then renderNumbersInElement(prices, "prices")
+   */
+}
+
+/*
+ * Task 3. Implement three filter functions:
+ *
+ * 3a. showCheapListings: use filter to get listings that are "cheap" (you define the condition, e.g. price below a number).
+ *     Result: array of **objects**. Call renderListings with that array.
+ *
+ * 3b. showExpensivePrices: use filter to get expensive listings, then use map to get an array of their prices (numbers).
+ *     Result: array of **numbers**. Call renderNumbersInElement(prices, "expensive-prices").
+ *
+ * 3c. showListingsWithParking: use filter to get listings that have "Parkering" in facilities.
+ *     Result: array of **objects**. Call renderListings with that array.
+ */
+function showCheapListings(listings) {
+  /*
+   * Task 3a: use filter on listings for cheap (e.g. by price), then renderListings(...)
+   */
+}
+
+function showExpensivePrices(listings) {
+  /*
+   * Task 3b: use filter on listings for expensive, then map to prices, then renderNumbersInElement(prices, "expensive-prices")
+   */
+}
+
+function showListingsWithParking(listings) {
+  /*
+   * Task 3c: use filter on listings for "Parkering" in facilities, then renderListings(...)
+   */
 }
 
 /*
@@ -264,12 +294,4 @@ function filterListings(listings, filter) {
    * Task 4: return listings that match every key in filter (see comment above for format)
    */
   return listings;
-}
-
-function applyAdvancedFilters() {
-  const filter = getFilterFromForm();
-
-  const filtered = filterListings(currentListings, filter);
-
-  renderListings(filtered);
 }
