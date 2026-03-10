@@ -1,8 +1,10 @@
 # Assignment
 
-<!-- The type of assignment you write will vary a lot depending on the module. But either way, all of the set up, instructions and tips should be captured in here. -->
+Tasks 1 and 2 are short warmups; task 3 is a larger, real-world-style task where everything is visible in one page or app.
 
-The warmup exercises will be a bit abstract. But the in the **hyfBay exercise** the task will be a lot closer to a **real world task**.
+- **Task 1 (Doubling of number):** JavaScript only. Submit your solution using `map` and `filter` (and arrow functions).
+- **Task 2 (Codewars):** Complete the Katas on Codewars. No frontend or repo submission needed.
+- **Task 3 (Working with movies):** Frontend required. Build an HTML page with CSS and JavaScript that runs in the browser and shows the result of each movie sub-task in the page (e.g. sections or cards with the computed data).
 
 ## 1. Doubling of number
 
@@ -19,11 +21,10 @@ for (let i = 0; i < numbers.length; i++) {
     newNumbers[i] = numbers[i] * 2;
   }
 }
-
-console.log("The doubled numbers are", newNumbers); // [2, 6]
+// expected result: [2, 6]
 ```
 
-Rewrite the above program using `map` and `filter` don't forget to use arrow functions.
+Rewrite the above program using `map` and `filter`; don't forget to use arrow functions.
 
 ## 2. Codewars!
 
@@ -36,7 +37,9 @@ Complete these Katas:
 
 ![cinema](https://media.giphy.com/media/l6mBchxYZc7Sw/giphy.gif)
 
-Copy the movies array in the [movies](./session-materials/movies.js) file. Use this array to do the following tasks:
+**What the user sees:** One page (e.g. sections or cards) where every sub-task’s result is visible in the browser: short titles, long titles, 1980s count, tagged movies, ratings over 6, keyword count, duplicated-word titles, and optionally average rating and Good/Average/Bad counts.
+
+Copy the movies array from [movies](./session-materials/movies.js) and use it for the tasks below.
 
 1. Create an array of movies containing the **movies with a short title** (you define what short means)
 2. Create an array of movie titles with **long movie titles**

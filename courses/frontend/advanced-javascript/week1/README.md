@@ -4,6 +4,8 @@ This session is about mastering the most commonly used array functions provided 
 
 Understanding how to use array functions and the arrow notation can greatly improve the readability of your code.
 
+The module strongly encourages going beyond JavaScript alone and **implementing a real frontend**—work that runs in the browser with a visible, interactive UI. All exercises (session materials and assignment) are designed so that JavaScript drives HTML and the interface.
+
 ## Contents
 
 - [Preparation](./preparation.md)

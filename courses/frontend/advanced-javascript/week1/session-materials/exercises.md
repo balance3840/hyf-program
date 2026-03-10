@@ -1,58 +1,54 @@
 # Exercises
 
-Use [generateListings()](./code-inspiration.md#generatelistings) to generate random listings
+Work in the [Listings demo](https://github.com/HackYourFuture-CPH/hyf-assignment-template/blob/main/courses/frontend/advanced-javascript/week1/listings-demo). Open **index.html** in your browser to run the demo, and open **index.js** in your IDE to implement the tasks. In `index.js`, search for **`Task`** (e.g. Task 1.1, Task 2)—each task has a comment with explicit instructions about what code to write. This document describes the **end-result** you’re aiming for and how the exercise is set up. The generation of random listings and the render helpers (cards, price list) are already implemented; you only need to call them and add the logic that uses `.forEach()`, `.map()`, and `.filter()`.
 
-## `forEach`
+## Task 1: Generate and show listings (`forEach`)
 
-- Create 37 listings and log out every listing's size
+**What should happen:** When the user clicks **Generate listings (37) — Task 1**, 37 random listings are generated and displayed as cards on the page.
 
-## `map`
+**Listing** (each object in the generated array):
 
-- Create an array that contains all the 37 listing prices.
+| Property     | Type     | Description                                                 |
+| ------------ | -------- | ----------------------------------------------------------- |
+| `type`       | string   | e.g. `"House"`, `"Apartment"`, `"Shed"`, `"Dorm"`, `"Farm"` |
+| `facilities` | string[] | e.g. `["Parkering", "Have"]`                                |
+| `price`      | number   | 1–10000                                                     |
+| `hasGarden`  | boolean  |                                                             |
+| `size`       | number   | m², 12–1000                                                 |
+| `img`        | string   | image URL                                                   |
 
-## `filter`
+You implement the logic that (1) triggers generation and (2) renders the listings by iterating over the array and adding one card per listing. The code that builds each card and prepares the view is already there; you use `listings.forEach(...)` to show every listing.
 
-Using the 37 listings from the previous tasks,
+## Task 2: Show prices (`map`)
 
-- Create an array of cheap listings. You define what "cheap" means. Each item in this array should be of type `object`
-- Create an array of expensive listings' prices. Each item in this array should be of type `number`
-- Create an array of listings that have parking. Each item in this array should be of type `object`
+**What should happen:** After generating listings, when the user clicks **Show prices — Task 2**, a list of all listing prices appears (e.g. comma-separated) in the prices area.
 
-## Arrow functions
+You implement getting an array of prices from the current listings and passing it to the helper that displays numbers. Use `.map()` to turn the list of listings into a list of prices.
 
-Rewrite the code above (`forEach`, `map` and `filter`) to arrow functions.
+## Task 3: Filter buttons (`filter`)
 
-## Listing project
+**What should happen:** When the user clicks one of the filter buttons, the page shows only the matching listings (or their prices).
 
-Imagine we have a website like [Danske Bank](https://danskebank.dk/bolig/sogning/liste?sorter=hoejt-forbrug) where a user can search for different parameters. For example: what type the listing should be, the price, size, location etc etc.
+- **Cheap listings — Task 3a:** Only “cheap” listings are shown as cards. You decide what “cheap” means (e.g. price below a certain number). Use `.filter()` and then the same render-as-cards logic as in Task 1.
+- **Expensive prices — Task 3b:** Only the _prices_ of “expensive” listings are shown (as numbers). Use `.filter()` to get expensive listings, then `.map()` to get their prices, and the helper that displays numbers.
+- **With parking — Task 3c:** Only listings that have “Parkering” in their facilities are shown as cards. Use `.filter()` on the facilities.
 
-### Filter the listings
+## Task: Arrow functions
 
-Image that a user clicks on a button indicating that they only want listings that are of the type "farm". Let's try and imagine how we would use a function to create this functionality:
+Rewrite the code you wrote for Tasks 1–3 to use arrow function syntax instead of `function`.
 
-```js
-const listings = generateListings(20);
+## Task 4: Advanced filters (Listing project)
 
-const filter = {
-  type: "farm",
-};
+**What should happen:** The user can set type, min price, min size, facilities, and garden in the Advanced filters form. When they click **Apply filters — Task 4**, only listings that match _all_ selected criteria are shown as cards.
 
-const farmListings = filterListings(listings, filter);
-```
+You implement **filterListings(listings, filter)**. Reading the form and building the `filter` object is already done; you receive an object with only the fields the user set. Return only listings that match every property present in `filter`. If a property is missing from `filter`, don’t filter by it.
 
-Okay, so the `filterListings` function takes a filter which is an `object`. Say the user wants "farm" listings that cost more than 1.5 million.
+**Filter** (object passed to `filterListings`; only set fields are present):
 
-```js
-const filter2 = {
-  type: "farm",
-  minPrice: 1500000,
-};
-
-const expensiveFarmListings = filterListings(listings, filter2);
-```
-
-Your job is to create the `filterListings` function. The function should support these filters: type, facilities, minPrice, hasGarden and size. Use arrow functions!
-
-### Render the listings
-
-Now create a function called `renderListings`. It should have one parameter: `listings`. When called, the function should render the listings in an html list. How it should be rendered is up to you, but you could take inspiration from [Danske Bank](https://danskebank.dk/bolig/sogning?sorter=hoejt-forbrug)
+| Property     | Type     | Meaning                                                       |
+| ------------ | -------- | ------------------------------------------------------------- |
+| `type`       | string   | `listing.type` must equal this.                               |
+| `minPrice`   | number   | `listing.price` must be ≥ this.                               |
+| `minSize`    | number   | `listing.size` must be ≥ this (m²).                           |
+| `hasGarden`  | boolean  | If `true`, `listing.hasGarden` must be `true`.                |
+| `facilities` | string[] | `listing.facilities` must include every string in this array. |
