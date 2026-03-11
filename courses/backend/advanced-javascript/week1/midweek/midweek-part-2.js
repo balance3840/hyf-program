@@ -25,9 +25,9 @@ function filterTeas(teas, criteria) {
 
         const allCriteriaEvaluated = []
         keys.forEach(key => {
-            const criteria_value = criteria[key]
-            console.log(`${key} - ${criteria_value}`)
-            if(tea[key] === criteria_value) {
+            const criteriaValue = criteria[key]
+            console.log(`${key} - ${criteriaValue}`)
+            if(tea[key] === criteriaValue) {
                 allCriteriaEvaluated.push(true)
             } else {
                 allCriteriaEvaluated.push(false)
