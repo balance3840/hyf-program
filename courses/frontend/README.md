@@ -31,6 +31,8 @@ Total: 19 weeks
 - [ ] How to save temporary changes without committing them (ie. git stash)
 - [ ] How to "remove" commits using reset (soft vs hard), revert, cherry-pick and rebase
 - [ ] Be prepared to collaborate successfully using GitHub on your final project
+- [ ] How to use git tags and semantic versioning
+- [ ] Know the main git workflows (feature-branch, gitflow, forking) and when to use each
 
 ### [Using AI in Development](/shared-modules/using-ai-in-development)
 
