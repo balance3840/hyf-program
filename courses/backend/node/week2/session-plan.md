@@ -9,18 +9,6 @@
 - [Knex security and SQL injection prevention](#knex-security-and-sql-injection-prevention) (20–25 mins)
 - [Advanced Postman use cases](#advanced-postman) (30–35 mins)
 
-## Database interaction with Knex
-
-Trainees have used Knex before. In foundation, they used it with the `.raw()` command to execute SQL easily. And they also used it last week when learning about Express.
-
-In this week, we assume basic familiarity with Knex from the preparation materials and assignments. The live session should:
-
-- Briefly recap what Knex is and why we use it as a query builder.
-- Emphasise that we prefer Query Builder methods over `.raw()` for safety and portability.
-- Point ahead to the [Knex security and SQL injection prevention](#knex-security-and-sql-injection-prevention) section, where we will look at a concrete security issue.
-
-If you want a deeper live walkthrough of Knex, you can optionally reuse the [phonebook example](./session-materials/phonebook/) as legacy reference material, but the main focus of this session is REST design and documentation on top of the Snippets API.
-
 ## REST principles & resource design with Snippets
 
 ### REST refresher
