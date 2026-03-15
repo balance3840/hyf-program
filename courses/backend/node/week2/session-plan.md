@@ -40,26 +40,17 @@ Now we can pick up where we left the exercises last week and use the Snippets do
   - When to introduce nested routes vs query parameters.
   - How to handle pagination and filtering in a RESTful way.
 
-Exercise (10–15 mins): in small groups or individually, ask trainees to design REST endpoints for an additional feature (for example, “favourite snippets” or “public feed”). Have them write down:
+For more details visit the [REST principles](./session-materials/rest-principles-snippets.md) page.
+
+### Designing REST API - excercise (~10 mins)
+
+In small groups or individually, ask trainees to design REST endpoints for `user` oriented queries: adding and deleting users, fetching snippets by user etc.
 
 - The resource name(s).
 - The routes and HTTP methods they would expose.
 - A short description of what each route returns.
 
 Review designs together and connect them back to REST principles.
-
-### Snippets API continued
-
-Once the design is clear, help the trainees complete or extend the existing endpoints:
-
-1. [POST endpoint exercise](./session-materials/07-post-endpoint.md)
-2. [PUT endpoint exercise](./session-materials/08-put-endpoint.md)
-3. [DELETE endpoint exercise](./session-materials/09-delete-endpoint.md)
-
-Emphasise that for each endpoint they should:
-
-- Choose appropriate status codes for success and error cases.
-- Return consistent JSON shapes for both data and errors.
 
 ## Documenting APIs with OpenAPI/Swagger
 
@@ -69,7 +60,7 @@ Introduce OpenAPI/Swagger as a way to formally describe the Snippets API:
 - Show how a small YAML or JSON file can describe an existing route, for example `GET /api/snippets`.
 - Highlight how good documentation helps both API consumers and future maintainers.
 
-Live coding (10–15 mins):
+### OpenAPI - live coding (10–15 mins)
 
 - Create a minimal `openapi.yml` (or JSON) that documents at least one existing Snippets endpoint.
 - Include:
@@ -78,7 +69,9 @@ Live coding (10–15 mins):
   - Response status codes.
   - A simple response schema (e.g. a snippet object).
 
-Exercise (15–20 mins):
+Find more details and example in [open API basics document](./session-materials/openapi-basics.md).
+
+### OpenAPI exercise (15–20 mins)
 
 - Ask trainees to extend the spec to cover one or two more endpoints they designed in the REST structure exercise.
 - Encourage them to document both success and error responses (including the error JSON structure agreed on in Week 1).
@@ -87,13 +80,17 @@ Exercise (15–20 mins):
 
 Error handling is important so we have visibility of issues that occur in applications, and gain some understanding of what is going wrong.
 
+Validation is crucial for security as well as system health. Validation should also give meaningful, but unexposing feedback to the end user.
+
 In Week 1, mentors walked through HTTP status codes, client vs server errors, and how to hide implementation details from users. Reuse that material from the Week 1 “Error handling in Express” section, and focus this segment on **design decisions**:
 
 - Decide on a consistent JSON error shape (for example `{ "error": "message" }` or `{ "error": { "code": "...", "message": "..." } }`).
 - Agree when to return `400`, `404`, `409`, or `500` for common scenarios in the Snippets API.
-- Discuss which validations should happen in shared middleware (e.g. JSON parsing, common headers) vs per endpoint (e.g. snippet title length).
+- Discuss which validations should happen in shared middleware (e.g. JSON parsing, common headers) vs per endpoint (e.g. snippet title length, type checking on parameters).
 
-Exercise (15–20 mins):
+Optional inspiration can be found in [validation and error model document](./session-materials/validation-and-error-models.md).
+
+### Error handling and validation exercise (15–20 mins)
 
 - Give trainees a small subset of endpoints (for example, `GET /api/snippets`, `POST /api/snippets`, `GET /api/snippets/:id`).
 - Ask them to list:
@@ -112,7 +109,7 @@ In this segment:
 - Use a Snippets-style example, such as an endpoint that sorts results based on a `sort` query parameter, to demonstrate how a malicious value could modify the query.
 - Contrast this with safe usage of the Knex Query Builder and parameter binding.
 
-If you want a concrete code walkthrough, you can adapt the existing `api/contacts.js` example from the phonebook materials as an optional reference, but update the discussion to focus on Snippets-style queries and safe patterns.
+You can find a demonstration example in the [Knex security document](./session-materials/knex-security-snippets.md).
 
 Connect this segment directly to the Week 2 assignment task where trainees must both demonstrate and fix an injection vulnerability.
 

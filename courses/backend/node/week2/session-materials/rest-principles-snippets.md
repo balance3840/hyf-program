@@ -4,7 +4,7 @@ This file provides mentor-facing notes for the REST design segment of Week 2.
 
 ### Core ideas to highlight
 
-- **Resources, not actions**: model the API around nouns like `snippets`, `tags`, and `users`, not verbs.
+- **Resources, not actions**: model the API around nouns like `snippets`, `tags`, and `users`, not verbs, for example: (`getUsers` is a bad practice)
 - **Predictable URLs**: use plural resource names and consistent patterns, e.g.:
   - `GET /api/snippets` – list snippets
   - `POST /api/snippets` – create a snippet
@@ -19,16 +19,6 @@ This file provides mentor-facing notes for the REST design segment of Week 2.
 - Snippets can have many tags and belong to a single user.
 - Encourage trainees to think about:
   - Whether to expose nested routes (e.g. `GET /api/users/:id/snippets`) vs query parameters (`GET /api/snippets?userId=...`).
+  - Potential traps with nesting: (e.g. `GET /api/users/:id/snippets` vs `GET /api/users/:id`)
   - How to design search/filter endpoints using query parameters (e.g. `GET /api/snippets?tag=javascript`).
   - When to add pagination parameters like `limit` and `offset` or `page` and `pageSize`.
-
-### Suggested in-session exercise
-
-Ask trainees to design a small REST surface for a new feature, for example **“favourite snippets”**:
-
-- Which resources do we need? (e.g. `favorites` or `favoriteSnippets`).
-- Which endpoints and methods would they expose?
-- What should each endpoint return on success? On error?
-
-Use these designs later when they extend the OpenAPI spec.
-
