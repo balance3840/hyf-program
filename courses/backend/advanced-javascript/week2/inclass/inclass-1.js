@@ -1,7 +1,6 @@
 import { teas } from "./teas.js";
 
-
-function filterTeas(teas, criteria) {
+const filterTeas = (teas, criteria) => {
     return teas.filter(tea => Object.keys(criteria)
       .every(key => tea[key] === criteria[key])
     )
