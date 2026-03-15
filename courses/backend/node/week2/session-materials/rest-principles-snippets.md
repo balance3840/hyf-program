@@ -1,8 +1,8 @@
-## REST principles in the Snippets API
+# REST principles in the Snippets API
 
 This file provides mentor-facing notes for the REST design segment of Week 2.
 
-### Core ideas to highlight
+## Core ideas to highlight
 
 - **Resources, not actions**: model the API around nouns like `snippets`, `tags`, and `users`, not verbs, for example: (`getUsers` is a bad practice)
 - **Predictable URLs**: use plural resource names and consistent patterns, e.g.:
@@ -14,7 +14,7 @@ This file provides mentor-facing notes for the REST design segment of Week 2.
 - **Use HTTP methods meaningfully**: `GET` (read), `POST` (create), `PUT/PATCH` (update), `DELETE` (remove).
 - **Statelessness**: each request contains everything needed; server does not store per-client session state (week 3 will introduce authentication trade-offs).
 
-### Relationships and query design
+## Relationships and query design
 
 - Snippets can have many tags and belong to a single user.
 - Encourage trainees to think about:

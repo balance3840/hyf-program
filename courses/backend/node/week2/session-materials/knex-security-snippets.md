@@ -1,8 +1,8 @@
-## Knex security and SQL injection (Snippets)
+# Knex security and SQL injection (Snippets)
 
 This file supports the Week 2 segment on Knex security and SQL injection prevention.
 
-### Example vulnerable endpoint (conceptual)
+## Example vulnerable endpoint (conceptual)
 
 Consider a Snippets endpoint that allows sorting via a `sort` query parameter:
 
@@ -31,7 +31,7 @@ snippetsRouter.get("/", async (req, res) => {
 
 Here, user input is passed directly into `orderByRaw`, which can allow SQL injection (example: `(CASE WHEN (SELECT COUNT(*) FROM users WHERE email='admin@test.com') > 0 THEN email ELSE password END)`);
 
-### Safer pattern with validation
+## Safer pattern with validation
 
 Show how to validate and map the `sort` value instead:
 

@@ -1,8 +1,8 @@
-## OpenAPI basics for the Snippets API
+# OpenAPI basics for the Snippets API
 
 This file supports the OpenAPI/Swagger segment of Week 2.
 
-### Explain the role of OpenAPI
+## Explain the role of OpenAPI
 
 - OpenAPI is a **contract** for your HTTP API.
 - It describes:
@@ -14,7 +14,7 @@ This file supports the OpenAPI/Swagger segment of Week 2.
   - Generate client/server code.
   - Validate requests and responses.
 
-### Minimal example for `GET /api/snippets`
+## Minimal example for `GET /api/snippets`
 
 Use a concise YAML snippet in class:
 

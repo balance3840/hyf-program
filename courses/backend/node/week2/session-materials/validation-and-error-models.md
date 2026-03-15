@@ -1,8 +1,8 @@
-## Validation and error models
+# Validation and error models
 
 This file supports the Week 2 segment on error model and validation design.
 
-### Goals for this segment
+## Goals for this segment
 
 - Design a **consistent error format** for the Snippets API.
 - Decide which validations to enforce and where (middleware vs per-endpoint).
@@ -10,7 +10,7 @@ This file supports the Week 2 segment on error model and validation design.
   - Your Express implementation.
   - Your OpenAPI specification.
 
-### Error format
+## Error format
 
 Recommend something simple such as:
 
@@ -31,7 +31,7 @@ or
 
 The exact format is less important than **being consistent** across endpoints.
 
-### Validation examples
+## Validation examples
 
 For the Snippets API, talk through validations like:
 
