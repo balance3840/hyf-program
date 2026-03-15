@@ -71,7 +71,7 @@ Design and implement at least **two new endpoints** for the Snippets API. Some i
 
 - A search or filter endpoint, e.g. `GET /api/snippets?tag=javascript`.
 - A “public feed” endpoint that only returns non-private snippets.
-- An endpoint for listing snippets by user.
+- Alternatively add here endpoints related to `user` created during the session or write the ones you didn't finish.
 
 For each new endpoint:
 
@@ -103,12 +103,6 @@ Create a minimal OpenAPI description for the core Snippets endpoints you now hav
 - Use a YAML or JSON file (for example `openapi.yml` in your Week 2 directory).
 - Use the examples from the course materials as a starting point.
 
-Document at least:
-
-- `GET /api/snippets` (with the `sort` parameter).
-- One `POST` endpoint (e.g. `POST /api/snippets`).
-- One `/:id` endpoint (e.g. `GET /api/snippets/:id` or `DELETE /api/snippets/:id`).
-
 For each, include:
 
 - Path and method.
@@ -137,3 +131,11 @@ Use Postman to capture and test your API:
    - Export the collection (and environment if used) and attach it to your PR, **or** share a link to the collection if you use Postman Cloud.
    - Include a screenshot or link to a collection run showing your tests passing.
 
+## Week 2 assignment objective
+
+After finish all the tasks, make sure (and fill in the gaps where needed) that your **entire Snippets API** is:
+
+1. Up and running
+2. Viewable in Swagger
+3. Callable in Postman
+4. Validated where applicable
