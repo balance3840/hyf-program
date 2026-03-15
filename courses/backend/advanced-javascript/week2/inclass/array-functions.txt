@@ -1,0 +1,6 @@
+filter M -> N
+map    M -> M
+reduce M -> 1
+
+
+zip (M,N) -> (N,M)
