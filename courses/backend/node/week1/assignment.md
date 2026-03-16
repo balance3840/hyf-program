@@ -96,6 +96,22 @@ The `GET`, `PUT` and `DELETE` routes that include an `/:id` in the path should m
 
 > Think about what special HTTP status code would be appropriate for that scenario.
 
+When designing your responses, make sure to:
+
+- Use appropriate HTTP status codes:
+  - `200` for successful reads and updates.
+  - `201` when a new resource is created.
+  - `400` when the client sends invalid data (missing required fields, wrong types, impossible values).
+  - `404` when a snippet or tag with the given `id` does not exist.
+  - `500` for unexpected server-side problems.
+- Return a consistent JSON error structure, for example:
+
+```json
+{ "error": "Snippet not found" }
+```
+
+Use the same shape for your other error responses so clients know what to expect.
+
 You are free to decide on the response for a successful `POST`, `PUT` and `DELETE` request. Some ideas:
 
 - Respond with an acknowledgement message: `{ "message": "Deleted snippet" }`
@@ -113,6 +129,14 @@ Your usage of Knex should be getting a bit more advanced now. You will move from
 - `.del` (for deletion)
 
 Check out the [Knex cheatsheet](https://devhints.io/knex)!
+
+As you work with these routes, test them using Postman:
+
+- Create a basic Postman collection for your service.
+- Add a request for each `snippets` and `tags` endpoint you implement (for all HTTP methods you use).
+- Use these requests to verify both successful responses and the different error cases you implemented.
+
+When you submit your PR, include either a Postman collection link or an exported collection file so mentors can see how you tested your API.
 
 ## Part 2: search engine
 
