@@ -19,7 +19,7 @@ console.log("C");
 <details>
 <summary>Answer</summary>
 
-**A, C, B**
+Order: A, C, B
 
 Sync code runs first (A, then C). The callback for `setTimeout(..., 0)` goes to the task queue and runs after the current script and the event loop picks it up, so B appears last.
 
@@ -46,7 +46,7 @@ console.log("4");
 <details>
 <summary>Answer</summary>
 
-**1, 4, 3, 2**
+Order: 1, 4, 3, 2
 
 Sync first: 1, 4. Then the event loop runs callbacks: the 0 ms timer fires first (3), then after ~1 s the second timer fires (2).
 
@@ -73,7 +73,7 @@ console.log("end");
 <details>
 <summary>Answer</summary>
 
-**start, loop 0, loop 1, loop 2, end, timeout**
+Order: start, loop 0, loop 1, loop 2, end, timeout
 
 All sync code (including the for loop) runs to completion first. The setTimeout callback runs only after the call stack is empty, so "timeout" appears last.
 
@@ -100,7 +100,7 @@ console.log("W");
 <details>
 <summary>Answer</summary>
 
-**X, W, Y, Z**
+Order: X, W, Y, Z
 
 Sync: X, W. After ~100 ms the outer callback runs (Y), then it schedules the inner setTimeout; that callback (Z) runs on the next tick of the event loop.
 

@@ -2,26 +2,32 @@
 
 ## Session Materials
 
-<!-- Previously used slides, docs or any other materials that future mentors could get value from should be listed here. If we don't have any (yet), this section can be removed. -->
-
-- [Console order tasks](./session-materials/console-order.md) – “In what order will we see the output?” (sync + setTimeout). Use in class: show code, ask trainees to predict, then run.
-- [Exercises](./session-materials/exercises.md)
-
-These are some examples of previously created materials by mentors that you can use yourself, or for inspiration.
+These are some examples of previously created materials by mentors that you can use yourself, or for inspiration:
 
 - [Notion Page Handout](https://dandy-birth-1b2.notion.site/HYF-Aarhus-JS-2-Week-3-6bce73b3a0bf47a3ad32ed12ee4d0519?pvs=4) (by [Thomas](https://github.com/te-online))
+- [Demo](./session-materials/demo/) – In-session code: **index.js** (worksheet with Task/Next comments to implement this session plan) and **index-solution.js**.
+- [Event loop demo](./session-materials/event-loop-demo/) – Draggable code blocks (sync, setTimeout) into Call stack, Timer, Async queue. Use it to explain how the event loop works under the hood.
 
 ## Session Outline
 
-<!-- Write a plan for the order of topics, points to cover, examples, timings, exercises and any other useful info to guide the session. -->
+1. **Functions – passing a function as an argument**
+   - Repeat everything about functions. Functions as a variable: pass as argument, call from inside another function.
+   - This is super good at explaining function logic: [Function graphic](./session-materials/function-graphic.jpg).
+   - [Demo](./session-materials/demo/): implement `functionRunner`.
+   - [Code inspiration](#calling-a-function-within-a-function).
 
-- Function as a variable - function can be called inside another function, like we saw with the homemade `forEach`
-  - [Code inspiration](#calling-a-function-within-a-function)
-- Callback function and asynchronicity - shows a practical example of function that gets called by another function (e.g. `setTimeout` or `addEventListener`)
-  - [Code inspiration](#callback-functions)
-- [Exercises](./session-materials/exercises.md)
+2. **Callbacks – setTimeout and the event loop**
+   - Explain how `setTimeout(callback, delay)` works, why the timer is never exact and why a 0 delay doesn't make it a sync operation.
+   - [Event loop demo](./session-materials/event-loop-demo/) can help with explaining how async operations work under the hood.
+   - Solve [console-order.md](./session-materials/console-order.md) together with the trainees.
+   - [Code inspiration](#callback-functions).
 
-The trainees should after the session **feel comfortable with callback functions** and the fact that a **function works just like a variable** that can be passed around. Also asynchronicity is important, when is a function called and where does it stop.
+3. **(Optional) Infinite loop – sync vs async**
+   - Implementation of an infinite loop with both sync and async operations and demonstrating whether it freezes the page or not. Helps to realise how async operations work under the hood.
+
+4. **Callbacks – events (addEventListener)**
+   - Another example of callbacks. Explain `addEventListener`.
+   - [Code inspiration](#event-listeners), [Anonymous vs named](#anonymous-vs-named-function).
 
 Also hammer in the point of the difference between:
 
@@ -30,10 +36,9 @@ document.querySelector("button").addEventListener("click", logOuttext);
 document.querySelector("button").addEventListener("click", logOuttext());
 ```
 
-Here's a good [practical example of callbacks](https://github.com/HackYourFuture-CPH/JavaScript/blob/class08/JavaScript2/Week5/classwork/extra_examples.md) (TODO move this to this repo)
+Here's a good [practical example of callbacks](https://github.com/HackYourFuture-CPH/JavaScript/blob/class08/JavaScript2/Week5/classwork/extra_examples.md) (TODO: move this to this repo).
 
-This is super good at explaining function logic
-![Function graphic](./session-materials/function-graphic.jpg)
+## Code inspiration
 
 ### Calling a function within a function
 
@@ -75,7 +80,7 @@ someone types into an input element or we have just gotten some data from a serv
 When these events happen, we usually want to add some functionality.
 e.g. when a user clicks the like button (event), we want to increment the like counter and color the like button blue.
 Or when someone clicks "Close cookies" (event) we want to remove the cookie div.
-Let's first try to create some js that waits for 2 seconds and the console.logs out "2 seconds has elapsed!"
+Let's first try to create some js that waits 2 seconds and the console.logs out "2 seconds has elapsed!"
 In javascript we use the word eventlistener to listen
 */
 

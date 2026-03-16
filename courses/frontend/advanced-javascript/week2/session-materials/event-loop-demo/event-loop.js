@@ -16,10 +16,10 @@ var INITIAL_BLOCKS = [
   { label: "setTimeout(fn, 4s)", type: "timeout-2" },
   { label: "sync 5", type: "sync" },
   // Event blocks (uncomment to show in Code):
-  // { label: "onclick", type: "event" },
-  // { label: "fetch callback", type: "event" },
-  // { label: "addEventListener('click', fn)", type: "event" },
-  // { label: "requestAnimationFrame(fn)", type: "event" },
+  { label: "onclick", type: "event" },
+  { label: "fetch callback", type: "event" },
+  { label: "addEventListener('click', fn)", type: "event" },
+  { label: "requestAnimationFrame(fn)", type: "event" },
 ];
 
 function createBlock(label, type, isInCodeArea) {

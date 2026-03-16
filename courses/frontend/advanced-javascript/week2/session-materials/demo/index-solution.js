@@ -3,10 +3,12 @@
 // =============================================================================
 // Functions
 // =============================================================================
+// Task: Implement functionRunner so it calls the function that was passed in (e.g. add logging before/after).
 
 function functionRunner(functionToRun) {
-  console.log(typeof functionToRun);
-  functionToRun();
+  console.log("Runner function");
+  const res = functionToRun();
+  console.log("Runner function ends", res);
 }
 
 functionRunner(function () {
@@ -28,36 +30,52 @@ functionRunnerImproved(Math.random);
 // Callbacks :: setTimeout + Event loop
 // =============================================================================
 
-setTimeout(function () {
-  console.log("2 seconds has elapsed!");
-}, 2000);
+setTimeout(() => {
+  console.log("Run after N seconds");
+}, 1000);
 
-const fourSecondLog = function () {
-  console.log("4 seconds has elapsed!");
+const callback = () => {
+  console.log("Run after N seconds");
 };
 
-setTimeout(fourSecondLog, 4000);
+setTimeout(callback, 1000);
+
+// Next: Look at event-loop demo, explain how it works
+// Next: tasks from console-order.md
 
 // =============================================================================
 // Infinite loop
 // =============================================================================
-// Sync: long blocking loop – run first, console shows "frozen" then "finished".
-// Async: recursive setTimeout – run after; while it runs, the page stays responsive.
+// Task: try to make an infinite loop with Sync and Async operations
 
-// while (true) {
-//   console.log("Infinite loop tick");
-// }
+function infiniteSync() {
+  while (true) {
+    console.log("Im alive");
+  }
+}
 
-// function tick() {
-//   console.log("Async loop tick ");
-//   setTimeout(tick, 0);
-// }
+function infiniteAsync() {
+  const runTimeout = () => {
+    console.log("Im alive");
+    setTimeout(runTimeout, 0);
+  };
 
-// setTimeout(tick, 0);
+  runTimeout();
+}
+
+const btn = document.getElementById("start");
+btn.addEventListener("click", infiniteAsync);
+
+// Function to test if browser is responsive
+const btnClick = document.getElementById("click");
+btnClick.addEventListener("click", function () {
+  console.log("Im clicked");
+});
 
 // =============================================================================
 // Callbacks :: addEventListener
 // =============================================================================
+// Task: Keep track of how many times the button is clicked; show the count on the page.
 
 const buttonElement = document.getElementById("click-me");
 let counter = 0;
@@ -66,10 +84,3 @@ buttonElement.addEventListener("click", function () {
   counter = counter + 1;
   console.log("Button clicked " + counter + " times so far");
 });
-
-// Same with callback in a variable:
-// const onButtonClick = function () {
-//   counter = counter + 1;
-//   console.log("Button clicked " + counter + " times so far");
-// };
-// buttonElement.addEventListener("click", onButtonClick);

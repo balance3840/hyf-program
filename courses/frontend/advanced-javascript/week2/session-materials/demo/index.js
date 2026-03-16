@@ -3,23 +3,23 @@
 // =============================================================================
 // Functions
 // =============================================================================
-//
-// Task: We're debugging and want to log every function run. Implement functionRunner
-// so it calls the function that was passed in (you can add logging before/after).
+// Task: Implement functionRunner so it calls the function that was passed in (e.g. add logging before/after).
 
-function functionRunner(functionToRun) {
-
-}
+function functionRunner(functionToRun) {}
 
 // =============================================================================
 // Callbacks :: setTimeout + Event loop
 // =============================================================================
 
+// Next: Look at event-loop demo, explain how it works
+// Next: tasks from console-order.md
+
 // =============================================================================
 // Infinite loop
 // =============================================================================
+// Task: try to make an infinite loop with Sync and Async operations
 
 // =============================================================================
 // Callbacks :: addEventListener
 // =============================================================================
-// Task: Keep track of how many times the button is clicked.
+// Task: Keep track of how many times the button is clicked; show the count on the page.

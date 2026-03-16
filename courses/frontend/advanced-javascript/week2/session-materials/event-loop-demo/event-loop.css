@@ -8,7 +8,10 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   line-height: 1.5;
   background: #f5f5f5;
   color: #222;
@@ -83,7 +86,9 @@ h1 {
   white-space: normal;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.15s ease, visibility 0.15s ease;
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease;
   z-index: 20;
   pointer-events: none;
 }
@@ -196,9 +201,15 @@ h1 {
   color: #5f6368;
 }
 
-.call-stack .zone-label   { color: #1967d2; }
-.timer .zone-label        { color: #b06000; }
-.async-queue .zone-label  { color: #137333; }
+.call-stack .zone-label {
+  color: #1967d2;
+}
+.timer .zone-label {
+  color: #b06000;
+}
+.async-queue .zone-label {
+  color: #137333;
+}
 
 .zone-tasks {
   flex: 1;
