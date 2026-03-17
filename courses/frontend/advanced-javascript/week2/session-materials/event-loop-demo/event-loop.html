@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event loop – Week 2</title>
+    <link rel="stylesheet" href="event-loop.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Event loop</h1>
+
+      <div class="code-section">
+        <div class="section-label">Code</div>
+        <div class="code-blocks" id="code-blocks"></div>
+      </div>
+
+      <div class="diagram">
+        <div class="zone call-stack" data-zone="callstack">
+          <div class="zone-label">
+            Call stack
+            <span class="tooltip-trigger" tabindex="0">
+              ?
+              <span class="tooltip"
+                >Where synchronous code runs, one execution at a time. When the
+                stack is empty, the event loop can move a callback from the
+                async queue here.</span
+              >
+            </span>
+          </div>
+          <div
+            class="zone-tasks"
+            id="callstack-tasks"
+            data-drop-zone="callstack"
+          ></div>
+        </div>
+        <div class="zone async-queue" data-zone="async">
+          <div class="zone-label">
+            Async queue
+            <span class="tooltip-trigger" tabindex="0">
+              ?
+              <span class="tooltip"
+                >Callbacks from setTimeout, I/O, events, etc. wait here. When
+                the call stack is empty, the event loop moves one callback from
+                this queue to the call stack.</span
+              >
+            </span>
+          </div>
+          <div class="zone-tasks" id="async-tasks" data-drop-zone="async"></div>
+        </div>
+        <div class="zone timer" data-zone="timer">
+          <div class="zone-label">
+            Timer (Web APIs)
+            <span class="tooltip-trigger" tabindex="0">
+              ?
+              <span class="tooltip"
+                >When you call setTimeout(fn, ms), the callback fn is registered
+                here. After ms milliseconds it moves to the async queue. Part of
+                the browser's Web APIs.</span
+              >
+            </span>
+          </div>
+          <div class="zone-tasks" id="timer-tasks" data-drop-zone="timer"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button type="button" id="btn-reset">Reset</button>
+      </div>
+    </main>
+    <script src="event-loop.js"></script>
+  </body>
+</html>

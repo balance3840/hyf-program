@@ -8,32 +8,32 @@
 
 The warmup is a **little abstract**, it will get more concrete later on!
 
-1. Log out the text `Called after 2.5 seconds` 2.5 seconds after the script is loaded.
+1. Display the text `Called after 2.5 seconds` on the page 2.5 seconds after the script is loaded.
 
-2. Create a function that takes 2 parameters: `delay` and `stringToLog`. Calling this function should log out the `stringToLog` after `delay` seconds. Call the function you have created with some different arguments.
+2. Create a function that takes 2 parameters: `delay` and `stringToLog`. Calling this function should display the `stringToLog` on the page after `delay` seconds. Call the function you have created with some different arguments.
    ![second task](session-materials/carbon.png)
 
-3. Create a button in html. When clicking this button, use the function you created in the previous task to log out the text: `Called after 5 seconds` 5 seconds after the button is clicked.
+3. Create a button in html. When clicking this button, use the function you created in the previous task to display the text `Called after 5 seconds` on the page 5 seconds after the button is clicked.
 
 ![second task](session-materials/button-delay.gif)
 
-4. Create two functions and assign them to two different variables. One function logs out `Earth`, the other function logs out `Saturn`. Now create a new third function that has one parameter: `planetLogFunction`. The only thing the third function should do is call the provided parameter function. Try call the third function once with the `Earth` function and once with the `Saturn` function.
+4. Create two functions and assign them to two different variables. One function displays `Earth` on the page, the other displays `Saturn`. Now create a new third function that has one parameter: `planetLogFunction`. The only thing the third function should do is call the provided parameter function. Try calling the third function once with the `Earth` function and once with the `Saturn` function.
 
 ![second task](session-materials/planet-log.png)
 
-5. Create a button with the text called "Log location". When this button is clicked the location (latitude, longitude) of the user should be logged out using this [browser api](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+5. Create a button with the text "Log location". When this button is clicked, display the user's location (latitude, longitude) on the page using this [browser API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 
 ![second task](session-materials/log-location.gif)
 
 6. _Optional_ Now show that location on a map using e.g. the [Google maps api](https://developers.google.com/maps/documentation/javascript/tutorial)
 
-7. Create a function called `runAfterDelay`. It has two parameters: `delay` and `callback`. When called the function should wait `delay` seconds and then call the provided callback function. Try and call this function with different delays and different callback functions
+7. Create a function called `runAfterDelay`. It has two parameters: `delay` and `callback`. When called the function should wait `delay` seconds and then call the provided callback function. Add an input in the HTML for the delay (in seconds) and a button; when the button is clicked, read the delay from the input and call `runAfterDelay` with that delay and a callback that displays something on the page.
 
 ![second task](session-materials/run-after-delay.png)
 
-8. Check if we have double clicked on the page. A double click is defined by two clicks within 0.5 seconds. If a double click has been detected, log out the text: "double click!"
+8. Check if the user has double-clicked on the page. A double click is two clicks within 0.5 seconds. If a double click is detected, display the text "double click!" on the page.
 
-9. Create a function called `jokeCreator` that has three parameters: `shouldTellFunnyJoke` - boolean, `logFunnyJoke` - function and `logBadJoke` - function. If you set `shouldTellFunnyJoke` to `true` it should call the `logFunnyJoke` function that should log out a funny joke. And vice versa.
+9. Create a function called `jokeCreator` that has three parameters: `shouldTellFunnyJoke` (boolean), `logFunnyJoke` (function), and `logBadJoke` (function). If `shouldTellFunnyJoke` is `true` it should call `logFunnyJoke`, which displays a funny joke on the page. Otherwise it should call `logBadJoke`, which displays a bad joke on the page.
 
 ## 3. Function as a variable
 
@@ -62,7 +62,7 @@ Here is a gif of how the site should work:
 You can implement it exactly like you want to, but here is my recommended order:
 
 1. **Create an input and a button in html**. When the button is clicked, get the value of the input. This value will be the amount of time the game should run.
-2. **Set a timeout for the time specified by the user.** After that time has run out just log out a simple string.
+2. **Set a timeout for the time specified by the user.** After that time has run out, display a message on the page (e.g. "Time's up!").
 3. **Create an event listener** so you can call a function **when any key is pressed**. Now grab the actual key that was pressed. e.g. was it a `j` or an `i`. We are interested in `s` and `l`. Here Google is your friend!
 4. **Keep a counter** for how many times `l` and `s` was pressed.
 5. **Now put it all together!** After the timeout is done figure out which of the counters is largest. Give some kind of feedback to the users indicating who won.
