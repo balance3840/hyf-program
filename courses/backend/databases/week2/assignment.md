@@ -27,7 +27,7 @@ For **Parts 1, 3, and 4** of this assignment, you can use the **DB Playground** 
 5. When you're happy with your answer, click **✓ Check Answer** — the playground will validate your result automatically and tick the checkbox if correct
 6. When you're done, click **Save** to save your `tasks.sqlite3` file to disk — you can reopen it next session and your progress is remembered
 
-> **💡 Tip:** The playground validates your *results*, not the exact query you wrote. There are often multiple correct ways to write the same query — as long as your output matches the expected values, it passes.
+> **💡 Tip:** The playground validates your _results_, not the exact query you wrote. There are often multiple correct ways to write the same query — as long as your output matches the expected values, it passes.
 
 ### Option B — Local SQLite
 
@@ -130,18 +130,16 @@ Write the following queries and save them in your `.sql` file:
 Combine everything from Parts 1–3 to solve the following real-world scenarios:
 
 1. Write a transaction that:
-
-   * Creates a new category called `"Urgent"`
-   * Finds all tasks that are "In Progress" or "To Do"
-   * Assigns all of those tasks to the new `"Urgent"` category
-   * If anything goes wrong (e.g., duplicate category name), rolls back the entire operation
+   - Creates a new category called `"Urgent"`
+   - Finds all tasks that are "In Progress" or "To Do"
+   - Assigns all of those tasks to the new `"Urgent"` category
+   - If anything goes wrong (e.g., duplicate category name), rolls back the entire operation
 
 2. Write a query that generates a simple dashboard summary with a single result set containing:
-
-   * Total number of tasks
-   * Number of completed tasks (status = "Done")
-   * Number of overdue tasks (due\_date < today)
-   * Number of users with at least one task
+   - Total number of tasks
+   - Number of completed tasks (status = "Done")
+   - Number of overdue tasks (due_date < today)
+   - Number of users with at least one task
 
    > **💡 Hint:** You can use subqueries or `CASE` expressions inside a single `SELECT` to combine multiple aggregations.
 
