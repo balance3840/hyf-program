@@ -16,7 +16,7 @@ This file supports the OpenAPI/Swagger segment of Week 2.
 
 ## Minimal example for `GET /api/snippets`
 
-Use a concise YAML snippet in class:
+Use a concise YAML snippet in the session:
 
 ```yaml
 paths:
