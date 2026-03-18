@@ -35,7 +35,7 @@ Update at least one user with a hashed password (for example a small Node progra
 
 1. Modify the login functionality
 2. Use `bcrypt.compare` to compare the provided password with the stored `password_hash`.
-4. Returns:
+3. Returns:
    - `401 Unauthorized` with a generic error message on failure.
    - `200 OK` (or `201`) with a small success payload on success.
 

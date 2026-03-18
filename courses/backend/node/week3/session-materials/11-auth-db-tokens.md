@@ -16,7 +16,7 @@ Add a `tokens` table to the Snippets database, for example with columns:
 
 - `id` (primary key)
 - `user_id` (foreign key to `users.id`)
-- `role` (string) 
+- `role` (string)
 - `token` (string, unique)
 - `created_at` (timestamp)
 - `expires_at` (timestamp, optional)
@@ -50,7 +50,7 @@ Create an `/admin` rote protected by the role guard, so that:
 
 In order to demonstrate why simple encoding is not enough for the token - perform the request forgery
 
-1. Take the token and decode it (examples/token-forgery.js for the full path, [CyberChef](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false/disabled)To_Base64('A-Za-z0-9%2B/%3D')&input=eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWxpY2UiLCJyb2xlIjoiYWRtaW4ifQ) to go step-by-step)
+1. Take the token and decode it (examples/token-forgery.js for the full path, [CyberChef](<https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false/disabled)To_Base64('A-Za-z0-9%2B/%3D')&input=eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWxpY2UiLCJyb2xlIjoiYWRtaW4ifQ>) to go step-by-step)
 2. Change the role in the token from user to admin
 3. Use the newly 'forged' token to enter `/admin` route
 
