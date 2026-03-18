@@ -44,7 +44,7 @@ You do **not** need to generate tokens here yet – this is just about secure cr
 ## 6. Hash cracking introduction
 
 If using MD5 hashing algorythm, it is great to demonstrate that even hashed, if password is weak - it could be easily cracked
-Take the created password hash (considering that it was a simple password like qwerty123, password123 etc) and paste it [here](https://crackstation.net/)
+Take the created password hash (considering that it was a simple password like qwerty123, password123 etc) and paste it here - [Crack Station](https://crackstation.net/)
 
 ## 7. Suggested exercises
 
