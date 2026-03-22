@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event loop &amp; microtasks – Week 3</title>
+    <link rel="stylesheet" href="event-loop.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Event loop &amp; microtasks</h1>
+      <p class="intro">
+        Drag blocks where they belong. Same idea as week 2, with one extra box:
+        work from a <code>Promise</code> (like <code>.then</code> /
+        <code>.catch</code>) waits in the <strong>microtask queue</strong> and
+        runs before the next <code>setTimeout</code>
+        callback.
+      </p>
+
+      <div class="code-section">
+        <div class="section-label">Code</div>
+        <div class="code-blocks" id="code-blocks"></div>
+      </div>
+
+      <div class="diagram">
+        <div class="zone call-stack" data-zone="callstack">
+          <div class="zone-label">
+            Call stack
+            <span class="tooltip-trigger" tabindex="0">
+              ?
+              <span class="tooltip"
+                >Where normal synchronous code runs. When it finishes,
+                microtasks run, then one callback from the task queue.</span
+              >
+            </span>
+          </div>
+          <div
+            class="zone-tasks"
+            id="callstack-tasks"
+            data-drop-zone="callstack"
+          ></div>
+        </div>
+        <div class="zone microtask-queue" data-zone="microtask">
+          <div class="zone-label">
+            Microtask queue
+            <span class="tooltip-trigger" tabindex="0">
+              ?
+              <span class="tooltip"
+                >When a promise settles, the engine queues its
+                <code>.then</code> / <code>.catch</code> work here. This queue
+                is emptied before the next <code>setTimeout</code> (or other
+                task-queue) callback.</span
+              >
+            </span>
+          </div>
+          <div
+            class="zone-tasks"
+            id="microtask-tasks"
+            data-drop-zone="microtask"
+          ></div>
+        </div>
+        <div class="zone async-queue" data-zone="async">
+          <div class="zone-label">
+            Task queue
+            <span class="tooltip-trigger" tabindex="0">
+              ?
+              <span class="tooltip"
+                >Callbacks waiting to run after microtasks — for example from
+                <code>setTimeout</code>.</span
+              >
+            </span>
+          </div>
+          <div class="zone-tasks" id="async-tasks" data-drop-zone="async"></div>
+        </div>
+        <div class="zone timer" data-zone="timer">
+          <div class="zone-label">
+            Timer (Web APIs)
+            <span class="tooltip-trigger" tabindex="0">
+              ?
+              <span class="tooltip"
+                >When you call <code>setTimeout(fn, ms)</code>, the timer waits,
+                then the callback is queued as a macrotask. Part of the
+                browser’s Web APIs.</span
+              >
+            </span>
+          </div>
+          <div class="zone-tasks" id="timer-tasks" data-drop-zone="timer"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button type="button" id="btn-reset">Reset</button>
+      </div>
+    </main>
+    <script src="event-loop.js"></script>
+  </body>
+</html>
