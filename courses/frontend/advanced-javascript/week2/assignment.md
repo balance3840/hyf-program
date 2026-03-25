@@ -57,7 +57,7 @@ A user specifies how long time the game should be, and presses **"start game!"**
 
 Here is a gif of how the site should work:
 
-![session material](session-materials/fastest-clicker.gif =400x)
+![session material](session-materials/fastest-clicker.gif)
 
 You can implement it exactly like you want to, but here is my recommended order:
 
