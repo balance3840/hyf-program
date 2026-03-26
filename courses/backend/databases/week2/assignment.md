@@ -31,7 +31,7 @@ For **Parts 1, 3, and 4** of this assignment, you can use the **DB Playground** 
 
 ### Option B — Local SQLite
 
-If you prefer to work locally with the `sqlite3` CLI or DB Browser for SQLite, that works too. Submit a single `.sql` file with all your queries and comments, structured as shown in the [Submission](#submission) section.
+If you prefer to work locally with the `sqlite3` CLI or DBeaver for SQLite, that works too. Submit a single `.sql` file with all your queries and comments, structured as shown in the [Submission](#submission) section.
 
 ---
 
