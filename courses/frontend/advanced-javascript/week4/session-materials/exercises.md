@@ -2,17 +2,17 @@
 
 Work through these in order.
 
-### 1. Create a user class
+## 1. Create a user class
 
 The class should have 2 properties: `firstName` and `lastName`. Hint: Use `this` and `constructor`.
 
-### 2. Create an instance of the class
+## 2. Create an instance of the class
 
 Use the `new` keyword and assign the instance in a variable.
 
 Add a **`renderUserCard(user)`** function that accepts a **`User`** instance and renders a user card on the page (e.g. a `div` with `firstName` and `lastName`).
 
-### 3. Create a class method
+## 3. Create a class method
 
 1. Add **`getFullName`**: it should return the combined first and last name of the user. Use string concatenation or template literals and **`this`** to read the properties.
 
@@ -20,12 +20,12 @@ Add a **`renderUserCard(user)`** function that accepts a **`User`** instance and
 
 3. Call **`myUser.render()`** so the card appears on the page (you can stop using **`renderUserCard`** once this works).
 
-### 4. Creating a CV class
+## 4. Creating a CV class
 
 The CV that we will be making uses three classes: `Job`, `Education` and
 `CV`. The `CV` class we have made for you (with some missing functionality). The `Job` and `Education` classes you need to create.
 
-#### Part 1
+### Part 1
 
 Create the classes `Job` and `Education`.
 
@@ -42,7 +42,7 @@ class Education {
 }
 ```
 
-#### Part 2
+### Part 2
 
 Now add the functionality for the methods in the `CV` class.
 
@@ -74,7 +74,7 @@ class CV {
 }
 ```
 
-#### Part 3
+### Part 3
 
 1. Create a new `CV` instance using the `new` keyword, and save it in a variable called `myCV`.
 
@@ -84,6 +84,6 @@ class CV {
 
 4. Log `myCV` to the console, again, and check that the objects were removed correctly.
 
-#### Part 4
+### Part 4
 
 Add a method to the `CV` class called `renderCV()`. This method should render out the CV using HTML. Make sure, that view updates, when data is changed.

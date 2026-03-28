@@ -19,7 +19,7 @@ Start VERY simple. Just a class that has few fields, no methods. Explain the dif
 - Methods (instance + static)
   - [Code inspiration](./session-materials/code-inspiration.md#methods)
   - [Code inspiration — static methods](./session-materials/code-inspiration.md#static-methods) (Promise as "you already use this")
-  - [Exercise](./session-materials/exercises.md#3-methods-on-user-getfullname-and-render)
+  - [Exercise](./session-materials/exercises.md#3-create-a-class-method)
 - `this`
   - Refers to the instance of the class. Do go into too much detail and edge cases. Avoid mentioning `bind`, `apply`, etc unless you find it super important, the trainees will just forget it anyway!
 - [Exercise](./session-materials/exercises.md#4-creating-a-cv-class)

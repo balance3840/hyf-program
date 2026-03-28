@@ -6,12 +6,12 @@ In-session live coding for **Week 4** (Advanced JavaScript). The page shows a **
 
 ## Files in this folder
 
-| File                  | Purpose                                                                                                                                                                                                 |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **index.js**          | Worksheet: Part 1 runs on load; Parts 2–4 use `// Task:` lines, `// Next: Exercise N` pauses, and `// ==========` section banners. Use this file when leading the session.                             |
-| **index-solution.js** | Full implementation: `Comment` with `render` / `like` / `hasSwearWord`, DOM append, `ValidationError` + `try` / `catch`, and the Web Components sketch as comments.                                   |
-| **index.html**        | Two sections and containers for plain vs class comments; loads **index.js**. To preview the solution, change the `<script>` `src` to **index-solution.js**.                                             |
-| **style.css**         | Layout, comment cards, flagged state (`.comment--flagged`), like button. No edits needed for the default flow.                                                                                          |
+| File                  | Purpose                                                                                                                                                                    |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **index.js**          | Worksheet: Part 1 runs on load; Parts 2–4 use `// Task:` lines, `// Next: Exercise N` pauses, and `// ==========` section banners. Use this file when leading the session. |
+| **index-solution.js** | Full implementation: `Comment` with `render` / `like` / `hasSwearWord`, DOM append, `ValidationError` + `try` / `catch`, and the Web Components sketch as comments.        |
+| **index.html**        | Two sections and containers for plain vs class comments; loads **index.js**. To preview the solution, change the `<script>` `src` to **index-solution.js**.                |
+| **style.css**         | Layout, comment cards, flagged state (`.comment--flagged`), like button. No edits needed for the default flow.                                                             |
 
 ---
 

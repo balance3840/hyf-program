@@ -115,9 +115,18 @@ class Comment {
   }
 }
 
-const classComment1 = new Comment("dave_dev", "This is so much cleaner with classes!");
-const classComment2 = new Comment("eve_codes", "This is damn cool, I love the render pattern.");
-const classComment3 = new Comment("frank_js", "Classes make the code easier to maintain.");
+const classComment1 = new Comment(
+  "dave_dev",
+  "This is so much cleaner with classes!",
+);
+const classComment2 = new Comment(
+  "eve_codes",
+  "This is damn cool, I love the render pattern.",
+);
+const classComment3 = new Comment(
+  "frank_js",
+  "Classes make the code easier to maintain.",
+);
 
 console.log(classComment1);
 console.log(classComment2);

@@ -7,7 +7,12 @@ Snippets aligned with the in-session [demo](./demo/README.md): same `Comment` sh
 Why classes: repeated object literals are easy to get wrong; rendering and behavior live outside the data.
 
 ```js
-const comment1 = { username: "alice", text: "Nice!", date: new Date(), likes: 0 };
+const comment1 = {
+  username: "alice",
+  text: "Nice!",
+  date: new Date(),
+  likes: 0,
+};
 const comment2 = { userName: "bob", text: "Hi" }; // typo: userName → UI shows undefined
 const comment3 = { username: "carol", content: "Oops" }; // wrong key for text
 
