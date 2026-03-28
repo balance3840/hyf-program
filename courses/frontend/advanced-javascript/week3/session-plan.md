@@ -8,7 +8,7 @@ These are some examples of previously created materials by mentors that you can 
 
 - [Notion Page Handout](https://dandy-birth-1b2.notion.site/HYF-Aarhus-JS-3-Week-2-0287dd1293df4a0a92171e62ce12f5c8?pvs=4) (by [Thomas](https://github.com/te-online))
 - [Demo](./session-materials/demo/) – In-session live coding from **Code inspiration** below (not the trainee exercises). **index.js** = worksheet stubs; **index-solution.js** = reference. [README](./session-materials/demo/README.md).
-- [Event loop demo](./session-materials/event-loop-demo/event-loop.html) – Drag-and-drop diagram; week 2 version plus **microtask queue** and promise blocks.
+- [Promises chaining diagram (PDF)](./session-materials/Promises.pdf) – Hand-drawn sketch you can project or redraw on the board when explaining how `.then()` chains.
 
 ## Session Outline
 
@@ -37,6 +37,7 @@ First when they fully understand one part of promises, I move on! Don't over-com
     - [Exercises 5](./session-materials/exercises.md#exercise-5)
   - `Promise.all` - Let trainees investigate
   - Optional - Chaining. Calling `.then` returns a promise. Only get to here when they understand async/await and promise consumption and creation.
+    - I found that drawing/demoing how it works under the hood useful when explaining how promises feed into the next `.then()`. You can find example in Session matherials.
     - [Reason for promise](https://mobile.twitter.com/addyosmani/status/1097035418657144832?s=19)
   - [Exercises 5](./session-materials/exercises.md#exercise-5) and [Exercises 6](./session-materials/exercises.md#exercise-6)
 

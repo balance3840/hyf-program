@@ -104,6 +104,7 @@
     - [Week 4](courses/frontend/advanced-javascript/week4/README.md)
       - [Preparation](courses/frontend/advanced-javascript/week4/preparation.md)
       - [Session Plan](courses/frontend/advanced-javascript/week4/session-plan.md)
+      - [Exercises](courses/frontend/advanced-javascript/week4/session-materials/exercises.md)
       - [Assignment](courses/frontend/advanced-javascript/week4/assignment.md)
   - [React](courses/frontend/react/README.md)
     - [Week 1](courses/frontend/react/week1/README.md)
