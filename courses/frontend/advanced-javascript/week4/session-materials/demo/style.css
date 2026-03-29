@@ -1,0 +1,130 @@
+/* =============================================================================
+   Mentors demo – Classes
+   ============================================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  margin: 0;
+  padding: 1.5rem 2rem;
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.intro {
+  color: #64748b;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+/* =============================================================================
+   Sections
+   ============================================================================= */
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+section h2 {
+  font-size: 1.15rem;
+  color: #334155;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* =============================================================================
+   Comment cards
+   ============================================================================= */
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.comment {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.comment-username {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 0.95rem;
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.comment-text {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #334155;
+}
+
+/* =============================================================================
+   Flagged comments (swear word detected)
+   ============================================================================= */
+
+.comment--flagged {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.comment--flagged .comment-text {
+  color: #991b1b;
+}
+
+.comment--flagged .comment-header::after {
+  content: "⚠️ flagged";
+  font-size: 0.75rem;
+  color: #dc2626;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+/* =============================================================================
+   Like button
+   ============================================================================= */
+
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.15s ease;
+}
+
+.like-btn:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #ef4444;
+}

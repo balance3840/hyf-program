@@ -11,25 +11,25 @@ The warmup is a **little abstract**, it will get more concrete later on!
 1. Display the text `Called after 2.5 seconds` on the page 2.5 seconds after the script is loaded.
 
 2. Create a function that takes 2 parameters: `delay` and `stringToLog`. Calling this function should display the `stringToLog` on the page after `delay` seconds. Call the function you have created with some different arguments.
-   ![second task](session-materials/carbon.png)
+   ![second task](./session-materials/carbon.png)
 
 3. Create a button in html. When clicking this button, use the function you created in the previous task to display the text `Called after 5 seconds` on the page 5 seconds after the button is clicked.
 
-![second task](session-materials/button-delay.gif)
+![second task](./session-materials/button-delay.gif)
 
 4. Create two functions and assign them to two different variables. One function displays `Earth` on the page, the other displays `Saturn`. Now create a new third function that has one parameter: `planetLogFunction`. The only thing the third function should do is call the provided parameter function. Try calling the third function once with the `Earth` function and once with the `Saturn` function.
 
-![second task](session-materials/planet-log.png)
+![second task](./session-materials/planet-log.png)
 
 5. Create a button with the text "Log location". When this button is clicked, display the user's location (latitude, longitude) on the page using this [browser API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 
-![second task](session-materials/log-location.gif)
+![second task](./session-materials/log-location.gif)
 
 6. _Optional_ Now show that location on a map using e.g. the [Google maps api](https://developers.google.com/maps/documentation/javascript/tutorial)
 
 7. Create a function called `runAfterDelay`. It has two parameters: `delay` and `callback`. When called the function should wait `delay` seconds and then call the provided callback function. Add an input in the HTML for the delay (in seconds) and a button; when the button is clicked, read the delay from the input and call `runAfterDelay` with that delay and a callback that displays something on the page.
 
-![second task](session-materials/run-after-delay.png)
+![second task](./session-materials/run-after-delay.png)
 
 8. Check if the user has double-clicked on the page. A double click is two clicks within 0.5 seconds. If a double click is detected, display the text "double click!" on the page.
 
@@ -57,7 +57,7 @@ A user specifies how long time the game should be, and presses **"start game!"**
 
 Here is a gif of how the site should work:
 
-![session material](session-materials/fastest-clicker.gif)
+![Fastest presser game demo](./session-materials/fastest-clicker.gif)
 
 You can implement it exactly like you want to, but here is my recommended order:
 

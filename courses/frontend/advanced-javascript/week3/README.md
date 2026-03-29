@@ -6,6 +6,7 @@ In this session, you'll learn how to write asynchronous code that is both effici
 
 - [Preparation](./preparation.md)
 - [Session Plan](./session-plan.md) (for mentors)
+- [Exercises](./session-materials/exercises.md)
 - [Assignment](./assignment.md)
 
 ## Session Learning Goals

@@ -7,6 +7,8 @@
 These are some examples of previously created materials by mentors that you can use yourself, or for inspiration.
 
 - [Notion Page Handout](https://dandy-birth-1b2.notion.site/HYF-Aarhus-JS-3-Week-2-0287dd1293df4a0a92171e62ce12f5c8?pvs=4) (by [Thomas](https://github.com/te-online))
+- [Demo](./session-materials/demo/) – In-session live coding from **Code inspiration** below (not the trainee exercises). **index.js** = worksheet stubs; **index-solution.js** = reference. [README](./session-materials/demo/README.md).
+- [Promises chaining diagram (PDF)](./session-materials/Promises.pdf) – Hand-drawn sketch you can project or redraw on the board when explaining how `.then()` chains.
 
 ## Session Outline
 
@@ -20,78 +22,30 @@ First when they fully understand one part of promises, I move on! Don't over-com
   - Quickly recap asynchronicity
     - Ask the trainees what it means that some code is asynchronous
   - Practical example of async/await
-  - [Exercises 1](#exercise-1)
+  - [Exercises 1](./session-materials/exercises.md#exercise-1)
 - Promise
   - Why do we use promises?
     - So important to explain this, the trainees always ask this! [Is there specific functionality that can only be done with promises in JS?](https://stackoverflow.com/questions/39004567/why-do-we-need-promise-in-js)
   - Consumption
     - [Code inspiration](#promise-consumption)
     - Example, call some function that returns a promise (like fetch)
-    - [Exercises 2](#exercise-2)
+    - [Exercises 2](./session-materials/exercises.md#exercise-2)
   - Creation
     - [Code inspiration](#promise-creation)
-    - [Exercises 3](#exercise-3) and then [Exercises 4](#exercise-4)
+    - [Exercises 3](./session-materials/exercises.md#exercise-3) and then [Exercises 4](./session-materials/exercises.md#exercise-4)
   - Async await
-    - [Exercises 5](#exercise-5)
+    - [Exercises 5](./session-materials/exercises.md#exercise-5)
   - `Promise.all` - Let trainees investigate
   - Optional - Chaining. Calling `.then` returns a promise. Only get to here when they understand async/await and promise consumption and creation.
+    - I found that drawing/demoing how it works under the hood useful when explaining how promises feed into the next `.then()`. You can find example in Session matherials.
     - [Reason for promise](https://mobile.twitter.com/addyosmani/status/1097035418657144832?s=19)
-  - [Exercises 5](#exercise-5) and [Exercises 6](#exercise-6)
+  - [Exercises 5](./session-materials/exercises.md#exercise-5) and [Exercises 6](./session-materials/exercises.md#exercise-6)
 
 ## Exercises
 
-<!-- Exercises might appear inside the Session Outline section if they are tightly integrated into the flow of the session. If you have more like a library of exercises that should be worked through in order, then you could also list them in a separate section here. -->
+See [Exercises](./session-materials/exercises.md). Trainees show results on the page (update the DOM), not in the console.
 
-### Exercise 1
-
-Using async await
-
-1. `fetch` yes or no from this api: `https://yesno.wtf/api`. log out the answer
-
-### Exercise 2
-
-Using promises
-
-1. `fetch` yes or no from this api: `https://yesno.wtf/api`. log out the answer
-2. Try fetching a url that rejects e.g. `https://knajskdskj.jasdk`. Log out the error message
-
-### Exercise 3
-
-1. Create a promise that resolves after 4 seconds. Use this promise to log out the text 'hello' after 4 seconds.
-2. Now make the promise fail by rejecting it with an error message instead of resolving it, and log the error message to the console.
-
-### Exercise 4
-
-Create a function that returns a promise, that you can use like this:
-
-```js
-// YesNoFail4Seconds should wait 4 seconds before it does one of the following 3 things:
-// resolves with a yes
-// resolves with a no
-// or rejects
-// Look into Math.random()
-YesNoFail4Seconds()
-  .then((data) => {
-    console.log(`The answer is ${data}`);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-```
-
-The above example show how to consume the promise using promises. Now try consume the `YesNoFail4Seconds` using async/await
-
-### Exercise 5
-
-Using async await
-
-1. Fetch the astronauts
-2. After the astronauts has been fetched, fetch movies using [this api](https://gist.githubusercontent.com/pankaj28843/08f397fcea7c760a99206bcb0ae8d0a4/raw/02d8bc9ec9a73e463b13c44df77a87255def5ab9/movies.json)
-3. Log out the movies
-
-### Exercise 6
-
-Get the astronauts and the movies at the same time. Log out the movies and the battery status when both promises has been resolved.
+[Console order](./session-materials/console-order.md) – Optional “what is logged?” promise chaining.
 
 ## Code inspiration
 
@@ -108,22 +62,21 @@ Get the astronauts and the movies at the same time. Log out the movies and the b
 // await waits until we have fetched the data from the api. Or said in another way await waits until fetch has resolved with the data from the api
 
 // write async before a function for await to work. What does it mean that something is asynchronous?
-async function getAstronauts() {
+// JSONPlaceholder works reliably in the browser (same idea as Open Notify / astronauts, different URL).
+async function getJsonPlaceholderUser() {
   // await waits until we have data from fetch before it runs the next line. No need for callbacks 🤯
   console.log("Before we fetch data");
-  const astronautsResponse = await fetch(
-    "http://api.open-notify.org/astros.json",
-  );
+  const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
   console.log(
     "This is logged out after some time, even though the code looks synchronous! 🤯",
   );
-  const astronauts = await astronautsResponse.json();
+  const user = await response.json();
   console.log("This is logged out after some time! 🤯");
-  console.log(astronauts);
-  return astronauts;
+  console.log(user);
+  return user;
 }
 
-getAstronauts();
+getJsonPlaceholderUser();
 ```
 
 ### Promise consumption
@@ -138,10 +91,10 @@ The trainees should be able to answer these questions:
 // How would you explain your mom what resolved and rejected means?
 
 ```js
-fetch("http://api.open-notify.org/astros.json")
-  .then((astronautsResponse) => astronautsResponse.json())
-  .then((astronauts) => {
-    console.log(astronauts);
+fetch("https://jsonplaceholder.typicode.com/users/1")
+  .then((response) => response.json())
+  .then((user) => {
+    console.log(user);
   })
   .catch((error) => console.log(error));
 
@@ -215,19 +168,19 @@ console.log(test());
 So writing `async` in front of a function makes it return a promise! The keyword `await` makes JavaScript wait until that promise resolved and returns its result.
 
 ```js
-async function getAstronauts() {
+async function getJsonPlaceholderUserSafe() {
   try {
-    const astronautsResponse = await fetch(
-      "http://api.open-notify.org/astros.json",
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/users/1",
     );
-    const astronauts = await astronautsResponse.json();
-    return astronauts;
+    const user = await response.json();
+    return user;
   } catch (err) {
-    throw "Fetching the astronauts went wrong";
+    throw "Fetching the user went wrong";
   }
 }
 
-const astronauts = getAstronauts();
+const userPromise = getJsonPlaceholderUserSafe();
 ```
 
 ### Function that returns a promise

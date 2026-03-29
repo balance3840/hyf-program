@@ -1,4 +1,4 @@
-# Classes & Advanced Promises (Week 4)
+# Classes & Object-Oriented Programming (Week 4)
 
 In this session, you'll learn how to use JavaScript classes to create reusable templates for objects that share common properties and behaviors. By mastering classes and inheritance, you'll be able to organize your code more efficiently and implement object-oriented programming principles. These skills will help you write cleaner, more maintainable code and understand the differences between classes and objects in JavaScript.
 
@@ -6,13 +6,14 @@ In this session, you'll learn how to use JavaScript classes to create reusable t
 
 - [Preparation](./preparation.md)
 - [Session Plan](./session-plan.md) (for mentors)
+- [Exercises](./session-materials/exercises.md)
 - [Assignment](./assignment.md)
 
 ## Session Learning Goals
 
 By the end of this session, you will be able to:
 
-- [ ] Use **classes** to easily create similar objects.
+- [ ] Use **classes** to create objects with consistent structure and built-in behavior
   - [ ] Declare a class using `class`, `constructor`, and `this`
   - [ ] Instantiate objects from classes using `new`
   - [ ] Use Methods and constructors
@@ -21,19 +22,30 @@ By the end of this session, you will be able to:
   - [ ] Understand the difference between classes vs objects
 
 ```js
-// Example of declaring a Person class
-class Person {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
+class Comment {
+  constructor(username, text) {
+    this.username = username;
+    this.text = text;
+    this.likes = 0;
   }
 
-  greet() {
-    console.log(`Hi, I'm ${this.name}`);
+  like() {
+    this.likes++;
+    this.render();
+  }
+
+  render() {
+    // data, behavior, and rendering live together
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <strong>@${this.username}</strong>
+      <p>${this.text}</p>
+      <button>❤️ ${this.likes}</button>
+    `;
+    return div;
   }
 }
 
-// Example of an actual person created from the Person class
-const alice = new Person("Alice", 25);
-alice.greet();
+const comment = new Comment("alice", "Great post!");
+document.body.appendChild(comment.render());
 ```
