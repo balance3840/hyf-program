@@ -1,81 +1,31 @@
 # Assignment
 
-You'll set up and work with your own version of a simple Contacts API.
+In this assignment you will continue working with the **Snippets API**. Your focus is to design and harden a small set of endpoints by:
 
-It will start with one endpoint (and you will add more throughout the task):
-
-- `GET /api/contacts`
-
-This endpoint accepts a query parameter `sort`. Here's how it should be possible to use it:
-
-- `GET /api/contacts?sort=first_name%20ASC`
-  - Sorts contacts by first name, ascending
-- `GET /api/contacts?sort=last_name%20DESC`
-  - Sorts contacts by last name, descending
+- Demonstrating and fixing a SQL injection vulnerability.
+- Extending the REST surface in a thoughtful way.
+- Applying consistent error handling and validation.
+- Describing your API with OpenAPI/Swagger.
+- Exercising it with advanced Postman collections and tests.
 
 ## Setup
 
 1. Go to/create a `node/week2` directory in your `hyf-assignment` repo.
-2. Create yourself a new node application
-3. Create a database called `phonebook` with a `contacts` table, with the following schema and data:
-
-```sql
-CREATE TABLE `contacts` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Sample data
-insert into contacts (id, first_name, last_name, email, phone) values (1, 'Selig', 'Matussov', 'smatussov0@pinterest.com', '176-630-4577');
-insert into contacts (id, first_name, last_name, email, phone) values (2, 'Kenny', 'Yerrington', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (3, 'Emilie', 'Gaitskell', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (4, 'Jordon', 'Tokell', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (5, 'Sallyann', 'Persse', 'spersse4@webnode.com', '219-157-2368');
-insert into contacts (id, first_name, last_name, email, phone) values (6, 'Berri', 'Bulter', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (7, 'Lanni', 'Ivanilov', 'livanilov6@fda.gov', null);
-insert into contacts (id, first_name, last_name, email, phone) values (8, 'Dagny', 'Milnthorpe', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (9, 'Annadiane', 'Bansal', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (10, 'Tawsha', 'Hackley', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (11, 'Rubetta', 'Ozelton', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (12, 'Charles', 'Boughey', 'cbougheyb@senate.gov', '605-358-5664');
-insert into contacts (id, first_name, last_name, email, phone) values (13, 'Shantee', 'Robbe', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (14, 'Gleda', 'Peat', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (15, 'Arlinda', 'Ethersey', 'aetherseye@biglobe.ne.jp', '916-139-1300');
-insert into contacts (id, first_name, last_name, email, phone) values (16, 'Armando', 'Meachem', 'ameachemf@oaic.gov.au', '631-442-5339');
-insert into contacts (id, first_name, last_name, email, phone) values (17, 'Codi', 'Redhouse', null, '401-953-6897');
-insert into contacts (id, first_name, last_name, email, phone) values (18, 'Ann', 'Buncombe', 'abuncombeh@ow.ly', '210-338-0748');
-insert into contacts (id, first_name, last_name, email, phone) values (19, 'Louis', 'Matzkaitis', 'lmatzkaitisi@ebay.com', '583-996-6979');
-insert into contacts (id, first_name, last_name, email, phone) values (20, 'Jessey', 'Pala', null, null);
-insert into contacts (id, first_name, last_name, email, phone) values (21, 'Archy', 'Scipsey', 'ascipseyk@ask.com', '420-983-2426');
-insert into contacts (id, first_name, last_name, email, phone) values (22, 'Benoit', 'Mould', 'bmouldl@bing.com', '271-217-9218');
-insert into contacts (id, first_name, last_name, email, phone) values (23, 'Sherm', 'Girardey', 'sgirardeym@guardian.co.uk', '916-999-2957');
-insert into contacts (id, first_name, last_name, email, phone) values (24, 'Raquel', 'Mudge', 'rmudgen@slate.com', '789-830-7473');
-insert into contacts (id, first_name, last_name, email, phone) values (25, 'Tabor', 'Reavey', null, null);
-```
-
-4. Set up Express and an Sqlite connection in your node application. In your knex instance, make sure to set: `multipleStatements: true` - this is important!
-
-5. Make sure you have an API router under the `/api` path set up like so:
+2. Reuse your Snippets backend from Week 1 (or create a fresh copy of it).
+3. Make sure you have:
+   - A `users` and `snippets` table (you can reuse the schema from Week 1).
+   - An Express app with a `snippets` router under `/api/snippets`.
+   - A working Knex instance connected to your database.
+4. Add a new endpoint to your `snippets` router, modelled on this **intentionally unsafe** example:
 
 ```js
-app.use("/api", apiRouter);
-```
-
-6. Create a contacts router at `/contacts`, and attach it to your API router.
-7. In your contacts API, create the following endpoint:
-
-```js
-contactsAPIRouter.get("/", async (req, res) => {
-  let query = knexInstance.select("*").from("contacts");
+snippetsRouter.get("/", async (req, res) => {
+  let query = knexInstance.select("*").from("snippets");
 
   if ("sort" in req.query) {
     const orderBy = req.query.sort.toString();
     if (orderBy.length > 0) {
-      query = query.orderByRaw(orderBy);
+      query = query.orderByRaw(orderBy); // Vulnerable!
     }
   }
 
@@ -91,41 +41,101 @@ contactsAPIRouter.get("/", async (req, res) => {
 });
 ```
 
+> You may adapt table/column names to match your own schema, but keep the overall pattern.
+
 ## The tasks
 
-### Task 1 - Solve the SQL injection
+### Task 1 – Demonstrate and fix SQL injection
 
-The current implementation of the `sort` query parameter has introduced an SQL injection vulnerability.
+The current implementation of the `sort` query parameter is vulnerable to SQL injection.
 
-First, you should demonstrate the SQL injection and that, for instance, it is possible to drop/delete the `contacts` table with the `sort` query parameter. Capture this demonstration with a screen recording, and attach it to your PR when you submit your assignment.
+1. **Demonstrate the problem**:
+   - Find one or more `sort` values that produce suspicious or broken SQL.
+   - Capture the generated SQL from the server logs.
+   - Record a short screen capture, showing:
+     - The request(s) you make.
+     - The problematic SQL printed on the server.
+2. **Fix the vulnerability**:
+   - Introduce validation for `req.query.sort`, for example:
+     - Only allow a small whitelist of sortable columns (e.g. `created_at`, `title`).
+     - Only allow `ASC` or `DESC` as sort directions.
+   - Replace `orderByRaw(orderBy)` with a safe combination using Knex Query Builder, such as:
+     - `query = query.orderBy(column, direction);`
+   - Ensure your fix does **not** rely on turning off features globally; it should be solved in your application code.
 
-After having demonstrated the SQL injection vulnerability, your task is then to fix the issue. Your solution should be solved in the `app.js` file only. While the the `multipleStatements: true` configuration you used enables this vulnerability, it should not be changed in your solution.
+Update your logs to show the safe SQL after your fix, and include a short explanation in your PR describing your approach.
 
-### Task 2 - Improve your API
+### Task 2 – Extend the Snippets API
 
-Create two additional endpoints to enable the following functionality:
+Design and implement at least **two new endpoints** for the Snippets API. Some ideas:
 
-1. Create new contacts
-2. Delete an existing contact
+- A search or filter endpoint, e.g. `GET /api/snippets?tag=javascript`.
+- A “public feed” endpoint that only returns non-private snippets.
+- Alternatively add here endpoints related to `user` created during the session or write the ones you didn't finish.
 
-### Task 3 - Error handling
+For each new endpoint:
 
-Update your endpoints with appropriate error handling. You should, at least, handle the following cases:
+1. Choose a RESTful URL and HTTP method.
+2. Implement the route using Knex Query Builder (no `raw` SQL needed).
+3. Use appropriate status codes (e.g. `200`, `201`, `400`, `404`, `500`).
+4. Return consistent JSON data and error shapes, following the error-handling rules from Week 1.
 
-1. Successful requests
-2. Incorrect requests (e.g. an incorrectly formatted sort request)
-3. Server issues (e.g. a missing database table, or an offline database)
-4. A catch all for any other errors
+### Task 3 – Error handling and validation
 
-Remember to:
+Update your existing and new endpoints with robust error handling and validation. At minimum:
 
-1. Return the appropriate HTTP code
-2. Avoid sending any implementation or internal data to the client
-3. Log an appropriate message so you can debug issues that occur in your service
+1. Validate incoming data:
+   - Required fields (e.g. `title`, `contents`) must be present and non-empty.
+   - Path parameters like `:id` should be numbers.
+2. Handle the following cases explicitly:
+   - Successful requests.
+   - Incorrect requests (e.g. invalid `sort` value, missing required fields).
+   - Server issues (e.g. a missing table, DB connection problems).
+   - A catch-all for any unexpected errors.
+3. Use appropriate HTTP status codes (`400`, `404`, `500`, etc.).
+4. Avoid sending internal details (SQL statements, stack traces) to the client.
+5. Log enough information on the server to debug issues (errors and relevant context).
 
-### Task 3 - Postman
+### Task 4 – Document your API with OpenAPI/Swagger
 
-1. Create a Postman collection to capture some example requests with your new API.
-2. Create a basic test suite that you can run to validate that everything is working correctly.
+Create a minimal OpenAPI description for the core Snippets endpoints you now have. You can:
 
-Share both a link to your Collection and a link to a test run showing your tests passing in your pull request.
+- Use a YAML or JSON file (for example `openapi.yml` in your Week 2 directory).
+- Use the examples from the course materials as a starting point.
+
+For each, include:
+
+- Path and method.
+- Parameters (path/query).
+- Request body schema (where applicable).
+- Response status codes and schemas, including error responses that match your implementation.
+
+Include this file in your PR.
+
+### Task 5 – Advanced Postman collection and tests
+
+Use Postman to capture and test your API:
+
+1. **Collections and environments**
+   - Create a collection for your Snippets API.
+   - Add requests for all endpoints you implemented in this assignment.
+   - Create at least one environment with a `base_url` variable (e.g. `http://localhost:3000`), and use it in your requests.
+2. **Secrets**
+   - If you use any tokens or secrets in your requests, store them securely using the Postman Vault or sensitive variables.
+3. **Tests**
+   - For at least two requests, add tests under the **Tests** tab, checking:
+     - The HTTP status code (e.g. `200`, `201`, `400`, `404`).
+     - At least one field in the JSON response.
+   - Optionally, add a test that verifies your error responses match the agreed error format.
+4. **Share evidence**
+   - Export the collection (and environment if used) and attach it to your PR, **or** share a link to the collection if you use Postman Cloud.
+   - Include a screenshot or link to a collection run showing your tests passing.
+
+## Week 2 assignment objective
+
+After finish all the tasks, make sure (and fill in the gaps where needed) that your **entire Snippets API** is:
+
+1. Up and running
+2. Viewable in Swagger
+3. Callable in Postman
+4. Validated where applicable

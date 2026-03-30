@@ -4,10 +4,10 @@ This module is part of the Backend specialism and focuses on using Node.js to bu
 
 ## Contents
 
-| Week | Topic                    | Preparation                           | Session Plan                                          | Assignment                          |
-| ---- | ------------------------ | ------------------------------------- | ----------------------------------------------------- | ----------------------------------- |
-| 1.   | Express                  | [Preparation](./week1/preparation.md) | [Session plan](./week1/session-plan.md) (for mentors) | [Assignment](./week1/assignment.md) |
-| 2.   | Database connection; API | [Preparation](./week2/preparation.md) | [Session plan](./week2/session-plan.md) (for mentors) | [Assignment](./week1/assignment.md) |
+| Week | Topic                        | Preparation                           | Session Plan                                          | Assignment                          |
+| ---- | ---------------------------- | ------------------------------------- | ----------------------------------------------------- | ----------------------------------- |
+| 1.   | Express                      | [Preparation](./week1/preparation.md) | [Session plan](./week1/session-plan.md) (for mentors) | [Assignment](./week1/assignment.md) |
+| 2.   | API design and documentation | [Preparation](./week2/preparation.md) | [Session plan](./week2/session-plan.md) (for mentors) | [Assignment](./week1/assignment.md) |
 
 ## Module Learning Goals
 
@@ -19,3 +19,4 @@ By the end of this module, you will be able to:
 - [ ] Use logging and debugging tools to monitor and troubleshoot applications
 - [ ] Connect to databases and implement CRUD operations
 - [ ] Test APIs using Postman
+- [ ] Document APIs using Swagger/OpenAPI
