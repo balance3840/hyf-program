@@ -13,14 +13,19 @@
 
 ## Session pre-read
 
-- Read a short introduction to **password hashing and salting** (for example, an article explaining why plaintext passwords are insecure and how bcrypt works) // TODO
-- Read a high-level overview of **JWT (JSON Web Tokens)** and how they are used for stateless authentication // TODO
-- Read a brief introduction to **cookies and sessions** in web applications // TODO.
+- Read a short introduction to [password hashing and salting](https://auth0.com/blog/adding-salt-to-hashing-a-better-way-to-store-passwords/)
+- Read a high-level overview of [JWT (JSON Web Tokens](https://auth0.com/docs/secure/tokens/json-web-tokens)
+  [JWT debugger](https://www.jwt.io/)
+- Read about security problems with self-created tokens that could lead to [Token Forgery](https://entro.security/glossary/token-forging/)
+- Read a brief introduction to [cookies and sessions](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies)
 - Read a short overview on the [difference between **authentication and authorisation**](https://www.geeksforgeeks.org/computer-networks/difference-between-authentication-and-authorization/).
 
 ## Optional Resources
 
 For more research, you can explore the following resources:
 
-- OWASP cheatsheets on authentication and session management (for a deeper security perspective). //TODO
-- A more in-depth article or video about JWT best practices (token lifetimes, refresh tokens, common pitfalls). //TODO
+- Great additional read about [Authentication vulnurabilities](https://portswigger.net/web-security/authentication)
+- Great tool to extend your developer toolboc - [CyberChef](https://gchq.github.io/CyberChef/)
+- OWASP [cheatsheets](https://cheatsheetseries.owasp.org/index.html) on authentication and session management (for a deeper security perspective).
+- A more in-depth article or video about JWT best practices (token lifetimes, refresh tokens, common pitfalls). [JWT Attacks](https://portswigger.net/web-security/jwt)
+- Incredible resource to learn security and encryption concepts [Cryptohack](https://cryptohack.org/)
